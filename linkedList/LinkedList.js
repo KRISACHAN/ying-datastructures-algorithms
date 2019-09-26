@@ -19,7 +19,7 @@ const LinkedList = (() => {
     append(element) { // 向列表尾部添加一个新的项。
       let node = new Node(element)
       let current
-      if (head === null) { // 列表中第一个节点
+      if (this.head === null) { // 列表中第一个节点
         this.head = node
       } else {
         current = this.head
@@ -58,7 +58,7 @@ const LinkedList = (() => {
       }
     }
 
-    removeAt() { // 从列表的特定位置移除一项。
+    removeAt(position) { // 从列表的特定位置移除一项。
       //检查越界值
       if (position > -1 && position < this.length) {
         let current = this.head
@@ -87,7 +87,7 @@ const LinkedList = (() => {
       return this.removeAt(index)
     }
 
-    indexOf() { // 返回元素在列表中的索引。如果列表中没有该元素则返回-1。
+    indexOf(element) { // 返回元素在列表中的索引。如果列表中没有该元素则返回-1。
       let current = this.head
       let index = -1
       while (current) {

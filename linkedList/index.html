@@ -10,21 +10,26 @@
 <body>
   <script src="LinkedList.js"></script>
   <script src="DoublyLinkedList.js"></script>
+  <script src="CircularLinkedList.js"></script>
   <script>
     'use strict'
     const LL = new LinkedList()
-    LL.insert(0, '0')
-    LL.insert(1, '1')
-    LL.insert(2, '2')
+    LL.append('0')
+    LL.append('1')
+    LL.append('2')
     LL.print()
-    console.log(LL.toString())
 
     const DLL = new DoublyLinkedList()
-    DLL.insert(0, '0')
-    DLL.insert(1, '1')
-    DLL.insert(2, '2')
+    DLL.append('0')
+    DLL.append('1')
+    DLL.append('2')
     DLL.print()
-    console.log(DLL.toString())
+
+    const CLL = new CircularLinkedList()
+    CLL.append('0')
+    CLL.append('1')
+    CLL.append('2')
+    CLL.print()
   </script>
 </body>
 </html>
