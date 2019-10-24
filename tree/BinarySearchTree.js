@@ -148,17 +148,21 @@ const BST = (() => {
         return node
       }
     }
-    // key is equal to node.item
-    // handle 3 special conditions
-    // 1 - a leaf node
-    // 2 - a node with only 1 child
-    // 3 - a node with 2 children
+    // 当key === node.item时
+    // 有三种情况
+    // 1 - 一个叶子节点
+    // 2 - 一个节点只有一个子节点
+    // 3 - 一个节点有两个字节点
     // case 1
     remove(key) { // 从树中移除某个键。
       this.#root = this.removeNode(this.#root, key)
     }
+    getRoot() {
+      return this.#root
+    }
+
     print() {
-      console.log(this.#root)
+      console.log(this.getRoot())
     }
   }
   return __BST

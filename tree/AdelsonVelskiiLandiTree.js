@@ -17,7 +17,6 @@ const AVL = (() => {
     constructor(compareFn = utils.defaultCompare) {
       super(compareFn)
       this.compareFn = compareFn
-      this.compareFn = compareFn
     }
     getNodeHeight(node) { // 获取节点高度
       if (node == null) {
@@ -157,8 +156,13 @@ const AVL = (() => {
       }
       return node
     }
+    
+    getRoot() {
+      return this.#root
+    }
+
     print() {
-      console.log(this.#root)
+      console.log(this.getRoot())
     }
   }
   return __AVL

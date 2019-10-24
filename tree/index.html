@@ -11,7 +11,7 @@
   <script src="utils.js"></script>
   <script src="BinarySearchTree.js"></script>
   <script src="AdelsonVelskiiLandiTree.js"></script>
-  <script src="RedBackTree.js"></script>
+  <script src="RedBlackTree.js"></script>
   <script>
     'use strict'
     const bst = new BST()
@@ -33,6 +33,23 @@
 
     const avl = new AVL()
     avl.insert(7)
+      .insert(15)
+      .insert(5)
+      .insert(3)
+      .insert(9)
+      .insert(8)
+      .insert(10)
+      .insert(13)
+      .insert(12)
+      .insert(14)
+      .insert(20)
+      .insert(18)
+      .insert(25)
+      .insert(6)
+      .print()
+
+    const rbt = new RBT()
+    rbt.insert(7)
       .insert(15)
       .insert(5)
       .insert(3)
