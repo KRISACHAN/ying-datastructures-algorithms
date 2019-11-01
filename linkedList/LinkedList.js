@@ -89,7 +89,7 @@ const LinkedList = (() => {
 
     indexOf(element) { // 返回元素在列表中的索引。如果列表中没有该元素则返回-1。
       let current = this.head
-      let index = -1
+      let index = 0
       while (current) {
         if (element === current.element) {
           return index
@@ -101,7 +101,7 @@ const LinkedList = (() => {
     }
 
     isEmpty() { // 如果链表中不包含任何元素，返回true，如果链表长度大于0则返回false。
-    return this.length === 0
+      return this.length === 0
     }
 
     size() { // 返回链表包含的元素个数。与数组的length属性类似。
