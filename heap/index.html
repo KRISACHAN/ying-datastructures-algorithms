@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>heap</title>
+  <style>
+  </style>
+</head>
+<body>
+  <script src="utils.js"></script>
+  <script src="Heap.js"></script>
+  <script src="maxHeap.js"></script>
+  <script src="minHeap.js"></script>
+  <script>
+    'use strict'
+    const maxHeap = new MaxHeap()
+    maxHeap.add(10)
+    maxHeap.add(8)
+    maxHeap.add(9)
+    maxHeap.add(7)
+    maxHeap.add(5)
+    maxHeap.add(4)
+    maxHeap.add(6)
+    maxHeap.add(3)
+    maxHeap.add(2) // [10, 8, 9, 7, 5, 4, 6, 3, 2]
+    maxHeap.print()
+
+    const minHeap = new MinHeap()
+    minHeap.add(1)
+    minHeap.add(3)
+    minHeap.add(2)
+    minHeap.add(6)
+    minHeap.add(5)
+    minHeap.add(7)
+    minHeap.add(8)
+    minHeap.add(9)
+    minHeap.add(10) // [1, 3, 2, 6, 5, 7, 8, 9, 10]
+    minHeap.print()
+  </script>
+</body>
+</html>

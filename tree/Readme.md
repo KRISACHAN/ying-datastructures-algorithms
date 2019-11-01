@@ -35,20 +35,24 @@
 
 - 有序树：树中任意节点的子节点之间有顺序关系，这种树称为有序树；
 
-  - 二叉树
+  - 二叉树：每个节点最多含有两个子树的树称为二叉树；
 
-    ：每个节点最多含有两个子树的树称为二叉树；
-
-    - 完全二叉树
-
-      ：对于一颗二叉树，假设其深度为d（d>1）。除了第d层外，其它各层的节点数目均已达最大值，且第d层所有节点从左向右连续地紧密排列，这样的二叉树被称为完全二叉树；
-
-      - [满二叉树](https://zh.wikipedia.org/w/index.php?title=%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91&action=edit&redlink=1)：所有叶节点都在最底层的完全二叉树；
-
+    - 完全二叉树：对于一颗二叉树，假设其深度为d（d>1）。除了第d层外，其它各层的节点数目均已达最大值，且第d层所有节点从左向右连续地紧密排列，这样的二叉树被称为完全二叉树；
+    - [满二叉树](https://zh.wikipedia.org/w/index.php?title=%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91&action=edit&redlink=1)：所有叶节点都在最底层的完全二叉树；
     - [平衡二叉树](https://zh.wikipedia.org/wiki/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91)（[AVL树](https://zh.wikipedia.org/wiki/AVL%E6%A0%91)）：当且仅当任何节点的两棵子树的高度差不大于1的二叉树；
-
+    - [红黑树](https://zh.wikipedia.org/wiki/红黑树)：红黑树是每个节点都带有*颜色*属性的[二叉查找树](https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9)，颜色为*红色*或*黑色*。
     - [排序二叉树](https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%85%83%E6%A8%B9)([二叉查找树](https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91)（英语：Binary Search Tree))：也称二叉搜索树、有序二叉树；
-
   - [霍夫曼树](https://zh.wikipedia.org/wiki/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91)：[带权路径](https://zh.wikipedia.org/w/index.php?title=%E5%B8%A6%E6%9D%83%E8%B7%AF%E5%BE%84&action=edit&redlink=1)最短的二叉树称为哈夫曼树或最优二叉树；
-
   - [B树](https://zh.wikipedia.org/wiki/B%E6%A0%91)：一种对读写操作进行优化的自平衡的二叉查找树，能够保持数据有序，拥有多于两个子树。
+
+- 堆：“给定堆中任意[节点](https://zh.wikipedia.org/wiki/%E7%AF%80%E9%BB%9E)P和C，若P是C的母节点，那么P的值会小于等于（或大于等于）C的值”。若母节点的值恒**小于等于**子节点的值，此堆称为**最小堆**（min heap）；反之，若母节点的值恒**大于等于**子节点的值，此堆称为**最大堆**（max heap）。在堆中最顶端的那一个节点，称作**根节点**（root node），根节点本身没有**母节点**（parent node）。
+
+  |  操作   |             描述             | [时间复杂度](https://zh.wikipedia.org/wiki/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6) |
+  | :-----: | :--------------------------: | :----------------------------------------------------------: |
+  |  build  |         创建一个空堆         |                             O(n)                             |
+  | insert  |     向堆中插入一个新元素     |                           O(log n)                           |
+  | update  | 将新元素提升使其符合堆的性质 |                                                              |
+  |   get   |     获取当前堆顶元素的值     |                             O(1)                             |
+  | delete  |         删除堆顶元素         |                          O(\log n)                           |
+  | heapify | 使删除堆顶元素的堆再次成为堆 |                                                              |
+
