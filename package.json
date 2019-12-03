@@ -1,7 +1,7 @@
 {
   "name": "ying-datastructures-algorithms",
   "version": "1.0.0",
-  "description": "ts datastructures algorithms",
+  "description": "a template with ts by kris",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.0.0",

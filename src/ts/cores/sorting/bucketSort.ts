@@ -1,9 +1,8 @@
 'use strict'
 import {
     DefalutListType
-} from 'src/utils'
-const BucketSort = (list: DefalutListType): DefalutListType => {
-    let bucketsCount: number = 10 /* 默认桶的数量 */
+} from '../../global.d'
+const BucketSort = (list: DefalutListType, bucketsCount: number = 10 /* 默认桶的数量 */): DefalutListType => {
     const max: number = Math.max(...list) /* 序列最大数字 */
     const min: number = Math.min(...list) /* 数列最小数字 */
     const bucketsSize: number = Math.floor((max - min) / bucketsCount) + 1 /* 桶的深度 */
