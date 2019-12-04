@@ -2,7 +2,7 @@ import BubbleSort from '../src/ts/cores/sorting/bubbleSort'
 import BucketSort from '../src/ts/cores/sorting/bucketSort'
 import CocktailSort from '../src/ts/cores/sorting/cocktailSort'
 import CountSort from '../src/ts/cores/sorting/countSort'
-import HeapSort from '../src/ts/cores/sorting/heapSort'
+// import HeapSort from '../src/ts/cores/sorting/heapSort'
 import InsertionSort from '../src/ts/cores/sorting/insertionSort'
 import MergeSort from '../src/ts/cores/sorting/mergeSort'
 import {
@@ -30,9 +30,9 @@ describe('Sorting', () => {
     test('CountSort', () => {
         expect(CountSort(RandomList)).toStrictEqual(SortedList)
     })
-    test('HeapSort', () => {
-        expect(HeapSort(RandomList)).toStrictEqual(SortedList)
-    })
+    // test('HeapSort', () => {
+    //     expect(HeapSort(RandomList)).toStrictEqual(SortedList)
+    // })
     test('InsertionSort', () => {
         expect(InsertionSort(RandomList)).toStrictEqual(SortedList)
     })
