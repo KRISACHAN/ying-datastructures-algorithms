@@ -40,7 +40,7 @@ export default class PriorityQueue {
         if (this.isEmpty()) {
             s.push(queueElement)
         } else {
-            for (let i: number = 0; i < s.length; ++i) {         
+            for (let i: number = 0; i < s.length; ++i) {
                 if (this.compareFn(queueElement.priority, s[i].priority) === this.compare) {
                     s.splice(i, 0, queueElement)
                     added = true

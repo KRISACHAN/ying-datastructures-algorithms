@@ -7,22 +7,18 @@ export default class Queue<T> {
     constructor() {
         this.items.set(this, [])
     }
-    enqueue(element: T): void {  // 向队尾添加一个元素     
+    enqueue(element: T): void {  // 向队列尾部添加一个新的项。   
         let q: T[] = this.items.get(this)
         q.push(element)
     }
-    dequeue(): T { // 删除队首的元素
+    dequeue(): T { // 移除队列的第一项，并返回被移除的元素。
         let q: T[] = this.items.get(this)
         let r: T = q.shift()
         return r
     }
-    front(): T { // 读取队首
+    peek(): T { // 返回队列中第一个元素
         let q: T[] = this.items.get(this)
         return q[0]
-    }
-    back(): T { // 读取队尾 不推荐使用
-        let q: T[] = this.items.get(this)
-        return q[q.length - 1]
     }
     isEmpty(): boolean { // 能简单地判断队列的长度是否为0
         let q: T[] = this.items.get(this)
@@ -31,11 +27,11 @@ export default class Queue<T> {
     clear(): void { // 把队列中的元素全部移除
         this.items.set(this, [])
     }
-    size(): number { // 数组长度
+    size(): number { // 队列长度
         let q: T[] = this.items.get(this)
         return q.length
     }
-    print(): void { // 打印数组
+    print(): void { // 打印队列
         let q = this.items.get(this)
         console.log(q.toString())
     }
