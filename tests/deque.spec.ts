@@ -1,4 +1,4 @@
-import Deque from '../src/ts/cores/queue/deque'
+import Deque from '../src/ts/queue/deque'
 
 describe('Deque', () => {
     let deque: Deque<number>

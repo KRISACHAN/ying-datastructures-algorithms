@@ -1,4 +1,4 @@
-import Stack from '../src/ts/cores/stack/stack'
+import Stack from '../src/ts/stack/stack'
 
 describe('Stack', () => {
     let stack: Stack<number>
@@ -98,7 +98,7 @@ describe('Stack', () => {
         expect(stack.isEmpty()).toStrictEqual(true)
     })
     it('is palindrome', () => {
-        const isPalindrome = (word: string): boolean => {
+        const isPalindrome = (word: any): boolean => {
             for (let i: number = 0, len = word.length; i < len; ++i) {
                 stack.push(word[i])
             }
