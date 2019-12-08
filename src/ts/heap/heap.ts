@@ -15,13 +15,12 @@ import {
  * 最大堆（max heap：反之，若母节点的值恒大于等于子节点的值，此堆称为最大堆（max heap）。
  * 根节点（root node）：在堆中最顶端的那一个节点，称作根节点（root node），根节点本身没有母节点（parent node）。
  */
-class Heap<T> {
+export class Heap<T> {
     private items: WeakMap<object, Array<T>> = new WeakMap()  // 保存堆结构的元素
-    constructor(protected compareFn: ICompareFunction<T> = defaultCompare) {
+    constructor() {
         if (new.target === Heap) {
             throw new TypeError('Cannot construct Heap instance directly')
         }
-        this.compareFn = compareFn
         this.items.set(this, [])
     }
     private getLeftChildIndex(parentIndex: number): number { // 获取左子节点下标
@@ -68,6 +67,10 @@ class Heap<T> {
         return this
     }
 
+    pairIsInCorrectOrder(firstElement: T, secondElement: T): Boolean { // 判断是否正确的命令
+        throw new Error(`You have to implement heap pair comparision method for ${firstElement} and ${secondElement} values. `)
+    }
+
     private siftDown(index: number): void { // 向下筛选
         let h: T[] = this.items.get(this)
         let element: number = index
@@ -75,17 +78,14 @@ class Heap<T> {
         const right = this.getRightChildIndex(index)
         const size = this.size()
     
-        if (left < size && this.compareFn(h[element], h[left]) === Compare.BIGGER_THAN) {
+        if (left < size && this.pairIsInCorrectOrder(h[element], h[left])) {
             element = left
         }
     
-        if (
-            right < size &&
-            this.compareFn(h[element], h[right]) === Compare.BIGGER_THAN
-        ) {
+        if (right < size && this.pairIsInCorrectOrder(h[element], h[right])) {
             element = right
         }
-    
+
         if (index !== element) {
             Swap(h, index, element)
             this.siftDown(element)
@@ -95,10 +95,7 @@ class Heap<T> {
     private siftUp(index: number): void { // 向上筛选
         let parent: number = this.getParentIndex(index)
         let h: T[] = this.items.get(this)
-        while (
-            index > 0 &&
-            this.compareFn(h[parent], h[index]) === Compare.BIGGER_THAN
-        ) {
+        while (index > 0 && this.pairIsInCorrectOrder(h[parent], h[index])) {
             Swap(h, parent, index)
             index = parent
             parent = this.getParentIndex(index)
@@ -118,6 +115,11 @@ class Heap<T> {
         this.siftDown(0)
         return removedValue
     }
+
+    toString() {
+        let h: T[] = this.items.get(this)
+        return h.toString()
+    }
     
     heapify(list: T[]): Heap<T> { // 使元素变为堆
         if (list) {
@@ -132,14 +134,19 @@ class Heap<T> {
 }
 
 export class MinHeap<T> extends Heap<T> { // 最小堆
-    constructor(protected compareFn: ICompareFunction<T> = defaultCompare) {
-        super(compareFn)
+    constructor() {
+        super()
+    }
+    pairIsInCorrectOrder(firstElement: T, secondElement: T): Boolean {
+        return defaultCompare(firstElement, secondElement) === Compare.BIGGER_THAN
     }
 }
 
 export class MaxHeap<T> extends Heap<T> { // 最大堆
-    constructor(protected compareFn: ICompareFunction<T> = defaultCompare) {
-        super(compareFn)
-        this.compareFn = reverseCompare(compareFn)
+    constructor() {
+        super()
+    }
+    pairIsInCorrectOrder(firstElement: T, secondElement: T): Boolean {
+        return reverseCompare(defaultCompare)(firstElement, secondElement) === Compare.BIGGER_THAN
     }
 }
