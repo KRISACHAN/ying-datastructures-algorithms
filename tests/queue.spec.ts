@@ -1,4 +1,4 @@
-import Queue from '../src/ts/cores/queue/queue'
+import Queue from '../src/ts/queue/queue'
 
 describe('Queue', () => {
     let queue: Queue<number>

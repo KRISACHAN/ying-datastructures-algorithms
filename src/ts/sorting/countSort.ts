@@ -1,7 +1,7 @@
 'use strict'
 import {
     DefalutListType
-} from '../../global.d'
+} from '../global.d'
 const CountSort = (list: DefalutListType): DefalutListType => {
     const C: number[] = []
     for (let i: number = 0, iLen: number = list.length; i < iLen; ++i) {

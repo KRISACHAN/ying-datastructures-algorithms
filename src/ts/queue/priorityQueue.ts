@@ -2,10 +2,10 @@
 import {
     Compare,
     defaultCompare
-} from '../../utils'
+} from '../utils'
 import {
     ICompareFunction
-} from '../../global'
+} from '../global'
 
 type elementType = any
 

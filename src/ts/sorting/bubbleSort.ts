@@ -3,7 +3,7 @@ import {
     Swap,
     Compare,
     defaultCompare
-} from '../../utils'
+} from '../utils'
 const BubbleSort = <T>(list: T[], compareFn = defaultCompare) => {
     const len: number = list.length - 1
     for (let i: number = 0; i < len; ++i) {

@@ -1,7 +1,7 @@
 'use strict'
 import {
     DefalutListType
-} from '../../global.d'
+} from '../global.d'
 
 export const QuickSort = (list: DefalutListType): DefalutListType => {
     const len: number = list.length

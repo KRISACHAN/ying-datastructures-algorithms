@@ -3,7 +3,7 @@ import {
     Swap,
     Compare,
     defaultCompare
-} from '../../utils'
+} from '../utils'
 const CocktailSort = <T>(list: T[], compareFn = defaultCompare): T[] => {
     let i: number, left: number = 0, right: number = list.length - 1
     while (left < right) {

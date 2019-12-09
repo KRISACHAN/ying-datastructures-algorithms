@@ -1,4 +1,4 @@
-import PriorityQueue from '../src/ts/cores/queue/priorityQueue'
+import PriorityQueue from '../src/ts/queue/priorityQueue'
 
 describe('Queue', () => {
     let queue: PriorityQueue
