@@ -39,27 +39,46 @@ export default class LinkedList<T> {
         return this
     }
 
-    insert(position: number, element: T): LinkedList<T> { // 向列表的特定位置插入一个新的项。
+    insert(position: number, element: T): LinkedList<T>  { // 向列表的特定位置插入一个新的项。
         //检查越界值
-        if (position >= 0 && position <= this.length) {
-            let node: LLNode<T> = new LLNode(element)
-            let current: null | LLNode<T> = this.head
-            let previous: null | LLNode<T>
-            let index: number = 0
-            if (position === 0) { //在第一个位置添加
-                node.next = current
-                this.head = node
+        if (position < 0) {
+            throw new Error('position must equal or bigger than 0')
+        }
+        if (position > this.length) {
+            let index: number = position - this.length
+            while (index-- > 0) {
+                this.append(null)
+            }
+            this.append(element)
+        } else if (position <= this.length) {
+            if (this.length === 0) {
+                this.append(element)
             } else {
+                let node: LLNode<T> = new LLNode(element)
+                let current: null | LLNode<T> = this.head
+                let previous: null | LLNode<T>
+                let index: number = 0
                 while (index++ < position) {
                     previous = current
                     current = current.next
                 }
                 node.next = current
                 previous.next = node
+                this.length++
             }
-            this.length++
         }
         return this
+    }
+
+    getAt(position: number): undefined | LLNode<T> { // 获取指定位置的元素。
+        if (position >= 0 && position <= this.length) {
+            let node: null | LLNode<T> = this.head
+            for (let i = 0; i < position && node != null; i++) {
+                node = node.next
+            }
+            return node
+        }
+        return undefined
     }
 
     removeAt(position: number): T | null { // 从列表的特定位置移除一项。
