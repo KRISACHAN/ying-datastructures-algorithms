@@ -68,33 +68,28 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
     removeAt(position: number): T | null {
         // 删除指定位置元素
         if (position >= 0 && position < this.length) {
-            let current = this.head;
-
+            let current = this.head
             if (position === 0) {
-                this.head = this.head.next; // {1}
-                // if there is only one item, then we update tail as well //NEW
+                this.head = this.head.next
                 if (this.length === 1) {
-                    // {2}
-                    this.tail = null;
+                    this.tail = null
                 } else {
-                    this.head.prev = null; // {3}
+                    this.head.prev = null
                 }
             } else if (position === this.length - 1) {
-                // last item //NEW
-                current = this.tail; // {4}
-                this.tail = current.prev;
-                this.tail.next = null;
+                current = this.tail
+                this.tail = current.prev
+                this.tail.next = null
             } else {
-                current = this.getAt(position);
-                const previous = current.prev;
-                // link previous with current's next - skip it to remove
-                previous.next = current.next; // {6}
-                current.next.prev = previous; // NEW
+                current = this.getAt(position)
+                const previous = current.prev
+                previous.next = current.next
+                current.next.prev = previous
             }
-            this.length--;
-            return current.element;
+            this.length--
+            return current.element
         } else {
-            return null;
+            return null
         }
     }
 
