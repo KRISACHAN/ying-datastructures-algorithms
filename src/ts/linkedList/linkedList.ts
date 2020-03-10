@@ -67,12 +67,12 @@ export default class LinkedList<T> {
         // 获取指定位置的元素。
         if (position >= 0 && position <= this.length) {
             let node: null | LLNode<T> = this.head;
-            for (let i = 0; i < position && node != null; i++) {
+            for (let i = 0; i < position && node != null; ++i) {
                 node = node.next;
             }
             return node;
         }
-        return undefined;
+        return null;
     }
 
     removeAt(position: number): T | null {
@@ -140,15 +140,27 @@ export default class LinkedList<T> {
         this.length = 0;
     }
 
+    // toString(): string {
+    //     // 由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
+    //     let current: null | LLNode<T> = this.head
+    //     let string: string = ''
+    //     while (current) {
+    //         string += current.element + (current.next ? '\n' : '')
+    //         current = current.next
+    //     }
+    //     return string
+    // }
     toString(): string {
-        // 由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
-        let current: null | LLNode<T> = this.head;
-        let string: string = "";
-        while (current) {
-            string += current.element + (current.next ? "\n" : "");
+        if (this.head == null) {
+            return "";
+        }
+        let objString: string = `${this.head.element}`;
+        let current: null | LLNode<T> = this.head.next;
+        for (let i = 1; i < this.size() && current != null; i++) {
+            objString = `${objString},${current.element}`;
             current = current.next;
         }
-        return string;
+        return objString;
     }
 
     print(): void {

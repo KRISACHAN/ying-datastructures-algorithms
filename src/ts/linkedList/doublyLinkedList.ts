@@ -1,9 +1,9 @@
 'use strict'
-import {
-    DLLNode
-} from '../node'
+import { DLLNode } from '../node'
 import LinkedList from './linkedList'
-
+/**
+ * 双向链表（DoublyLinkedList）：双向链表与普通链表的区别在于，双向链表是双向的....有点废话
+ */
 export default class DoublyLinkedList<T> extends LinkedList<T> {
     public head: DLLNode<T> | undefined // 表头
     public tail: DLLNode<T> | undefined // 表尾
@@ -16,7 +16,8 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
 
     append(element: T): DoublyLinkedList<T> {
         let node: DLLNode<T> = new DLLNode(element)
-        if (this.head === null) { // 列表中第一个节点
+        if (this.head === null) {
+            // 列表中第一个节点
             this.head = node
             this.tail = node
         } else {
@@ -24,11 +25,12 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
             node.prev = this.tail
             this.tail = node
         }
-        this.length++ // 更新列表的长度 
+        this.length++ // 更新列表的长度
         return this
     }
 
-    insert(position: number, element: T): DoublyLinkedList<T> { // 向列表的特定位置插入一个新的项。
+    insert(position: number, element: T): DoublyLinkedList<T> {
+        // 向列表的特定位置插入一个新的项。
         //检查越界值
         if (position >= 0 && position <= this.length) {
             let node: DLLNode<T> = new DLLNode(element)

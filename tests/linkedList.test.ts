@@ -17,7 +17,7 @@ describe("LinkedList", () => {
     });
 
     it("returns element at specific index: invalid position", () => {
-        expect(list.getAt(3)).toBeUndefined();
+        expect(list.getAt(3)).toBeNull();
     });
 
     it("inserts elements at specific index", () => {
@@ -32,7 +32,7 @@ describe("LinkedList", () => {
         expect(list.toString()).toEqual("1");
 
         list.append(2);
-        expect(list.toString()).toEqual("1\n2");
+        expect(list.toString()).toEqual("1,2");
 
         list.clear();
         expect(list.toString()).toEqual("");

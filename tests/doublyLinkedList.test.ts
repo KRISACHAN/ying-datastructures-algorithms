@@ -39,7 +39,7 @@ describe("DoublyLinkedList", () => {
     function verifyList() {
         let current = list.getHead();
         for (let i = min; i <= max; i++) {
-            expect(current).not.toBeUndefined();
+            expect(current).not.toBeNull();
             // TS strictNullChecks
             if (current) {
                 verifyNode(current, i);
@@ -52,7 +52,7 @@ describe("DoublyLinkedList", () => {
     function verifyListFromTail() {
         let current = list.getTail();
         for (let i = max; i >= min; i--) {
-            expect(current).not.toBeUndefined();
+            expect(current).not.toBeNull();
             // TS strictNullChecks
             if (current) {
                 verifyNode(current, i);
@@ -61,47 +61,45 @@ describe("DoublyLinkedList", () => {
         }
     }
 
-    it('starts empty', () => {
+    it("starts empty", () => {
         expect(list.size()).toEqual(0);
         expect(list.isEmpty()).toEqual(true);
         expect(list.getHead()).toBeNull();
         expect(list.getTail()).toBeNull();
     });
 
-    it('returns element at specific index: invalid position', () => {
+    it("returns element at specific index: invalid position", () => {
         // list is empty
-        expect(list.getAt(3)).toBeUndefined();
+        expect(list.getAt(3)).toBeNull();
     });
 
-    it('inserts elements first position empty list', () => {
+    it("inserts elements first position empty list", () => {
         const element = 1;
         max = element;
-        expect(list.insert(element, 0)).toEqual({ "head": null, "length": 0 }
-);
+        expect(list.insert(0, element)).not.toEqual({ head: null, length: 0 });
         verifyList();
     });
 
-    it('inserts elements first position not empty list', () => {
+    it("inserts elements first position not empty list", () => {
         max = 2;
-        expect(list.insert(max, 0)).toEqual({ "head": null, "length": 0 });
+        expect(list.insert(0, max)).not.toEqual({ head: null, length: 0 });
 
-        expect(list.insert(min, 0)).toEqual({ "head": null, "length": 0 });
+        expect(list.insert(0, min)).not.toEqual({ head: null, length: 0 });
 
         verifyList();
     });
 
-    it('inserts elements invalid position empty list', () => {
-        expect(list.insert(1, 1)).toEqual({ "head": null, "length": 0 });
+    it("inserts elements invalid position empty list", () => {
+        expect(list.insert(1, 1)).toEqual({ head: null, length: 0 });
     });
 
-    it('inserts elements invalid position not empty list', () => {
+    it("inserts elements invalid position not empty list", () => {
         const element = 1;
-        expect(list.insert(element, 0)).toEqual({ "head": null, "length": 0 });
-        expect(list.insert(element, 2)).toEqual({ "head": null, "length": 0 });
+        expect(list.insert(0, element)).not.toEqual({ head: null, length: 0 });
+        expect(list.insert(0, element)).not.toEqual({ head: null, length: 0 });
     });
 
-
-    it('removes element invalid position empty list', () => {
+    it("removes element invalid position empty list", () => {
         let element;
 
         for (let i = min; i <= max; i++) {
@@ -110,7 +108,7 @@ describe("DoublyLinkedList", () => {
         }
     });
 
-    it('removes first element list single element', () => {
+    it("removes first element list single element", () => {
         const value = 1;
         list.append(value);
 
@@ -123,21 +121,21 @@ describe("DoublyLinkedList", () => {
         expect(list.isEmpty()).toEqual(true);
     });
 
-    it('returns the head of the list', () => {
+    it("returns the head of the list", () => {
         expect(list.getHead()).toBeNull();
 
         list.append(1);
         expect(list.getHead()).not.toBeUndefined();
     });
 
-    it('returns the tail of the list', () => {
+    it("returns the tail of the list", () => {
         expect(list.getTail()).toBeNull();
 
         list.append(1);
         expect(list.getTail()).not.toBeUndefined();
     });
 
-    it('returns the correct size', () => {
+    it("returns the correct size", () => {
         expect(list.size()).toEqual(0);
 
         for (let i = min; i <= max; i++) {
@@ -154,48 +152,47 @@ describe("DoublyLinkedList", () => {
         expect(list.size()).toEqual(0);
     });
 
-    it('returns toString primitive types', () => {
-        expect(list.toString()).toEqual('');
+    it("returns toString primitive types", () => {
+        expect(list.toString()).toEqual("");
 
         list.append(1);
-        expect(list.toString()).toEqual('1');
+        expect(list.toString()).toEqual("1");
 
         list.append(2);
-        expect(list.toString()).toEqual('2,1');
+        expect(list.toString()).toEqual("2,1");
 
         list.clear();
-        expect(list.toString()).toEqual('');
+        expect(list.toString()).toEqual("");
     });
 
-    it('returns toString primitive types: string', () => {
+    it("returns toString primitive types: string", () => {
         const ds = new DoublyLinkedList<string>();
-        ds.append('el1');
-        expect(ds.toString()).toEqual('el1');
+        ds.append("el1");
+        expect(ds.toString()).toEqual("el1");
 
-        ds.append('el2');
-        expect(ds.toString()).toEqual('el2,el1');
+        ds.append("el2");
+        expect(ds.toString()).toEqual("el2,el1");
     });
 
-    it('returns toString primitive types', () => {
-        expect(list.toString()).toEqual('');
+    it("returns toString primitive types", () => {
+        expect(list.toString()).toEqual("");
 
         list.append(1);
-        expect(list.toString()).toEqual('1');
+        expect(list.toString()).toEqual("1");
 
         list.append(2);
-        expect(list.toString()).toEqual('2,1');
+        expect(list.toString()).toEqual("2,1");
 
         list.clear();
-        expect(list.toString()).toEqual('');
+        expect(list.toString()).toEqual("");
     });
 
-    it('returns toString primitive types: string', () => {
+    it("returns toString primitive types: string", () => {
         const ds = new DoublyLinkedList<string>();
-        ds.append('el1');
-        expect(ds.toString()).toEqual('el1');
+        ds.append("el1");
+        expect(ds.toString()).toEqual("el1");
 
-        ds.append('el2');
-        expect(ds.toString()).toEqual('el2,el1');
+        ds.append("el2");
+        expect(ds.toString()).toEqual("el2,el1");
     });
-
-})
+});
