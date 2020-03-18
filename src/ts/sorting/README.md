@@ -508,6 +508,10 @@ const mergeSort = arr => {
 具体实现如下：
 
 ```javascript
+// 位置交换
+const Swap = (array, a, b) => {
+    [array[a], array[b]] = [array[b], array[a]];
+}
 /* 堆下沉调整 */
 const adjustHeap = (arr, parentIndex, length) => {
     let temp = list[parentIndex] /* temp保存父节点值，用于最后赋值 */
@@ -528,18 +532,49 @@ const adjustHeap = (arr, parentIndex, length) => {
     }
     list[parentIndex] = temp
 }
-const heapSort = arr => {
-    /* 把无序数列构建成最大堆 */
-    for (let i = Math.floor(arr.length / 2); i >= 0; --i) {
-        adjustHeap(arr, i, arr.length - 1)
+// 使数组变为堆
+const heapify = (list, index, heapSize) => {
+    let largest = index
+    const left = (2 * index) + 1
+    const right = (2 * index) + 2
+  
+    
+    if (left < heapSize && list[left] < list[index]) {
+        largest = left
     }
-    for (let i = arr.length - 1; i > 0; --i) {
-        /* 交换最后一个元素与第一个元素 */
-        [arr[i], arr[0]] = [arr[0], arr[i]]
-        /* 调整最大堆 */
-        adjustHeap(arr, 0, i)
+  
+    if (right < heapSize && list[right] < list[largest]) {
+        largest = right
     }
-	return arr
+  
+    if (largest !== index) {
+        Swap(list, index, largest)
+        heapify(list, largest, heapSize)
+    }
+}
+
+// 创建最大堆
+const buildMaxHeap = list => {
+    for (let i = Math.floor(list.length / 2); i >= 0; i -= 1) {
+        heapify(list, i, list.length)
+    }
+    return list
+}
+
+// 堆排序也是一种很高效的算法，因其把数组当作二叉树来排序而得名。这个算法会根据以下信息，把数组当作二叉树来管理。
+// 1. 索引0是树的根节点；
+// 2. 除根节点外，任意节点N的父节点是N/2；
+// 3. 节点L的左子节点是2*L；
+// 4. 节点R的右子节点是2*R+1。
+
+const HeapSort = list => {
+    let heapSize = list.length
+    buildMaxHeap(list) // 创建最大堆
+    while (heapSize > 1) {
+        Swap(list, 0, --heapSize) // 交换堆里第一个元素（数组中较大的值）和最后一个元素的位置。这样，最大的值就会出现在它已排序的位置。
+        heapify(list, 0, heapSize) // 当堆属性失去时，重新将数组转换成堆
+    }
+    return list
 }
 ```
 
