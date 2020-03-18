@@ -13,6 +13,7 @@ export default class LinkedList<T> {
     }
 
     append(element: T): LinkedList<T> {
+        // 插入节点
         let node: LLNode<T> = new LLNode(element);
         let current: null | LLNode<T>;
         if (this.head === null) {
@@ -32,7 +33,7 @@ export default class LinkedList<T> {
     }
 
     insert(position: number, element: T): LinkedList<T> {
-        // 向列表的特定位置插入一个新的项。
+        // 向列表的特点位置插入一个新的元素
         //检查越界值
         if (position < 0) {
             throw new Error("position must equal or bigger than 0");
@@ -140,16 +141,6 @@ export default class LinkedList<T> {
         this.length = 0;
     }
 
-    // toString(): string {
-    //     // 由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
-    //     let current: null | LLNode<T> = this.head
-    //     let string: string = ''
-    //     while (current) {
-    //         string += current.element + (current.next ? '\n' : '')
-    //         current = current.next
-    //     }
-    //     return string
-    // }
     toString(): string {
         if (this.head == null) {
             return "";
