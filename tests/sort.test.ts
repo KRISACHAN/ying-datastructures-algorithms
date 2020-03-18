@@ -2,7 +2,7 @@ import BubbleSort from "../src/ts/sorting/bubbleSort";
 import BucketSort from "../src/ts/sorting/bucketSort";
 import CocktailSort from "../src/ts/sorting/cocktailSort";
 import CountSort from "../src/ts/sorting/countSort";
-import git  from "../src/ts/sorting/heapSort";
+import HeapSort from "../src/ts/sorting/heapSort";
 import InsertionSort from "../src/ts/sorting/insertionSort";
 import MergeSort from "../src/ts/sorting/mergeSort";
 import { QuickSort, QuickSort3 } from "../src/ts/sorting/quickSort";
