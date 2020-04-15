@@ -1,5 +1,7 @@
 'use strict'
-import { DLLNode } from '../node'
+import { 
+    DLLNode
+} from '../node'
 import LinkedList from './linkedList'
 /**
  * 双向链表（DoublyLinkedList）：双向链表与普通链表的区别在于，双向链表是双向的....有点废话

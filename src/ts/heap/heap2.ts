@@ -2,7 +2,7 @@
 import {
     Compare,
     defaultCompare,
-    Swap
+    Swap,
 } from '../utils'
 /**
  * 堆（英语：Heap）：给定堆中任意节点P和C，若P是C的母节点，那么P的值会小于等于（或大于等于）C的值。
