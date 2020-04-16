@@ -1,0 +1,5 @@
+/build/
+/static/
+/node_modules/
+/dist/
+/*.*

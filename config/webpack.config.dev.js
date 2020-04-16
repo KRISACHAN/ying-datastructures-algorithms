@@ -2,7 +2,6 @@
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const webpackBase = require('./webpack.config.base.js')
-const DashboardPlugin = require('webpack-dashboard/plugin')
 const {
     dev: {
         include,
@@ -33,29 +32,28 @@ const webpackDev = {
     module: {
         rules: [
             {
-                'test': /\.css$/,
-                'include': include,
-                'exclude': exclude,
-                'use': ['style-loader', 'css-loader', 'postcss-loader']
+                test: /\.css$/,
+                include,
+                exclude,
+                use: ['style-loader', 'css-loader', 'postcss-loader']
             },
             {
-                'test': /\.scss$/,
-                'include': include,
-                'exclude': exclude,
+                test: /\.scss$/,
+                include,
+                exclude,
                 'use': ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
             },
             {
-                'test': /\.less$/,
-                'include': include,
-                'exclude': exclude,
-                'use': ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+                test: /\.less$/,
+                include,
+                exclude,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             }
         ]
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new DashboardPlugin()
     ]
 }
 module.exports = webpackMerge(webpackBase, webpackDev)

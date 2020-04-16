@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1587058599310" clover="3.2.0">
+  <project timestamp="1587058599311" name="All files">
+    <metrics statements="596" coveredstatements="503" conditionals="191" coveredconditionals="153" methods="116" coveredmethods="98" elements="903" coveredelements="754" complexity="0" loc="596" ncloc="596" packages="6" files="21" classes="21"/>
+    <package name="ts">
+      <metrics statements="50" coveredstatements="34" conditionals="18" coveredconditionals="6" methods="14" coveredmethods="5"/>
+      <file name="node.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\node.ts">
+        <metrics statements="16" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="39" type="stmt"/>
+        <line num="3" count="39" type="stmt"/>
+        <line num="4" count="39" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="19" type="stmt"/>
+        <line num="11" count="19" type="stmt"/>
+        <line num="12" count="19" type="stmt"/>
+        <line num="14" count="19" type="stmt"/>
+        <line num="15" count="19" type="stmt"/>
+        <line num="16" count="19" type="stmt"/>
+        <line num="17" count="19" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+      </file>
+      <file name="utils.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\utils.ts">
+        <metrics statements="34" coveredstatements="21" conditionals="18" coveredconditionals="6" methods="10" coveredmethods="3"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="1379" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="137" type="stmt"/>
+        <line num="25" count="1242" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="41" count="364" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="ts.heap">
+      <metrics statements="87" coveredstatements="84" conditionals="33" coveredconditionals="33" methods="26" coveredmethods="23"/>
+      <file name="heap2.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\heap\heap2.ts">
+        <metrics statements="87" coveredstatements="84" conditionals="33" coveredconditionals="33" methods="26" coveredmethods="23"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="18" type="stmt"/>
+        <line num="15" count="18" type="stmt"/>
+        <line num="17" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="17" type="stmt"/>
+        <line num="21" count="17" type="stmt"/>
+        <line num="24" count="117" type="stmt"/>
+        <line num="28" count="56" type="stmt"/>
+        <line num="32" count="385" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="45" type="stmt"/>
+        <line num="35" count="340" type="stmt"/>
+        <line num="39" count="150" type="stmt"/>
+        <line num="43" count="73" type="stmt"/>
+        <line num="44" count="73" type="stmt"/>
+        <line num="48" count="30" type="stmt"/>
+        <line num="49" count="30" type="stmt"/>
+        <line num="53" count="20" type="stmt"/>
+        <line num="54" count="20" type="stmt"/>
+        <line num="58" count="20" type="stmt"/>
+        <line num="59" count="20" type="stmt"/>
+        <line num="63" count="137" type="stmt"/>
+        <line num="64" count="137" type="stmt"/>
+        <line num="68" count="85" type="stmt"/>
+        <line num="69" count="85" type="stmt"/>
+        <line num="70" count="85" type="stmt"/>
+        <line num="71" count="85" type="stmt"/>
+        <line num="75" count="67" type="stmt"/>
+        <line num="76" count="67" type="stmt"/>
+        <line num="77" count="67" type="stmt"/>
+        <line num="78" count="346" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="72" type="stmt"/>
+        <line num="82" count="67" type="stmt"/>
+        <line num="86" count="30" type="stmt"/>
+        <line num="87" count="31" type="stmt"/>
+        <line num="88" count="31" type="stmt"/>
+        <line num="89" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="90" count="7" type="stmt"/>
+        <line num="92" count="24" type="stmt"/>
+        <line num="93" count="24" type="stmt"/>
+        <line num="94" count="24" type="cond" truecount="5" falsecount="0"/>
+        <line num="98" count="8" type="stmt"/>
+        <line num="100" count="16" type="stmt"/>
+        <line num="104" count="30" type="stmt"/>
+        <line num="108" count="16" type="stmt"/>
+        <line num="109" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="110" count="2" type="stmt"/>
+        <line num="112" count="14" type="stmt"/>
+        <line num="116" count="20" type="stmt"/>
+        <line num="117" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="118" count="2" type="stmt"/>
+        <line num="120" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="121" count="2" type="stmt"/>
+        <line num="123" count="16" type="stmt"/>
+        <line num="124" count="16" type="stmt"/>
+        <line num="125" count="16" type="stmt"/>
+        <line num="126" count="16" type="stmt"/>
+        <line num="130" count="101" type="stmt"/>
+        <line num="131" count="101" type="cond" truecount="2" falsecount="0"/>
+        <line num="132" count="101" type="cond" truecount="2" falsecount="0"/>
+        <line num="137" count="49" type="stmt"/>
+        <line num="138" count="49" type="stmt"/>
+        <line num="143" count="24" type="stmt"/>
+        <line num="144" count="24" type="stmt"/>
+        <line num="145" count="24" type="stmt"/>
+        <line num="146" count="24" type="stmt"/>
+        <line num="147" count="30" type="cond" truecount="4" falsecount="0"/>
+        <line num="153" count="6" type="stmt"/>
+        <line num="155" count="24" type="stmt"/>
+        <line num="157" count="30" type="cond" truecount="2" falsecount="0"/>
+        <line num="162" count="5" type="stmt"/>
+        <line num="164" count="25" type="stmt"/>
+        <line num="165" count="25" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="174" count="4" type="stmt"/>
+        <line num="175" count="4" type="stmt"/>
+        <line num="179" count="71" type="stmt"/>
+        <line num="180" count="71" type="stmt"/>
+        <line num="184" count="0" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="189" count="3" type="stmt"/>
+        <line num="191" count="9" type="stmt"/>
+        <line num="194" count="94" type="stmt"/>
+        <line num="198" count="3" type="stmt"/>
+        <line num="200" count="8" type="stmt"/>
+        <line num="203" count="71" type="stmt"/>
+      </file>
+    </package>
+    <package name="ts.linkedList">
+      <metrics statements="188" coveredstatements="137" conditionals="74" coveredconditionals="57" methods="24" coveredmethods="23"/>
+      <file name="circularLinkedList.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\linkedList\circularLinkedList.ts">
+        <metrics statements="44" coveredstatements="34" conditionals="18" coveredconditionals="15" methods="4" coveredmethods="4"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="17" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="25" count="11" type="stmt"/>
+        <line num="26" count="11" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="55" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="56" count="4" type="stmt"/>
+        <line num="57" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="58" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="4" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+      </file>
+      <file name="doublyLinkedList.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\linkedList\doublyLinkedList.ts">
+        <metrics statements="67" coveredstatements="47" conditionals="26" coveredconditionals="20" methods="7" coveredmethods="7"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="20" count="14" type="stmt"/>
+        <line num="21" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="30" count="14" type="stmt"/>
+        <line num="31" count="14" type="stmt"/>
+        <line num="37" count="6" type="cond" truecount="4" falsecount="0"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="42" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="67" count="5" type="stmt"/>
+        <line num="69" count="6" type="stmt"/>
+        <line num="74" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="75" count="4" type="stmt"/>
+        <line num="76" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="77" count="4" type="stmt"/>
+        <line num="78" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="83" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="93" count="4" type="stmt"/>
+        <line num="94" count="4" type="stmt"/>
+        <line num="96" count="3" type="stmt"/>
+        <line num="102" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="107" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="108" count="4" type="stmt"/>
+        <line num="110" count="8" type="stmt"/>
+        <line num="111" count="8" type="stmt"/>
+        <line num="112" count="8" type="stmt"/>
+        <line num="113" count="4" type="stmt"/>
+        <line num="114" count="4" type="stmt"/>
+        <line num="116" count="8" type="stmt"/>
+        <line num="120" count="2" type="stmt"/>
+        <line num="121" count="2" type="stmt"/>
+      </file>
+      <file name="linkedList.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\linkedList\linkedList.ts">
+        <metrics statements="77" coveredstatements="56" conditionals="30" coveredconditionals="22" methods="13" coveredmethods="12"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="38" type="stmt"/>
+        <line num="11" count="38" type="stmt"/>
+        <line num="13" count="38" type="stmt"/>
+        <line num="14" count="38" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="21" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="34" count="8" type="stmt"/>
+        <line num="40" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="71" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="72" count="7" type="stmt"/>
+        <line num="73" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="74" count="4" type="stmt"/>
+        <line num="76" count="7" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="84" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="89" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="100" count="1" type="stmt"/>
+        <line num="102" count="3" type="stmt"/>
+        <line num="108" count="6" type="stmt"/>
+        <line num="109" count="6" type="stmt"/>
+        <line num="110" count="6" type="stmt"/>
+        <line num="111" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="112" count="6" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="122" count="6" type="stmt"/>
+        <line num="123" count="6" type="stmt"/>
+        <line num="128" count="6" type="stmt"/>
+        <line num="133" count="44" type="stmt"/>
+        <line num="138" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="142" count="5" type="stmt"/>
+        <line num="143" count="5" type="stmt"/>
+        <line num="147" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="148" count="5" type="stmt"/>
+        <line num="150" count="8" type="stmt"/>
+        <line num="151" count="8" type="stmt"/>
+        <line num="152" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="153" count="4" type="stmt"/>
+        <line num="154" count="4" type="stmt"/>
+        <line num="156" count="8" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="ts.queue">
+      <metrics statements="76" coveredstatements="64" conditionals="8" coveredconditionals="6" methods="29" coveredmethods="25"/>
+      <file name="deque.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\queue\deque.ts">
+        <metrics statements="24" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="10"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="10" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="11" count="25" type="stmt"/>
+        <line num="12" count="25" type="stmt"/>
+        <line num="15" count="18" type="stmt"/>
+        <line num="16" count="18" type="stmt"/>
+        <line num="19" count="10" type="stmt"/>
+        <line num="20" count="10" type="stmt"/>
+        <line num="21" count="10" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="34" count="7" type="stmt"/>
+        <line num="37" count="11" type="stmt"/>
+        <line num="38" count="11" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="44" count="18" type="stmt"/>
+        <line num="45" count="18" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+      </file>
+      <file name="priorityQueue.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\queue\priorityQueue.ts">
+        <metrics statements="35" coveredstatements="27" conditionals="8" coveredconditionals="6" methods="10" coveredmethods="8"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="16" count="25" type="stmt"/>
+        <line num="17" count="25" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="8" type="stmt"/>
+        <line num="32" count="8" type="stmt"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="34" count="8" type="stmt"/>
+        <line num="37" count="25" type="stmt"/>
+        <line num="38" count="25" type="stmt"/>
+        <line num="39" count="25" type="stmt"/>
+        <line num="40" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="9" type="stmt"/>
+        <line num="43" count="16" type="stmt"/>
+        <line num="44" count="23" type="cond" truecount="1" falsecount="1"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="16" type="stmt"/>
+        <line num="56" count="17" type="stmt"/>
+        <line num="57" count="17" type="stmt"/>
+        <line num="58" count="17" type="stmt"/>
+        <line num="61" count="7" type="stmt"/>
+        <line num="62" count="7" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="69" count="41" type="stmt"/>
+        <line num="70" count="41" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="76" count="13" type="stmt"/>
+        <line num="77" count="13" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+      </file>
+      <file name="queue.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\queue\queue.ts">
+        <metrics statements="17" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="7"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="12" count="25" type="stmt"/>
+        <line num="13" count="25" type="stmt"/>
+        <line num="17" count="17" type="stmt"/>
+        <line num="18" count="17" type="stmt"/>
+        <line num="19" count="17" type="stmt"/>
+        <line num="23" count="7" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
+        <line num="28" count="16" type="stmt"/>
+        <line num="29" count="16" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="37" count="13" type="stmt"/>
+        <line num="38" count="13" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="ts.sorting">
+      <metrics statements="178" coveredstatements="169" conditionals="58" coveredconditionals="51" methods="15" coveredmethods="15"/>
+      <file name="bubbleSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\bubbleSort.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="50" type="stmt"/>
+        <line num="11" count="308" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="112" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+      </file>
+      <file name="bucketSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\bucketSort.ts">
+        <metrics statements="21" coveredstatements="20" conditionals="7" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="55" type="stmt"/>
+        <line num="12" count="55" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="24" type="stmt"/>
+        <line num="15" count="55" type="stmt"/>
+        <line num="16" count="55" type="stmt"/>
+        <line num="17" count="55" type="stmt"/>
+        <line num="18" count="205" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="205" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="49" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="24" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="cocktailSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\cocktailSort.ts">
+        <metrics statements="14" coveredstatements="12" conditionals="5" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="26" type="stmt"/>
+        <line num="11" count="167" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="26" type="stmt"/>
+        <line num="16" count="26" type="stmt"/>
+        <line num="17" count="141" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="26" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+      </file>
+      <file name="countSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\countSort.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="55" type="stmt"/>
+        <line num="9" count="55" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="50" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="1963" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="50" type="stmt"/>
+        <line num="19" count="55" type="stmt"/>
+        <line num="20" count="55" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+      </file>
+      <file name="heapSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\heapSort.ts">
+        <metrics statements="24" coveredstatements="24" conditionals="11" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="209" type="stmt"/>
+        <line num="13" count="209" type="stmt"/>
+        <line num="14" count="209" type="stmt"/>
+        <line num="16" count="209" type="cond" truecount="4" falsecount="0"/>
+        <line num="17" count="124" type="stmt"/>
+        <line num="20" count="209" type="cond" truecount="4" falsecount="0"/>
+        <line num="21" count="58" type="stmt"/>
+        <line num="24" count="209" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="128" type="stmt"/>
+        <line num="26" count="128" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="31" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="44" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
+        <line num="48" count="50" type="stmt"/>
+        <line num="49" count="50" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+      </file>
+      <file name="insertionSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\insertionSort.ts">
+        <metrics statements="11" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="55" type="stmt"/>
+        <line num="7" count="55" type="stmt"/>
+        <line num="8" count="55" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="55" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+      <file name="mergeSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\mergeSort.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="50" type="stmt"/>
+        <line num="4" count="50" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="95" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="90" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="11" count="50" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="105" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="55" type="stmt"/>
+        <line num="18" count="50" type="stmt"/>
+        <line num="19" count="50" type="stmt"/>
+        <line num="20" count="50" type="stmt"/>
+        <line num="21" count="50" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+      </file>
+      <file name="quickSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\quickSort.ts">
+        <metrics statements="28" coveredstatements="26" conditionals="12" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="105" type="stmt"/>
+        <line num="8" count="105" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="55" type="stmt"/>
+        <line num="11" count="50" type="stmt"/>
+        <line num="12" count="50" type="stmt"/>
+        <line num="13" count="50" type="stmt"/>
+        <line num="14" count="50" type="stmt"/>
+        <line num="15" count="308" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="308" type="stmt"/>
+        <line num="18" count="308" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="50" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="95" type="stmt"/>
+        <line num="26" count="95" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="50" type="stmt"/>
+        <line num="29" count="45" type="stmt"/>
+        <line num="30" count="45" type="stmt"/>
+        <line num="31" count="45" type="stmt"/>
+        <line num="32" count="45" type="stmt"/>
+        <line num="33" count="45" type="stmt"/>
+        <line num="34" count="323" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="323" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="50" type="stmt"/>
+        <line num="39" count="273" type="stmt"/>
+        <line num="42" count="45" type="stmt"/>
+      </file>
+      <file name="radixSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\radixSort.ts">
+        <metrics statements="20" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="11" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
+        <line num="14" count="141" type="stmt"/>
+        <line num="15" count="141" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="115" type="stmt"/>
+        <line num="18" count="141" type="stmt"/>
+        <line num="20" count="11" type="stmt"/>
+        <line num="22" count="11" type="stmt"/>
+        <line num="23" count="2284" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="115" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="selectionSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\selectionSort.ts">
+        <metrics statements="10" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="50" type="stmt"/>
+        <line num="7" count="50" type="stmt"/>
+        <line num="8" count="308" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="50" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+      <file name="shellSort.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\sorting\shellSort.ts">
+        <metrics statements="11" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="10" count="120" type="stmt"/>
+        <line num="11" count="120" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="120" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="ts.stack">
+      <metrics statements="17" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="7"/>
+      <file name="stack.ts" path="D:\personal\front-end\project\ying-datastructures-algorithms\src\ts\stack\stack.ts">
+        <metrics statements="17" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="7"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="10" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="11" count="49" type="stmt"/>
+        <line num="12" count="49" type="stmt"/>
+        <line num="15" count="41" type="stmt"/>
+        <line num="16" count="41" type="stmt"/>
+        <line num="17" count="41" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="24" count="23" type="stmt"/>
+        <line num="25" count="23" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="31" count="30" type="stmt"/>
+        <line num="32" count="30" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

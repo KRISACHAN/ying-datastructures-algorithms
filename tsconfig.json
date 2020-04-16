@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "baseUrl": ".",
         "outDir": "./dist/",
         "noImplicitAny": true,
@@ -31,10 +32,14 @@
         ]
     },
     "include": [
-        "src/ts/*"
+        "src/*"
     ],
     "exclude": [
         "node_modules",
-        "**/*.spec.ts"
+        "**/*.spec.ts",
+        "**/dist/**",
+        "**/static/**",
+        "**/config/**",
+        "**/*.test.ts"
     ]
 }
