@@ -1,6 +1,4 @@
-import {
-    Heap
-} from '../src/ts/heap/heap2'
+import { Heap } from '../src/core/heap/heap2'
 
 describe('Heap', () => {
     it('should not allow to create instance of the Heap directly', () => {
@@ -8,8 +6,7 @@ describe('Heap', () => {
             const heap = new Heap()
             heap.insert(5)
         }
-  
+
         expect(instantiateHeap).toThrow()
     })
 })
-  

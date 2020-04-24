@@ -1,4 +1,4 @@
-import Deque from '../src/ts/queue/deque'
+import Deque from '../src/core/queue/deque'
 
 describe('Deque', () => {
     let deque: Deque<number>
@@ -9,7 +9,7 @@ describe('Deque', () => {
         expect(deque.size()).toStrictEqual(0)
         expect(deque.isEmpty()).toStrictEqual(true)
     })
-    
+
     it('add elements in the back', () => {
         deque.addBack(1)
         expect(deque.size()).toStrictEqual(1)

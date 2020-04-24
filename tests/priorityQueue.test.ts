@@ -1,4 +1,4 @@
-import PriorityQueue from '../src/ts/queue/priorityQueue'
+import PriorityQueue from '../src/core/queue/priorityQueue'
 
 describe('Queue', () => {
     let queue: PriorityQueue
@@ -22,43 +22,31 @@ describe('Queue', () => {
         queue.enqueue(1, 1)
         queue.enqueue(2, 2)
         queue.enqueue(3, 3)
-        expect(queue.dequeue()).toEqual({'element': 1, 'priority': 1}
-        )
-        expect(queue.dequeue()).toEqual({'element': 2, 'priority': 2}
-        )
-        expect(queue.dequeue()).toEqual({'element': 3, 'priority': 3}
-        )
+        expect(queue.dequeue()).toEqual({ element: 1, priority: 1 })
+        expect(queue.dequeue()).toEqual({ element: 2, priority: 2 })
+        expect(queue.dequeue()).toEqual({ element: 3, priority: 3 })
         expect(queue.dequeue()).toStrictEqual(undefined)
     })
     it('implements FIFO logic', () => {
         queue.enqueue(1, 1)
-        expect(queue.front()).toEqual({'element': 1, 'priority': 1}
-        )
+        expect(queue.front()).toEqual({ element: 1, priority: 1 })
         queue.enqueue(2, 2)
-        expect(queue.front()).toEqual({'element': 1, 'priority': 1}
-        )
+        expect(queue.front()).toEqual({ element: 1, priority: 1 })
         queue.enqueue(3, 3)
-        expect(queue.front()).toEqual({'element': 1, 'priority': 1}
-        )
-        expect(queue.dequeue()).toEqual({'element': 1, 'priority': 1}
-        )
-        expect(queue.dequeue()).toEqual({'element': 2, 'priority': 2}
-        )
-        expect(queue.dequeue()).toEqual({'element': 3, 'priority': 3}
-        )
+        expect(queue.front()).toEqual({ element: 1, priority: 1 })
+        expect(queue.dequeue()).toEqual({ element: 1, priority: 1 })
+        expect(queue.dequeue()).toEqual({ element: 2, priority: 2 })
+        expect(queue.dequeue()).toEqual({ element: 3, priority: 3 })
         expect(queue.dequeue()).toStrictEqual(undefined)
     })
     it('allows to peek at the front element in the queue without dequeuing it', () => {
         expect(queue.front()).toStrictEqual(undefined)
         queue.enqueue(1, 1)
-        expect(queue.front()).toEqual({'element': 1, 'priority': 1}
-        )
+        expect(queue.front()).toEqual({ element: 1, priority: 1 })
         queue.enqueue(2, 2)
-        expect(queue.front()).toEqual({'element': 1, 'priority': 1}
-        )
+        expect(queue.front()).toEqual({ element: 1, priority: 1 })
         queue.dequeue()
-        expect(queue.front()).toEqual({'element': 2, 'priority': 2}
-        )
+        expect(queue.front()).toEqual({ element: 2, priority: 2 })
     })
     it('returns the correct size', () => {
         expect(queue.size()).toStrictEqual(0)

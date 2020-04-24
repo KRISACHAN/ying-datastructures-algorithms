@@ -1,4 +1,4 @@
-import Stack from '../src/ts/stack/stack'
+import Stack from '../src/core/stack/stack'
 
 describe('Stack', () => {
     let stack: Stack<number>
@@ -104,7 +104,7 @@ describe('Stack', () => {
             }
             let rword: string = ''
             while (stack.size() > 0) {
-              rword += stack.pop()
+                rword += stack.pop()
             }
             return word === rword
         }
@@ -117,12 +117,12 @@ describe('Stack', () => {
             let binaryString: string = ''
             let digits: string = '0123456789ABCDEF'
             while (decNumber > 0) {
-              rem = Math.floor(decNumber % base)
-              stack.push(rem) 
-              decNumber = Math.floor(decNumber / base) 
+                rem = Math.floor(decNumber % base)
+                stack.push(rem)
+                decNumber = Math.floor(decNumber / base)
             }
             while (!stack.isEmpty()) {
-              binaryString += digits[stack.pop()]
+                binaryString += digits[stack.pop()]
             }
             return binaryString
         }
