@@ -19,50 +19,50 @@ import {
 describe('Sorting', () => {
     test('BubbleSort', () => {
         const newSortLists = RandomLists.map(list => BubbleSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('BucketSort', () => {
         const newSortLists = RandomLists.map(list => BucketSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('CocktailSort', () => {
         const newSortLists = RandomLists.map(list => CocktailSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('CountSort', () => {
         const newSortLists = RandomLists.map(list => CountSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('HeapSort', () => {
         const newSortLists = RandomLists.map(list => HeapSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('InsertionSort', () => {
         const newSortLists = RandomLists.map(list => InsertionSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('MergeSort', () => {
         const newSortLists = RandomLists.map(list => MergeSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('QuickSort', () => {
         const newSortLists = RandomLists.map(list => QuickSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('QuickSort3', () => {
         const newSortLists = RandomLists.map(list => QuickSort3(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('RadixSort', () => {
         const newSortLists = RandomLists.map(list => RadixSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('SelectionSort', () => {
         const newSortLists = RandomLists.map(list => SelectionSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
     test('ShellSort', () => {
         const newSortLists = RandomLists.map(list => ShellSort(list))
-        expect(newSortLists).toStrictEqual(SortedLists)
+        expect(newSortLists).toBe(SortedLists)
     })
 })

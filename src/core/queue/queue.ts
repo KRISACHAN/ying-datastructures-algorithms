@@ -37,9 +37,24 @@ export default class Queue<T> {
         let q: T[] = this.items.get(this)
         return q.length
     }
+    toString(): string {
+        // 字符串化
+        if (this.isEmpty()) {
+            return ''
+        }
+        let s: T[] = this.items.get(this)
+        let objString: string = ''
+        for (let i = 0, len = this.size(); i < len; ++i) {
+            if (i < len - 1) {
+                objString += `${s[i]},`
+            } else {
+                objString += `${s[i]}`
+            }
+        }
+        return objString
+    }
     print(): void {
         // 打印队列
-        let q = this.items.get(this)
-        console.log(q.toString())
+        console.log(this.toString())
     }
 }

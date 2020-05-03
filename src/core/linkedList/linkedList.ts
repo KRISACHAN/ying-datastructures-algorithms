@@ -5,8 +5,8 @@ import { LLNode } from '../node'
 元素由一个存储元素本身的节点和一个指向下一个元素的引用（也称指针或链接）组成。
  */
 export default class LinkedList<T> {
-    head: null | LLNode<T> = null
-    length: number = 0
+    public head: null | LLNode<T> = null
+    public length: number = 0
     constructor() {
         this.head = null // 链表头部
         this.length = 0 // 链表长度
@@ -96,9 +96,8 @@ export default class LinkedList<T> {
             }
             this.length--
             return current.element
-        } else {
-            return null
         }
+        return null
     }
 
     indexOf(element: T): number {
@@ -156,6 +155,6 @@ export default class LinkedList<T> {
 
     print(): void {
         // 打印
-        console.log(this)
+        console.log(this.toString())
     }
 }

@@ -6,100 +6,136 @@ describe('Stack', () => {
         stack = new Stack<number>()
     })
     it('starts empty', () => {
-        expect(stack.size()).toStrictEqual(0)
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.size()).toBe(0)
+        expect(stack.isEmpty()).toBe(true)
     })
     it('pushes elements', () => {
         stack.push(1)
-        expect(stack.size()).toStrictEqual(1)
+        expect(stack.size()).toBe(1)
         stack.push(2)
-        expect(stack.size()).toStrictEqual(2)
+        expect(stack.size()).toBe(2)
         stack.push(3)
-        expect(stack.size()).toStrictEqual(3)
-        expect(stack.isEmpty()).toStrictEqual(false)
+        expect(stack.size()).toBe(3)
+        expect(stack.isEmpty()).toBe(false)
     })
     it('pops elements', () => {
         stack.push(1)
         stack.push(2)
         stack.push(3)
-        expect(stack.pop()).toStrictEqual(3)
-        expect(stack.pop()).toStrictEqual(2)
-        expect(stack.pop()).toStrictEqual(1)
-        expect(stack.pop()).toStrictEqual(undefined)
+        expect(stack.pop()).toBe(3)
+        expect(stack.pop()).toBe(2)
+        expect(stack.pop()).toBe(1)
+        expect(stack.pop()).toBe(undefined)
     })
     it('implements LIFO logic', () => {
         stack.push(1)
         stack.push(2)
         stack.push(3)
-        expect(stack.pop()).toStrictEqual(3)
-        expect(stack.pop()).toStrictEqual(2)
-        expect(stack.pop()).toStrictEqual(1)
-        expect(stack.pop()).toStrictEqual(undefined)
+        expect(stack.pop()).toBe(3)
+        expect(stack.pop()).toBe(2)
+        expect(stack.pop()).toBe(1)
+        expect(stack.pop()).toBe(undefined)
     })
     it('allows to peek at the top element in the stack without popping it', () => {
-        expect(stack.peek()).toStrictEqual(undefined)
+        expect(stack.peek()).toBe(undefined)
         stack.push(1)
-        expect(stack.peek()).toStrictEqual(1)
+        expect(stack.peek()).toBe(1)
         stack.push(2)
-        expect(stack.peek()).toStrictEqual(2)
+        expect(stack.peek()).toBe(2)
         stack.pop()
-        expect(stack.peek()).toStrictEqual(1)
+        expect(stack.peek()).toBe(1)
     })
     it('returns the correct size', () => {
-        expect(stack.size()).toStrictEqual(0)
+        expect(stack.size()).toBe(0)
         stack.push(1)
-        expect(stack.size()).toStrictEqual(1)
+        expect(stack.size()).toBe(1)
         stack.push(2)
-        expect(stack.size()).toStrictEqual(2)
+        expect(stack.size()).toBe(2)
         stack.push(3)
-        expect(stack.size()).toStrictEqual(3)
+        expect(stack.size()).toBe(3)
         stack.clear()
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
         stack.push(1)
         stack.push(2)
         stack.push(3)
         stack.pop()
-        expect(stack.size()).toStrictEqual(2)
+        expect(stack.size()).toBe(2)
         stack.pop()
-        expect(stack.size()).toStrictEqual(1)
+        expect(stack.size()).toBe(1)
         stack.pop()
-        expect(stack.size()).toStrictEqual(0)
+        expect(stack.size()).toBe(0)
         stack.pop()
-        expect(stack.size()).toStrictEqual(0)
+        expect(stack.size()).toBe(0)
     })
     it('returns if it is empty', () => {
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
         stack.push(1)
-        expect(stack.isEmpty()).toStrictEqual(false)
+        expect(stack.isEmpty()).toBe(false)
         stack.push(2)
-        expect(stack.isEmpty()).toStrictEqual(false)
+        expect(stack.isEmpty()).toBe(false)
         stack.push(3)
-        expect(stack.isEmpty()).toStrictEqual(false)
+        expect(stack.isEmpty()).toBe(false)
         stack.clear()
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
         stack.push(1)
         stack.push(2)
         stack.push(3)
         stack.pop()
-        expect(stack.isEmpty()).toStrictEqual(false)
+        expect(stack.isEmpty()).toBe(false)
         stack.pop()
-        expect(stack.isEmpty()).toStrictEqual(false)
+        expect(stack.isEmpty()).toBe(false)
         stack.pop()
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
         stack.pop()
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
+    })
+    it('returns toString primitive types', () => {
+        expect(stack.toString()).toBe('')
+
+        stack.push(1)
+        expect(stack.toString()).toBe('1')
+
+        stack.push(2)
+        expect(stack.toString()).toBe('1,2')
+
+        stack.clear()
+        expect(stack.toString()).toBe('')
+
+        const stackString = new Stack<string>()
+        stackString.push('el1')
+        expect(stackString.toString()).toBe('el1')
+
+        stackString.push('el2')
+        expect(stackString.toString()).toBe('el1,el2')
+    })
+
+    it('returns toString objects', () => {
+        class MyObj {
+            constructor(public el1: any, public el2: any) {}
+            toString() {
+                return `${this.el1.toString()}|${this.el2.toString()}`
+            }
+        }
+        const stackMyObj = new Stack<MyObj>()
+        expect(stackMyObj.toString()).toBe('')
+
+        stackMyObj.push(new MyObj(1, 2))
+        expect(stackMyObj.toString()).toBe('1|2')
+
+        stackMyObj.push(new MyObj(3, 4))
+        expect(stackMyObj.toString()).toBe('1|2,3|4')
     })
     it('clears the stack', () => {
         stack.clear()
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
         stack.push(1)
         stack.push(2)
         stack.clear()
-        expect(stack.isEmpty()).toStrictEqual(true)
+        expect(stack.isEmpty()).toBe(true)
     })
     it('is palindrome', () => {
         const isPalindrome = (word: any): boolean => {
-            for (let i: number = 0, len = word.length; i < len; ++i) {
+            for (let i: number = 0, len: number = word.length; i < len; ++i) {
                 stack.push(word[i])
             }
             let rword: string = ''
@@ -108,11 +144,11 @@ describe('Stack', () => {
             }
             return word === rword
         }
-        expect(isPalindrome('racecar')).toStrictEqual(true)
-        expect(isPalindrome('abedkhfbj')).toStrictEqual(false)
+        expect(isPalindrome('racecar')).toBe(true)
+        expect(isPalindrome('abedkhfbj')).toBe(false)
     })
     it('hex converter', () => {
-        const haxConverter = (decNumber: number, base: number): string => {
+        const hexConverter = (decNumber: number, base: number): string => {
             let rem: number
             let binaryString: string = ''
             let digits: string = '0123456789ABCDEF'
@@ -126,6 +162,6 @@ describe('Stack', () => {
             }
             return binaryString
         }
-        expect(haxConverter(233, 2)).toStrictEqual('11101001')
+        expect(hexConverter(233, 2)).toBe('11101001')
     })
 })

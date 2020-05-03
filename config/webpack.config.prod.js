@@ -19,6 +19,7 @@ const webpackProd = {
     devtool: 'source-map',
     output: {
         filename: 'js/[name].[chunkhash:8].bundle.js',
+        publicPath: process.env.PUBLIC_PATH || '/',
     },
     optimization: {
         minimizer: [
@@ -39,10 +40,6 @@ const webpackProd = {
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
-                // jquery: {
-                //     name: 'jquery',
-                //     test: /[\\/]node_modules[\\/]jquery[\\/]/,
-                // },
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
