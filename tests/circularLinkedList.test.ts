@@ -1,13 +1,13 @@
 import CircularLinkedList from '../src/core/linkedList/circularLinkedList'
 
-export default class MyObj {
+class MyObj {
     constructor(public el1: any, public el2: any) {}
     toString() {
         return `${this.el1.toString()}|${this.el2.toString()}`
     }
 }
 
-describe('DoublyLinkedList', () => {
+describe('CircularLinkedList', () => {
     let list: CircularLinkedList<number>
     let min: number
     let max: number

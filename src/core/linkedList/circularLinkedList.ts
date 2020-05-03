@@ -10,10 +10,11 @@ export default class CircularLinkedList<T> extends LinkedList<T> {
     }
 
     append(element: T): CircularLinkedList<T> {
+        // 向链表尾部添加一个新的元素。
         let node: LLNode<T> = new LLNode(element)
         let current: LLNode<T>
         if (this.head === null) {
-            // 列表中第一个节点
+            // 链表中第一个节点
             this.head = node
         } else {
             current = this.getAt(this.size() - 1)
@@ -25,7 +26,7 @@ export default class CircularLinkedList<T> extends LinkedList<T> {
     }
 
     insert(position: number, element: T): CircularLinkedList<T> {
-        // 向列表的特定位置插入一个新的项。
+        // 向链表的特定位置插入一个新的元素。
         if (position >= 0 && position <= this.length) {
             const node: LLNode<T> = new LLNode(element)
             let current: LLNode<T> = this.head
@@ -50,6 +51,7 @@ export default class CircularLinkedList<T> extends LinkedList<T> {
     }
 
     removeAt(position: number): T | null {
+        // 向链表的特定位置插入一个元素。
         if (position >= 0 && position < this.length) {
             let current: LLNode<T> = this.head
             if (position === 0) {

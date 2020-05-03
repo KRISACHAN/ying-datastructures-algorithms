@@ -32,7 +32,7 @@ export default class LinkedList<T> {
         return this
     }
 
-    insert(position: number, element: T): LinkedList<T> {
+    insert(position: number = -1, element: T): LinkedList<T> {
         // 向列表的特点位置插入一个新的元素
         //检查越界值
         if (position < 0) {

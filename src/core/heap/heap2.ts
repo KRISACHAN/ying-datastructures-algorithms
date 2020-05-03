@@ -16,17 +16,17 @@ export class Heap<T> {
         this.compare = compare
         this.items.set(this, [])
     }
-    getLeftChildIndex(parentIndex: number): number {
+    private getLeftChildIndex(parentIndex: number): number {
         // 获取左子节点下标
         return 2 * parentIndex + 1
     }
 
-    getRightChildIndex(parentIndex: number): number {
+    private getRightChildIndex(parentIndex: number): number {
         // 获取右子节点下标
         return 2 * parentIndex + 2
     }
 
-    getParentIndex(childIndex: number): number {
+    private getParentIndex(childIndex: number): number {
         // 获取父节点下标
         if (childIndex === 0) {
             return undefined
@@ -34,69 +34,70 @@ export class Heap<T> {
         return Math.floor((childIndex - 1) / 2)
     }
 
-    hasParent(childIndex: number): boolean {
+    private hasParent(childIndex: number): boolean {
         // 判断是否有父节点
         return this.getParentIndex(childIndex) >= 0
     }
 
-    hasLeftChild(parentIndex: number): boolean {
+    private hasLeftChild(parentIndex: number): boolean {
         // 判断是否有左子节点
         let h: T[] = this.items.get(this)
         return this.getLeftChildIndex(parentIndex) < h.length
     }
 
-    hasRightChild(parentIndex: number): boolean {
+    private hasRightChild(parentIndex: number): boolean {
         // 判断是否有右子节点
         let h: T[] = this.items.get(this)
         return this.getRightChildIndex(parentIndex) < h.length
     }
 
-    getLeftChild(parentIndex: number): T {
+    private getLeftChild(parentIndex: number): T {
         // 获取左子节点
         let h: T[] = this.items.get(this)
         return h[this.getLeftChildIndex(parentIndex)]
     }
 
-    getRightChild(parentIndex: number): T {
+    private getRightChild(parentIndex: number): T {
         // 获取右子节点
         let h: T[] = this.items.get(this)
         return h[this.getRightChildIndex(parentIndex)]
     }
 
-    getParent(childIndex: number): T {
+    private getParent(childIndex: number): T {
         // 获取父节点
         let h: T[] = this.items.get(this)
         return h[this.getParentIndex(childIndex)]
     }
 
-    insert(item: T): Heap<T> {
+    insert(element: T): Heap<T> {
         // 添加元素
         let h: T[] = this.items.get(this)
-        h.push(item)
+        h.push(element)
         this.heapifyUp()
         return this
     }
 
-    find(item: T, comparator = this.compare): number[] {
+    find(element: T, comparator = this.compare): number[] {
         // 寻找指定元素
         const foundList: any[] = []
         let h: T[] = this.items.get(this)
         for (let i: number = 0, len: number = h.length; i < len; ++i) {
-            if (comparator(item, h[i]) === Compare.EQUALS) {
+            if (comparator(element, h[i]) === Compare.EQUALS) {
                 foundList.push(i)
             }
         }
         return foundList
     }
 
-    remove(item: T, comparator = this.compare): Heap<T> {
+    remove(element: T, comparator = this.compare): Heap<T> {
         // 删除指定元素
         for (
-            let i: number = 0, len: number = this.find(item, comparator).length;
+            let i: number = 0,
+                len: number = this.find(element, comparator).length;
             i < len;
             ++i
         ) {
-            const tail: number = this.find(item, comparator).pop()
+            const tail: number = this.find(element, comparator).pop()
             let h: T[] = this.items.get(this)
             if (tail === h.length - 1) {
                 h.pop()
@@ -140,7 +141,7 @@ export class Heap<T> {
         return item
     }
 
-    heapifyUp(startIndex?: number): void {
+    private heapifyUp(startIndex?: number): void {
         // 下标上浮
         let h: T[] = this.items.get(this)
         let currentIndex: number = startIndex || h.length - 1
@@ -153,7 +154,7 @@ export class Heap<T> {
         }
     }
 
-    heapifyDown(startIndex: number = 0): void {
+    private heapifyDown(startIndex: number = 0): void {
         // 下标下沉
         let h: T[] = this.items.get(this)
         let currentIndex: number = startIndex

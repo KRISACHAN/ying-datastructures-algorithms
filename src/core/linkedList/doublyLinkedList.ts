@@ -17,7 +17,7 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
     append(element: T): DoublyLinkedList<T> {
         let node: DLLNode<T> = new DLLNode(element)
         if (this.head === null) {
-            // 列表中第一个节点
+            // 链表中第一个节点
             this.head = node
             this.tail = node
         } else {
@@ -25,12 +25,12 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
             node.prev = this.tail
             this.tail = node
         }
-        this.length++ // 更新列表的长度
+        this.length++ // 更新链表的长度
         return this
     }
 
     insert(position: number, element: T): DoublyLinkedList<T> {
-        // 向列表的特定位置插入一个新的项。
+        // 向链表的特定位置插入一个新的元素。
         //检查越界值
         if (position >= 0 && position <= this.length) {
             let node: DLLNode<T> = new DLLNode(element)
@@ -100,7 +100,7 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
         return this.tail || null
     }
 
-    toString() {
+    toString(): string {
         // 转换为字符串
         if (this.tail == null) {
             return ''
@@ -112,6 +112,10 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
             previous = previous.prev
         }
         return objString
+    }
+
+    print() {
+        console.log(this.toString())
     }
 
     clear() {

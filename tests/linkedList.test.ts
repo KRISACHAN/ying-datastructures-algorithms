@@ -1,4 +1,10 @@
 import LinkedList from '../src/core/linkedList/linkedList'
+class MyObj {
+    constructor(public el1: any, public el2: any) {}
+    toString() {
+        return `${this.el1.toString()}|${this.el2.toString()}`
+    }
+}
 describe('LinkedList', () => {
     let list: LinkedList<number>
     let min: number
@@ -70,5 +76,15 @@ describe('LinkedList', () => {
             element = list.removeAt(i - 1)
             expect(element).toBeNull()
         }
+    })
+    it('returns toString objects', () => {
+        const ds = new LinkedList<MyObj>()
+        expect(ds.toString()).toEqual('')
+
+        ds.append(new MyObj(1, 2))
+        expect(ds.toString()).toEqual('1|2')
+
+        ds.append(new MyObj(3, 4))
+        expect(ds.toString()).toEqual('1|2,3|4')
     })
 })
