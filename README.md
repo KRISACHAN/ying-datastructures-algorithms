@@ -27,7 +27,12 @@
 
 ### 算法
 
-- [x] [十大基础排序算法](./src/algorithms/sorting/README.md)
+- [x] [十大基础排序算法（sorting）](./src/algorithms/sorting/README.md)
+- [ ] [搜索（search）](./src/algorithms/search/README.md)
+- [ ] [递归（recursion）](./src/algorithms/recursion/README.md)
+- [ ] [动态规划（dynamic）](./src/algorithms/dynamic/README.md)
+- [ ] [贪心算法（greedy）](./src/algorithms/greedy/README.md)
+- [ ] [回溯（backtracking）](./src/algorithms/backtracking/README.md)
 
 ## 后记
 
