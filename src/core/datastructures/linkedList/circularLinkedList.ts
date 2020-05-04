@@ -1,5 +1,5 @@
 'use strict'
-import { LLNode } from '../node'
+import { LLNode } from '../../node'
 import LinkedList from './linkedList'
 /**
  * 循环链表（CircularLinkedList）：循环链表跟普通链表的区别就是循环链表是头尾相连的

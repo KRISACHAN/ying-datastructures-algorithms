@@ -1,11 +1,5 @@
-import CircularLinkedList from '../src/core/linkedList/circularLinkedList'
-
-class MyObj {
-    constructor(public el1: any, public el2: any) {}
-    toString() {
-        return `${this.el1.toString()}|${this.el2.toString()}`
-    }
-}
+import CircularLinkedList from '../src/core/datastructures/linkedList/circularLinkedList'
+import { MyObj } from '../src/core/node'
 
 describe('CircularLinkedList', () => {
     let list: CircularLinkedList<number>

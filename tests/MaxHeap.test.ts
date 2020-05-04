@@ -1,4 +1,4 @@
-import { MaxHeap } from '../src/core/heap/heap2'
+import { MaxHeap } from '../src/core/datastructures/heap/heap2'
 
 describe('MaxHeap', () => {
     it('should create an empty max heap', () => {

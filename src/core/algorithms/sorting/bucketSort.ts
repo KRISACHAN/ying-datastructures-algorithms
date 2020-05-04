@@ -1,5 +1,5 @@
 'use strict'
-import { DefalutListType } from '../global.d'
+import { DefalutListType } from '../../global.d'
 const BucketSort = (
     list: DefalutListType,
     bucketsCount: number = 10 /* 默认桶的数量 */,

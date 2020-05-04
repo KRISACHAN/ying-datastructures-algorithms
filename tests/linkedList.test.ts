@@ -1,10 +1,6 @@
-import LinkedList from '../src/core/linkedList/linkedList'
-class MyObj {
-    constructor(public el1: any, public el2: any) {}
-    toString() {
-        return `${this.el1.toString()}|${this.el2.toString()}`
-    }
-}
+import LinkedList from '../src/core/datastructures/linkedList/linkedList'
+import { MyObj } from '../src/core/node'
+
 describe('LinkedList', () => {
     let list: LinkedList<number>
     let min: number

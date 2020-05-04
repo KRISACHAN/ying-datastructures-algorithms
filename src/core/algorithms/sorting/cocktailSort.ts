@@ -1,5 +1,5 @@
 'use strict'
-import { Swap, Compare, defaultCompare } from '../utils'
+import { Swap, Compare, defaultCompare } from '../../utils'
 const CocktailSort = <T>(list: T[], compareFn = defaultCompare): T[] => {
     let i: number,
         left: number = 0,
