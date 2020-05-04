@@ -1,4 +1,4 @@
-import BinarySearchTree from '../src/core/datastructures/tree/binarySearchTree'
+import BinarySearchTree from '../../../src/core/datastructures/tree/binarySearchTree'
 
 describe('BinarySearchTree', () => {
     let bst: BinarySearchTree<number>
@@ -12,20 +12,20 @@ describe('BinarySearchTree', () => {
     })
 
     function assertNode(node: any, key: number, left: number, right: number) {
-        if (key != null) {
+        if (key) {
             expect(node.key).toEqual(key)
         } else {
             expect(node).toEqual(key)
             return
         }
 
-        if (left != null) {
+        if (left) {
             expect(node.left.key).toEqual(left)
         } else {
             expect(node.left).toEqual(left)
         }
 
-        if (right != null) {
+        if (right) {
             expect(node.right.key).toEqual(right)
         } else {
             expect(node.right).toEqual(right)

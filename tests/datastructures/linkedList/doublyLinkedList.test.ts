@@ -1,4 +1,4 @@
-import DoublyLinkedList from '../src/core/datastructures/linkedList/doublyLinkedList'
+import DoublyLinkedList from '../../../src/core/datastructures/linkedList/doublyLinkedList'
 describe('DoublyLinkedList', () => {
     let list: DoublyLinkedList<number>
     let min: number

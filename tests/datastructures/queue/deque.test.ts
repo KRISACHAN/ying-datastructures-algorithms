@@ -1,4 +1,5 @@
-import Deque from '../src/core/datastructures/queue/deque'
+import Deque from '../../../src/core/datastructures/queue/deque'
+import { MyObj } from '../../../src/core/node'
 
 describe('Deque', () => {
     let deque: Deque<number>
@@ -181,12 +182,6 @@ describe('Deque', () => {
     })
 
     it('returns toString objects', () => {
-        class MyObj {
-            constructor(public el1: any, public el2: any) {}
-            toString() {
-                return `${this.el1.toString()}|${this.el2.toString()}`
-            }
-        }
         const dequeMyObj = new Deque<MyObj>()
         expect(dequeMyObj.toString()).toBe('')
 

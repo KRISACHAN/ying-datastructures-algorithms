@@ -1,4 +1,5 @@
-import Stack from '../src/core/datastructures/stack/stack'
+import Stack from '../../../src/core/datastructures/stack/stack'
+import { MyObj } from '../../../src/core/node'
 
 describe('Stack', () => {
     let stack: Stack<number>
@@ -110,12 +111,6 @@ describe('Stack', () => {
     })
 
     it('returns toString objects', () => {
-        class MyObj {
-            constructor(public el1: any, public el2: any) {}
-            toString() {
-                return `${this.el1.toString()}|${this.el2.toString()}`
-            }
-        }
         const stackMyObj = new Stack<MyObj>()
         expect(stackMyObj.toString()).toBe('')
 
