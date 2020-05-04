@@ -1,5 +1,20 @@
 'use strict'
-import PriorityQueueArray from '../src/core/datastructures/queue/priorityQueueArray'
-let priorityQueueArray: PriorityQueueArray<number> = new PriorityQueueArray()
-priorityQueueArray.enqueue(3, 3).enqueue(4, 4).enqueue(0, 0).enqueue(2, 2).enqueue(1, 1)
-priorityQueueArray.print()
+import BinarySearchTree from '../src/core/datastructures/tree/BinarySearchTree'
+let bst: BinarySearchTree<number> = new BinarySearchTree<number>()
+
+bst.insert(11)
+bst.insert(7)
+bst.insert(15)
+bst.insert(5)
+bst.insert(3)
+bst.insert(9)
+bst.insert(8)
+bst.insert(10)
+bst.insert(13)
+bst.insert(12)
+bst.insert(14)
+bst.insert(20)
+bst.insert(18)
+bst.insert(25)
+let node = bst.getRoot()
+console.log(node)

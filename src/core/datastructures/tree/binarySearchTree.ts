@@ -12,9 +12,8 @@ export default class BinarySearchTree<T> {
     constructor() {}
     insert(key: T): BinarySearchTree<T> {
         // 向树中插入一个新的键。
-        const newNode = new BSTNode(key)
-        if (this.root === null) {
-            this.root = newNode
+        if (!this.root) {
+            this.root = new BSTNode(key)
         } else {
             this.insertNode(this.root, key)
         }
@@ -23,13 +22,13 @@ export default class BinarySearchTree<T> {
     protected insertNode(node: BSTNode<T>, key: T): void {
         // 将节点加在非根节点的其他位置，找到新节点应该插入的正确位置
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            if (node.left === null) {
+            if (!node.left) {
                 node.left = new BSTNode(key)
             } else {
                 this.insertNode(node.left, key)
             }
         } else {
-            if (node.right === null) {
+            if (!node.right) {
                 node.right = new BSTNode(key)
             } else {
                 this.insertNode(node.right, key)
@@ -38,7 +37,7 @@ export default class BinarySearchTree<T> {
     }
     private searchNode(node: BSTNode<T>, key: T): boolean {
         // 查找节点
-        if (node === null) {
+        if (!node) {
             return false
         }
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
@@ -55,7 +54,7 @@ export default class BinarySearchTree<T> {
     }
     private inOrderTraverseNode(node: BSTNode<T>, callback: Function): void {
         // 中序排序的核心实现
-        if (node !== null) {
+        if (node) {
             this.inOrderTraverseNode(node.left, callback)
             callback(node.key)
             this.inOrderTraverseNode(node.right, callback)
@@ -68,7 +67,7 @@ export default class BinarySearchTree<T> {
 
     private preOrderTraverseNode(node: BSTNode<T>, callback: Function): void {
         // 先序排序的核心实现
-        if (node !== null) {
+        if (node) {
             callback(node.key)
             this.preOrderTraverseNode(node.left, callback)
             this.preOrderTraverseNode(node.right, callback)
@@ -81,7 +80,7 @@ export default class BinarySearchTree<T> {
 
     private postOrderTraverseNode(node: BSTNode<T>, callback: Function): void {
         // 后序排序的核心实现
-        if (node !== null) {
+        if (node) {
             this.postOrderTraverseNode(node.left, callback)
             this.postOrderTraverseNode(node.right, callback)
             callback(node.key)
@@ -95,7 +94,7 @@ export default class BinarySearchTree<T> {
     protected minNode(node: BSTNode<T>): BSTNode<T> {
         // 获取最小的值/键。
         let current: BSTNode<T> = node
-        while (current != null && current.left != null) {
+        while (current && current.left) {
             current = current.left
         }
         return current
@@ -108,7 +107,7 @@ export default class BinarySearchTree<T> {
     protected maxNode(node: BSTNode<T>): BSTNode<T> {
         // 获取最大的值/键。
         let current: BSTNode<T> = node
-        while (current != null && current.right != null) {
+        while (current && current.right) {
             current = current.right
         }
         return current
@@ -120,7 +119,7 @@ export default class BinarySearchTree<T> {
 
     protected removeNode(node: BSTNode<T>, key: T): BSTNode<T> {
         // 移除节点
-        if (node === null) {
+        if (!node) {
             return null
         }
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
@@ -132,15 +131,15 @@ export default class BinarySearchTree<T> {
         } else {
             // 键等于node.key
             // 第一种情况——一个叶节点
-            if (node.left === null && node.right === null) {
+            if (!node.left && !node.right) {
                 node = null
                 return node
             }
             // 第二种情况——一个只有一个子节点的节点
-            if (node.left === null) {
+            if (!node.left) {
                 node = node.right
                 return node
-            } else if (node.right === null) {
+            } else if (!node.right) {
                 node = node.left
                 return node
             }
