@@ -17,22 +17,22 @@
 
 ### 数据结构
 
-- [x] [栈（stack）](./src/datastructures/stack/README.md)
-- [x] [队列（queue）](./src/datastructures/queue/README.md)
-- [x] [链表（linkedList）](./src/datastructures/linkedList/README.md)
-- [x] [堆（heap）](./src/datastructures/heap/README.md)
-- [ ] [树（tree）](./src/datastructures/tree/README.md)
-- [ ] [图（graph）](./src/datastructures/graph/README.md)
-- [ ] [哈希表（hashTable）](./src/datastructures/hashTable/README.md)
+- [x] [栈（stack）](./src/core/datastructures/stack/README.md)
+- [x] [队列（queue）](./src/core/datastructures/queue/README.md)
+- [x] [链表（linkedList）](./src/core/datastructures/linkedList/README.md)
+- [x] [堆（heap）](./src/core/datastructures/heap/README.md)
+- [ ] [树（tree）](./src/core/datastructures/tree/README.md)
+- [ ] [图（graph）](./src/core/datastructures/graph/README.md)
+- [ ] [哈希表（hashTable）](./src/core/datastructures/hashTable/README.md)
 
 ### 算法
 
-- [x] [十大基础排序算法（sorting）](./src/algorithms/sorting/README.md)
-- [ ] [搜索（search）](./src/algorithms/search/README.md)
-- [ ] [递归（recursion）](./src/algorithms/recursion/README.md)
-- [ ] [动态规划（dynamic）](./src/algorithms/dynamic/README.md)
-- [ ] [贪心算法（greedy）](./src/algorithms/greedy/README.md)
-- [ ] [回溯（backtracking）](./src/algorithms/backtracking/README.md)
+- [x] [十大基础排序算法（sorting）](./src/core/algorithms/sorting/README.md)
+- [ ] [搜索（search）](./src/core/algorithms/search/README.md)
+- [ ] [递归（recursion）](./src/core/algorithms/recursion/README.md)
+- [ ] [动态规划（dynamic）](./src/core/algorithms/dynamic/README.md)
+- [ ] [贪心算法（greedy）](./src/core/algorithms/greedy/README.md)
+- [ ] [回溯（backtracking）](./src/core/algorithms/backtracking/README.md)
 
 ## 后记
 
