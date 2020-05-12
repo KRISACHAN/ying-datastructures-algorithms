@@ -20,24 +20,6 @@
 
 一个算法的好坏是通过 **时间复杂度** 与 **空间复杂度** 来衡量的。
 
-举个 🌰：
-
-<img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/lizi.png" style="display: block; margin: 10px auto;">
-
-鱼头跟方勤一起去同一家公司面试，面试官让他们实现同一个功能，巴拉巴拉大半天，两个人终于交付了代码。
-
-面试官一运行，发现：
-
-方勤的代码运行一次要花 **100ms** ，占用内存 **5MB** 。
-
-而鱼头的代码运行一次要花 **100s** ，占用内存 **500MB** 。
-
-好了，鱼头面试又失败了！
-
-<img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/mianshi.jpg" style="display: block; margin: 10px auto; width: 50%;">
-
-以上所花的 **时间** 与 **占用内存** 便是衡量一个 算法好坏的标准。
-
 简单来说，**时间复杂度** 就是执行算法的 **时间成本** ，**空间复杂度** 则是执行算法的 **空间成本** 。
 
 ### 复杂度

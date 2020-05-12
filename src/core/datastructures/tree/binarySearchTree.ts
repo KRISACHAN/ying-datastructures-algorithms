@@ -48,25 +48,25 @@ export default class BinarySearchTree<T> {
         }
     }
     // 遍历插入节点
-    protected loopInsertNode(key: T): void {
-        const node: BSTNode<T> = new BSTNode<T>(key)
+    protected loopInsertNode(node: BSTNode<T>, key: T): void {
+        const newNode: BSTNode<T> = new BSTNode<T>(key)
         if (!this.root) {
-            this.root = node
+            node = newNode
             return
         }
-        let current: BSTNode<T> = this.root
+        let current: BSTNode<T> = node
         let parent: BSTNode<T>
         while (current) {
             parent = current
             if (this.compareFn(key, parent.key) === Compare.LESS_THAN) {
                 current = current.left
                 if (!current) {
-                    parent.left = node
+                    parent.left = newNode
                 }
             } else {
                 current = current.right
                 if (!current) {
-                    parent.right = node
+                    parent.right = newNode
                     return
                 }
             }
@@ -78,7 +78,7 @@ export default class BinarySearchTree<T> {
             this.root = new BSTNode<T>(key)
         } else {
             // this.recursionInsertNode(this.root, key)
-            this.loopInsertNode(key)
+            this.loopInsertNode(this.root, key)
         }
         return this
     }
@@ -255,6 +255,11 @@ export default class BinarySearchTree<T> {
     }
 
     // 递归删除节点
+    // 当key === node.item时
+    // 有三种情况
+    // 1 - 一个叶子节点
+    // 2 - 一个节点只有一个子节点
+    // 3 - 一个节点有两个字节点
     protected recursionRemoveNode(node: BSTNode<T>, key: T): BSTNode<T> {
         if (!node) {
             return null
@@ -288,28 +293,22 @@ export default class BinarySearchTree<T> {
         }
     }
     // 循环删除节点
+    // 暴力重建法...
     protected loopRemoveNode(node: BSTNode<T>, key: T): BSTNode<T> {
         if (!node) {
             return null
         }
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            let current: BSTNode<T> = node
-            while (current && current.left) {
-                current = current.left
+        let newNode: BSTNode<T> = new BSTNode<T>(node.key)
+        this.breadthFirstSearch((nKey: T): void => {
+            if (nKey !== key) {
+                this.loopInsertNode(newNode, nKey)
             }
-            return current
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-        } else {
-        }
+        })
+        return newNode
     }
-    // 当key === node.item时
-    // 有三种情况
-    // 1 - 一个叶子节点
-    // 2 - 一个节点只有一个子节点
-    // 3 - 一个节点有两个字节点
     remove(key: T): BinarySearchTree<T> {
         // 从树中移除某个键。
-        this.root = this.recursionRemoveNode(this.root, key)
+        this.root = this.loopRemoveNode(this.root, key)
         return this
     }
 

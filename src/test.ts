@@ -1,37 +1,10 @@
 'use strict'
 import BinarySearchTree from '../src/core/datastructures/tree/BinarySearchTree'
-let bst: BinarySearchTree<number> = new BinarySearchTree<number>()
+let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
 
-bst.insert(6)
-    .insert(3)
-    .insert(1)
-    .insert(2)
-    .insert(7)
-    .insert(4)
-    .insert(5)
-    .insert(8)
-bst.print()
-console.log(bst.min())
-console.log(bst.max())
-bst.print()
-console.group('preOrderTraverse')
-bst.preOrderTraverse((key: BinarySearchTree<number>) => {
-    console.log(key)
+let list = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6]
+
+list.forEach(item => {
+    bst.insert(item)
 })
-console.groupEnd()
-console.group('inOrderTraverse')
-bst.inOrderTraverse((key: BinarySearchTree<number>) => {
-    console.log(key)
-})
-console.groupEnd()
-console.group('postOrderTraverse')
-bst.postOrderTraverse((key: BinarySearchTree<number>) => {
-    console.log(key)
-})
-console.groupEnd()
-console.groupEnd()
-console.group('breadthFirstSearch')
-bst.breadthFirstSearch((key: BinarySearchTree<number>) => {
-    console.log(key)
-})
-console.groupEnd()
+bst.remove(3).print()
