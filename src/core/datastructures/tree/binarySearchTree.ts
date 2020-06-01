@@ -72,8 +72,8 @@ export default class BinarySearchTree<T> {
             }
         }
     }
+    // 向树中插入一个新的键。
     insert(key: T): BinarySearchTree<T> {
-        // 向树中插入一个新的键。
         if (!this.root) {
             this.root = new BSTNode<T>(key)
         } else {
@@ -113,8 +113,8 @@ export default class BinarySearchTree<T> {
         }
         return false
     }
+    // 在树中查找一个键，如果节点存在，则返回true；如果不存在，则返回false。
     search(key: T): boolean {
-        // 在树中查找一个键，如果节点存在，则返回true；如果不存在，则返回false。
         // return this.recursionSearchNode(this.root, key)
         return this.loopSearchNode(this.root, key)
     }
@@ -147,8 +147,8 @@ export default class BinarySearchTree<T> {
             current = current.right
         }
     }
+    // 通过中序遍历方式遍历所有节点。 中序遍历是一种以上行顺序访问BST所有节点的遍历方式，也就是以从最小到最大的顺序访问所有节点。中序遍历的一种应用就是对树进行排序操作。
     inOrderTraverse(callback: Function): void {
-        // 通过中序遍历方式遍历所有节点。 中序遍历是一种以上行顺序访问BST所有节点的遍历方式，也就是以从最小到最大的顺序访问所有节点。中序遍历的一种应用就是对树进行排序操作。
         // this.recursionInOrderTraverseNode(this.root, callback)
         this.loopInOrderTraverseNode(this.root, callback)
     }
@@ -222,14 +222,13 @@ export default class BinarySearchTree<T> {
             }
         }
     }
+    // 通过后序遍历方式遍历所有节点。
     postOrderTraverse(callback: Function): void {
-        // 通过后序遍历方式遍历所有节点。
         // this.recursionPostOrderTraverseNode(this.root, callback)
         this.loopPostOrderTraverseNode(this.root, callback)
     }
-
+    // 获取最小的值/键。
     protected minNode(node: BSTNode<T>): BSTNode<T> {
-        // 获取最小的值/键。
         let current: BSTNode<T> = node
         while (current && current.left) {
             current = current.left
@@ -241,16 +240,16 @@ export default class BinarySearchTree<T> {
         return this.minNode(this.root)
     }
 
+    // 获取最大的值/键。
     protected maxNode(node: BSTNode<T>): BSTNode<T> {
-        // 获取最大的值/键。
         let current: BSTNode<T> = node
         while (current && current.right) {
             current = current.right
         }
         return current
     }
+    // 返回树中最大的值/键。
     max(): BSTNode<T> {
-        // 返回树中最大的值/键。
         return this.maxNode(this.root)
     }
 
@@ -306,8 +305,8 @@ export default class BinarySearchTree<T> {
         })
         return newNode
     }
+    // 从树中移除某个键。
     remove(key: T): BinarySearchTree<T> {
-        // 从树中移除某个键。
         this.root = this.loopRemoveNode(this.root, key)
         return this
     }

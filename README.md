@@ -2,12 +2,6 @@
 
 ## 前言
 
-如果你喜欢探讨技术，或者对本仓库有任何的意见或建议，非常欢迎加鱼头微信好友一起探讨，当然，鱼头也非常希望能跟你一起聊生活，聊爱好，谈天说地。
-鱼头的微信号是：krisChans95
-也可以扫码关注公众号，订阅更多精彩内容。
-
-![./static/qrcode-all1.png](./static/qrcode-all1.png)
-
 本库是以 **`TypeScript`** 为描述语言的算法与数据结构入门仓库。
 主要面向想要学习或者想要查漏补缺的前端开发者。
 本库可以作为算法与数据结构的字典查询，也可以作为入门资料学习。
@@ -39,3 +33,11 @@
 ### 参考资料
 
 1. [学习JavaScript数据结构与算法](https://item.m.jd.com/product/12613100.html?wxa_abtest=o&ad_od=share&utm_source=androidapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=CopyURL)
+
+### 个人说明
+
+如果你喜欢探讨技术，或者对本仓库有任何的意见或建议，非常欢迎加鱼头微信好友一起探讨，当然，鱼头也非常希望能跟你一起聊生活，聊爱好，谈天说地。
+鱼头的微信号是：krisChans95
+也可以扫码关注公众号，订阅更多精彩内容。
+
+![./static/qrcode-all1.png](./static/qrcode-all1.png)
