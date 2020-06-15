@@ -4,7 +4,7 @@ import BinarySearchTree from './BinarySearchTree'
 import { defaultCompare, Compare } from '../../utils'
 import { ICompareFunction } from '../../global.d'
 
-enum BalanceFactor {
+enum BalanceFactor { // 平衡因子
     UNBALANCED_RIGHT = 1,
     SLIGHTLY_UNBALANCED_RIGHT = 2,
     BALANCED = 3,
@@ -28,8 +28,11 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         super()
     }
     // 获取节点高度
+    // 在AVL树中，需要对每个节点计算右子树高度（hr）和左子树高度（hl）的差值，该值（hr－hl）应为0、1或1。
+    // 如果结果不是这三个值之一，则需要平衡该AVL树。
+    // 这就是平衡因子的概念。
     private getNodeHeight(node: BSTNode<T>): number {
-        if (node == null) {
+        if (!node) {
             return -1
         }
         return (
@@ -39,6 +42,8 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
             ) + 1
         )
     }
+    // 假设平衡因子是左子树的高度减去右子树的高度所得到的值，又假设由于在二叉排序树上插入节点而失去平衡的最小子树根节点的指针为a（即a是离插入点最近，且平衡因子绝对值超过1的祖先节点。
+
     /**
      * 左 - 左（LL）：向右的单旋转
      *
@@ -49,6 +54,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
      *   c   d                           d   e
      *
      */
+    // 由于在*a的左子树根节点的左子树上插入节点，*a的平衡因子由1增至2，致使以*a为根的子树失去平衡，则需进行一次右旋转操作。
     private rotationLL(node: BSTNode<T>): BSTNode<T> {
         const tmp: BSTNode<T> = node.left
         node.left = tmp.right
@@ -65,6 +71,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
      *     d   e                      c   d
      *
      */
+    // 由于在*a的右子树根节点的右子树上插入节点，*a的平衡因子由-1变为-2，致使以*a为根的子树失去平衡，则需进行一次左旋转操作。
     private rotationRR(node: BSTNode<T>): BSTNode<T> {
         const tmp: BSTNode<T> = node.right
         node.right = tmp.left
@@ -74,6 +81,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     /**
      * 左 - 右（LR）：向右的双旋转
      */
+    // 由于在*a的左子树根节点的右子树上插入节点，*a的平衡因子由1增至2，致使以*a为根的子树失去平衡，则需进行两次旋转（先左旋后右旋）操作。
     private rotationLR(node: BSTNode<T>): BSTNode<T> {
         node.left = this.rotationRR(node.left)
         return this.rotationLL(node)
@@ -81,6 +89,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     /**
      * 右 - 左（RL）：向左的双旋转
      */
+    // 由于在*a的右子树根节点的左子树上插入节点，*a的平衡因子由-1变为-2，致使以*a为根的子树失去平衡，则需进行两次旋转（先右旋后左旋）操作。
     private rotationRL(node: BSTNode<T>): BSTNode<T> {
         node.right = this.rotationLL(node.right)
         return this.rotationRR(node)
@@ -89,17 +98,22 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     private getBalanceFactor(node: BSTNode<T>): number {
         const heightDifference: number =
             this.getNodeHeight(node.left) - this.getNodeHeight(node.right)
-        const differenceObj = {
-            '-2': BalanceFactor.UNBALANCED_RIGHT,
-            '-1': BalanceFactor.UNBALANCED_RIGHT,
-            '1': BalanceFactor.UNBALANCED_RIGHT,
-            '2': BalanceFactor.UNBALANCED_RIGHT,
+        switch (heightDifference) {
+            case -2:
+                return BalanceFactor.UNBALANCED_RIGHT
+            case -1:
+                return BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
+            case 1:
+                return BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
+            case 2:
+                return BalanceFactor.UNBALANCED_LEFT
+            default:
+                return BalanceFactor.BALANCED
         }
-        return differenceObj[heightDifference] || BalanceFactor.BALANCED
     }
 
     insertNode(node: BSTNode<T>, key: T): BSTNode<T> {
-        if (node === null) {
+        if (!node) {
             return new BSTNode(key)
         } else if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
             node.left = this.insertNode(node.left, key)
@@ -112,19 +126,19 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         const balanceFactor = this.getBalanceFactor(node)
         if (balanceFactor === BalanceFactor.UNBALANCED_LEFT) {
             if (this.compareFn(key, node.left.key) === Compare.LESS_THAN) {
-                // 向右的单旋转
+                // 左 - 左（LL）：向右的单旋转
                 node = this.rotationLL(node)
             } else {
-                // 向右的双旋转
+                // 左 - 右（LR）：向右的双旋转
                 return this.rotationLR(node)
             }
         }
         if (balanceFactor === BalanceFactor.UNBALANCED_RIGHT) {
             if (this.compareFn(key, node.right.key) === Compare.BIGGER_THAN) {
-                // 向左的单旋转
+                // 右 - 右（RR）：向左的单旋转
                 node = this.rotationRR(node)
             } else {
-                // 向左的双旋转
+                // 右 - 左（RL）：向左的双旋转
                 return this.rotationRL(node)
             }
         }
@@ -134,5 +148,78 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     insert(key: T): AVLTree<T> {
         this.root = this.insertNode(this.root, key)
         return this
+    }
+
+    // 删除节点
+    protected removeNode(node: BSTNode<T>, key: T): BSTNode<T> {
+        if (!node) {
+            return null
+        }
+        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+            // 要删除的节点在左子树
+            node.left = this.removeNode(node.left, key)
+        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+            // 要删除的节点在右子树
+            node.right = this.removeNode(node.right, key)
+        } else {
+            // node是要被删除的节点
+            if (!node.left && !node.right) {
+                node = null
+            } else if (!node.left && node.right) {
+                node = node.right
+            } else if (node.left && !node.right) {
+                node = node.left
+            } else {
+                // node有两个子节点，则获取其最小的节点（后序节点）
+                const inOrderNode: BSTNode<T> = this.minNode(node.right)
+                node.key = inOrderNode.key
+                node.right = this.removeNode(node.right, inOrderNode.key)
+            }
+        }
+
+        if (!node) {
+            return null
+        }
+
+        // 验证是否平衡
+        const balanceState = this.getBalanceFactor(node)
+
+        if (balanceState === BalanceFactor.UNBALANCED_LEFT) {
+            // 左 - 左（LL）：向右的单旋转
+            if (
+                this.getBalanceFactor(node.left) === BalanceFactor.BALANCED ||
+                this.getBalanceFactor(node.left) ===
+                    BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
+            ) {
+                return this.rotationLL(node)
+            }
+            // 左 - 右（LR）：向右的双旋转
+            if (
+                this.getBalanceFactor(node.left) ===
+                BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
+            ) {
+                return this.rotationLR(node.left)
+            }
+        }
+
+        if (balanceState === BalanceFactor.UNBALANCED_RIGHT) {
+            // 右 - 右（RR）：向左的单旋转
+            if (
+                this.getBalanceFactor(node.right) === BalanceFactor.BALANCED ||
+                this.getBalanceFactor(node.right) ===
+                    BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
+            ) {
+                return this.rotationRR(node)
+            }
+            // 右 - 左（RL）：向左的双旋转
+            if (
+                this.getBalanceFactor(node.right) ===
+                BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
+            ) {
+                return this.rotationRL(node.right)
+            }
+        }
+
+        return node
     }
 }
