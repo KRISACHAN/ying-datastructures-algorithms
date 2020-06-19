@@ -1,5 +1,5 @@
 'use strict'
-import { BSTNode } from '../../node'
+import { BSTNode, AVLNode } from '../../node'
 import BinarySearchTree from './BinarySearchTree'
 import { defaultCompare, Compare } from '../../utils'
 import { ICompareFunction } from '../../global.d'
@@ -22,7 +22,7 @@ enum BalanceFactor { // 平衡因子
  * 添加或移除节点时，AVL树会尽可能尝试转换为完全树。
  */
 export default class AVLTree<T> extends BinarySearchTree<T> {
-    protected root: BSTNode<T>
+    protected root: AVLNode<T>
     protected compareFn: ICompareFunction<T> = defaultCompare
     constructor() {
         super()
@@ -31,7 +31,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     // 在AVL树中，需要对每个节点计算右子树高度（hr）和左子树高度（hl）的差值，该值（hr－hl）应为0、1或1。
     // 如果结果不是这三个值之一，则需要平衡该AVL树。
     // 这就是平衡因子的概念。
-    private getNodeHeight(node: BSTNode<T>): number {
+    private getNodeHeight(node: AVLNode<T>): number {
         if (!node) {
             return -1
         }
@@ -55,8 +55,8 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
      *
      */
     // 由于在*a的左子树根节点的左子树上插入节点，*a的平衡因子由1增至2，致使以*a为根的子树失去平衡，则需进行一次右旋转操作。
-    private rotationLL(node: BSTNode<T>): BSTNode<T> {
-        const tmp: BSTNode<T> = node.left
+    private rotationLL(node: AVLNode<T>): AVLNode<T> {
+        const tmp: AVLNode<T> = node.left
         node.left = tmp.right
         tmp.right = node
         return tmp
@@ -72,8 +72,8 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
      *
      */
     // 由于在*a的右子树根节点的右子树上插入节点，*a的平衡因子由-1变为-2，致使以*a为根的子树失去平衡，则需进行一次左旋转操作。
-    private rotationRR(node: BSTNode<T>): BSTNode<T> {
-        const tmp: BSTNode<T> = node.right
+    private rotationRR(node: AVLNode<T>): AVLNode<T> {
+        const tmp: AVLNode<T> = node.right
         node.right = tmp.left
         tmp.left = node
         return tmp
@@ -82,7 +82,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
      * 左 - 右（LR）：向右的双旋转
      */
     // 由于在*a的左子树根节点的右子树上插入节点，*a的平衡因子由1增至2，致使以*a为根的子树失去平衡，则需进行两次旋转（先左旋后右旋）操作。
-    private rotationLR(node: BSTNode<T>): BSTNode<T> {
+    private rotationLR(node: AVLNode<T>): AVLNode<T> {
         node.left = this.rotationRR(node.left)
         return this.rotationLL(node)
     }
@@ -90,12 +90,12 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
      * 右 - 左（RL）：向左的双旋转
      */
     // 由于在*a的右子树根节点的左子树上插入节点，*a的平衡因子由-1变为-2，致使以*a为根的子树失去平衡，则需进行两次旋转（先右旋后左旋）操作。
-    private rotationRL(node: BSTNode<T>): BSTNode<T> {
+    private rotationRL(node: AVLNode<T>): AVLNode<T> {
         node.right = this.rotationLL(node.right)
         return this.rotationRR(node)
     }
     // 获取平衡系数
-    private getBalanceFactor(node: BSTNode<T>): number {
+    private getBalanceFactor(node: AVLNode<T>): number {
         const heightDifference: number =
             this.getNodeHeight(node.left) - this.getNodeHeight(node.right)
         switch (heightDifference) {
@@ -112,9 +112,9 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         }
     }
 
-    insertNode(node: BSTNode<T>, key: T): BSTNode<T> {
+    insertNode(node: AVLNode<T>, key: T): AVLNode<T> {
         if (!node) {
-            return new BSTNode(key)
+            return new AVLNode(key)
         } else if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
             node.left = this.insertNode(node.left, key)
         } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
@@ -151,7 +151,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     }
 
     // 删除节点
-    protected removeNode(node: BSTNode<T>, key: T): BSTNode<T> {
+    protected removeNode(node: AVLNode<T>, key: T): AVLNode<T> {
         if (!node) {
             return null
         }
@@ -221,5 +221,8 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         }
 
         return node
+    }
+    getRoot(): AVLNode<T> {
+        return this.root
     }
 }

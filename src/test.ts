@@ -1,10 +1,20 @@
 'use strict'
 import BinarySearchTree from '../src/core/datastructures/tree/BinarySearchTree'
-let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
+import AdelsonVelskiiLandiTree from '../src/core/datastructures/tree/adelsonVelskiiLandiTree'
+import RedBlackTree from '../src/core/datastructures/tree/redBlackTree'
 
-let list = [11, 7, 15, 5, 3, 9, 8, 10, 13, 12, 14, 20, 18, 25, 6]
+let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
+let avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
+let rbt: RedBlackTree<any> = new RedBlackTree<any>()
+
+
+let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 list.forEach(item => {
     bst.insert(item)
+    avlt.insert(item)
+    rbt.insert(item)
 })
-bst.remove(3).print()
+console.log(bst.getRoot())
+console.log(avlt.getRoot())
+console.log(rbt.getRoot())

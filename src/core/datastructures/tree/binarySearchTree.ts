@@ -292,21 +292,22 @@ export default class BinarySearchTree<T> {
         }
     }
     // 循环删除节点
-    // 暴力重建法...
+    // 暴力重建法
     protected loopRemoveNode(node: BSTNode<T>, key: T): BSTNode<T> {
         if (!node) {
             return null
         }
-        let newNode: BSTNode<T> = new BSTNode<T>(node.key)
+        const newTree: BinarySearchTree<T> = new BinarySearchTree()
         this.breadthFirstSearch((nKey: T): void => {
             if (nKey !== key) {
-                this.loopInsertNode(newNode, nKey)
+                newTree.insert(nKey)
             }
         })
-        return newNode
+        return newTree.getRoot()
     }
     // 从树中移除某个键。
     remove(key: T): BinarySearchTree<T> {
+        // this.root = this.recursionRemoveNode(this.root, key)
         this.root = this.loopRemoveNode(this.root, key)
         return this
     }
