@@ -264,36 +264,33 @@ export default class BinarySearchTree<T> {
             return null
         }
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+            // 要删除的节点在左子树
             node.left = this.recursionRemoveNode(node.left, key)
-            return node
         } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+            // 要删除的节点在右子树
             node.right = this.recursionRemoveNode(node.right, key)
-            return node
         } else {
             // 键等于node.key
+            // node是要被删除的节点
             // 第一种情况——一个叶节点
             if (!node.left && !node.right) {
                 node = null
-                return node
-            }
-            // 第二种情况——一个只有一个子节点的节点
-            if (!node.left) {
+            } else if (!node.left && node.right) { // 第二种情况——一个只有一个子节点的节点
                 node = node.right
-                return node
-            } else if (!node.right) {
+            } else if (node.left && !node.right) { // 第二种情况——一个只有一个子节点的节点
                 node = node.left
-                return node
+            } else {
+                 // 第三种情况——一个有两个子节点的节点
+                // node有两个子节点，则获取其最小的节点（后序节点）
+                const inOrderNode: BSTNode<T> = this.minNode(node.right)
+                node.key = inOrderNode.key
+                node.right = this.recursionRemoveNode(node.right, inOrderNode.key)
             }
-            // 第三种情况——一个有两个子节点的节点
-            const aux = this.minNode(node.right)
-            node.key = aux.key
-            node.right = this.recursionRemoveNode(node.right, aux.key)
-            return node
         }
+        return node
     }
-    // 循环删除节点
     // 暴力重建法
-    protected loopRemoveNode(node: BSTNode<T>, key: T): BSTNode<T> {
+    protected rebuildRemoveNode(node: BSTNode<T>, key: T): BSTNode<T> {
         if (!node) {
             return null
         }
@@ -305,9 +302,55 @@ export default class BinarySearchTree<T> {
         })
         return newTree.getRoot()
     }
+    // 循环删除节点的核心
+    // 合并左子节点和右子节点
+    protected mergeChild(node: BSTNode<T>): BSTNode<T> {
+        if (!node.left && !node.right) {
+            return null
+        }
+        if (!node.left && node.right) {
+            return node.right
+        }
+        if (node.left && !node.right) {
+            return node.left
+        }
+        let current: BSTNode<T> = node.right
+        while (current.left) {
+            current = current.left
+        }
+        current.left = node.left
+        return node.right
+    }
+    // 循环删除节点
+    protected loopRemoveNode(node: BSTNode<T>, key: T): BSTNode<T> {
+        if (!node) {
+            return null
+        }
+        if (this.compareFn(key, node.key) === Compare.EQUALS) {
+            return this.mergeChild(node)
+        }
+        let current: BSTNode<T> | any = node
+        let parent: BSTNode<T> | any
+        let keyword: string = ''
+        while (current && current.key !== key) {
+            parent = current
+            if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {
+                keyword = 'left'
+            } else {
+                keyword = 'right'
+            }
+            current = current[keyword]
+        }
+        if (!current) {
+            return node
+        }
+        parent[keyword] = this.mergeChild(current)
+        return node
+    }
     // 从树中移除某个键。
     remove(key: T): BinarySearchTree<T> {
         // this.root = this.recursionRemoveNode(this.root, key)
+        // this.root = this.rebuildRemoveNode(this.root, key)
         this.root = this.loopRemoveNode(this.root, key)
         return this
     }

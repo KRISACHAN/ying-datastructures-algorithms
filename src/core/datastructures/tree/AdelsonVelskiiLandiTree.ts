@@ -150,37 +150,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         return this
     }
 
-    // 删除节点
-    protected removeNode(node: AVLNode<T>, key: T): AVLNode<T> {
-        if (!node) {
-            return null
-        }
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            // 要删除的节点在左子树
-            node.left = this.removeNode(node.left, key)
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-            // 要删除的节点在右子树
-            node.right = this.removeNode(node.right, key)
-        } else {
-            // node是要被删除的节点
-            if (!node.left && !node.right) {
-                node = null
-            } else if (!node.left && node.right) {
-                node = node.right
-            } else if (node.left && !node.right) {
-                node = node.left
-            } else {
-                // node有两个子节点，则获取其最小的节点（后序节点）
-                const inOrderNode: BSTNode<T> = this.minNode(node.right)
-                node.key = inOrderNode.key
-                node.right = this.removeNode(node.right, inOrderNode.key)
-            }
-        }
-
-        if (!node) {
-            return null
-        }
-
+    protected balanceNode(node: AVLNode<T>): AVLNode<T> {
         // 验证是否平衡
         const balanceState = this.getBalanceFactor(node)
 
@@ -219,9 +189,16 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
                 return this.rotationRL(node.right)
             }
         }
-
         return node
     }
+
+    // 从树中移除某个键。
+    remove(key: T): AVLTree<T> {
+        const node: AVLNode<T> = this.loopRemoveNode(this.root, key)
+        this.root = this.balanceNode(node)
+        return this
+    }
+
     getRoot(): AVLNode<T> {
         return this.root
     }

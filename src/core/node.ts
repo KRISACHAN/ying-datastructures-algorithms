@@ -42,15 +42,22 @@ export enum Colors {
     BLACK = 1,
 }
 
+export enum ColorTexts {
+    RED = 'RED',
+    BLACK = 'BLACK',
+}
+
 export class RBNode<T> extends BSTNode<T> {
     left: RBNode<T>
     right: RBNode<T>
     parent: RBNode<T>
     color: Colors
+    colorText: ColorTexts
     constructor(public key: T) {
         super(key)
         this.key = key
         this.color = Colors.RED
+        this.colorText = ColorTexts.RED
     }
     // 判断是否为红色节点
     isRed() {
