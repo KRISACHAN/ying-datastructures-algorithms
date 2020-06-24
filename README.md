@@ -16,8 +16,9 @@
 - [x] [链表（linkedList）](./src/core/datastructures/linkedList/README.md)
 - [x] [堆（heap）](./src/core/datastructures/heap/README.md)
 - [x] [树（tree）](./src/core/datastructures/tree/README.md)
-- [ ] [图（graph）](./src/core/datastructures/graph/README.md)
+- [ ] [字典（Dictionary）](./src/core/datastructures/dictionary/README.md)
 - [ ] [哈希表（hashTable）](./src/core/datastructures/hashTable/README.md)
+- [ ] [图（graph）](./src/core/datastructures/graph/README.md)
 
 ### 算法
 
@@ -33,6 +34,7 @@
 ### 参考资料
 
 1. [学习JavaScript数据结构与算法](https://item.m.jd.com/product/12613100.html?wxa_abtest=o&ad_od=share&utm_source=androidapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=CopyURL)
+2. [[Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition](https://github.com/PacktPublishing/Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition)](https://github.com/PacktPublishing/Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition/tree/master/LearningJavaScriptDataStructuresandAlgorithmsThirdEdition_Code)
 
 ### 个人说明
 

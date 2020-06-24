@@ -1,3 +1,4 @@
+// 链表节点
 export class LLNode<T> {
     constructor(public element: T, public next?: LLNode<T>) {
         this.element = element
@@ -5,6 +6,7 @@ export class LLNode<T> {
     }
 }
 
+// 双向链表节点
 export class DLLNode<T> extends LLNode<T> {
     constructor(
         public element: T,
@@ -18,6 +20,7 @@ export class DLLNode<T> extends LLNode<T> {
     }
 }
 
+// 二叉树节点
 export class BSTNode<T> {
     left: BSTNode<T>
     right: BSTNode<T>
@@ -30,6 +33,7 @@ export class BSTNode<T> {
     }
 }
 
+// AVL树节点
 export class AVLNode<T> extends BSTNode<T> {
     constructor(public key: T) {
         super(key)
@@ -37,16 +41,19 @@ export class AVLNode<T> extends BSTNode<T> {
     }
 }
 
+// 红黑树色值枚举
 export enum Colors {
     RED = 0,
     BLACK = 1,
 }
 
+// 红黑树色值文本枚举
 export enum ColorTexts {
     RED = 'RED',
     BLACK = 'BLACK',
 }
 
+// 红黑树节点
 export class RBNode<T> extends BSTNode<T> {
     left: RBNode<T>
     right: RBNode<T>
@@ -69,9 +76,19 @@ export class RBNode<T> extends BSTNode<T> {
     }
 }
 
+// 字符串数据节点
 export class MyObj {
     constructor(public el1: any, public el2: any) {}
     toString() {
         return `${this.el1.toString()}|${this.el2.toString()}`
+    }
+}
+
+// 键值对节点
+export class ValuePair<K, V> {
+    constructor(public key: K, public value: V) {}
+
+    toString() {
+        return `[#${this.key}: ${this.value}]`
     }
 }
