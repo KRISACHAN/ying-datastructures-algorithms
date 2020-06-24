@@ -7,7 +7,7 @@ let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
 let avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
 let rbt: RedBlackTree<any> = new RedBlackTree<any>()
 
-let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+let list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
 
 console.log({
     ['list.length']: list.length
@@ -20,16 +20,16 @@ list.forEach(item => {
 })
 
 console.group('bst')
-bst.print()
+bst.remove(19).remove(50).print()
 console.log(bst.getRoot())
 console.groupEnd()
 
 console.group('avlt')
-avlt.print()
+avlt.remove(19).remove(50).print()
 console.log(avlt.getRoot())
 console.groupEnd()
 
 console.group('rbt')
-rbt.print()
+rbt.remove(19).remove(50).print()
 console.log(rbt.getRoot())
 console.groupEnd()

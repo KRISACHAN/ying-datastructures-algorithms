@@ -129,7 +129,6 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
             return node
         }
         parent[keyword] = this.mergeChild(current)
-        this.fixTreeProperties(node)
         return node
     }
 
@@ -174,7 +173,7 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
             const grandParent: RBNode<T> = parent.parent
             // case A：父节点是祖父节点的左子节点时
             if (grandParent && grandParent.left === parent) {
-                const uncle = grandParent.right
+                const uncle: RBNode<T> = grandParent.right
                 // case 1: 当Node的叔叔也是红色的时候
                 if (uncle && uncle.isRed()) {
                     grandParent.color = Colors.RED
@@ -243,7 +242,6 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
         // 维护root为黑色
         this.root.color = Colors.BLACK
         this.root.colorText = ColorTexts.BLACK
-
     }
     getRoot(): RBNode<T> {
         return this.root
