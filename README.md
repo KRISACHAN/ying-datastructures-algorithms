@@ -16,7 +16,7 @@
 - [x] [链表（linkedList）](./src/core/datastructures/linkedList/README.md)
 - [x] [堆（heap）](./src/core/datastructures/heap/README.md)
 - [x] [树（tree）](./src/core/datastructures/tree/README.md)
-- [ ] [字典（Dictionary）](./src/core/datastructures/dictionary/README.md)
+- [x] [字典（Dictionary）](./src/core/datastructures/dictionary/README.md)
 - [ ] [哈希表（hashTable）](./src/core/datastructures/hashTable/README.md)
 - [ ] [图（graph）](./src/core/datastructures/graph/README.md)
 
