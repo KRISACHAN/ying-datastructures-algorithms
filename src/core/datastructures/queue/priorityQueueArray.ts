@@ -1,6 +1,5 @@
 'use strict'
-import { Compare, defaultCompare } from '../../utils'
-import { ICompareFunction } from '../../global'
+import { defaultCompare, ICompareFunction, Compare } from '../../utils'
 
 class QueueElement<T> {
     // 带权重的队列元素

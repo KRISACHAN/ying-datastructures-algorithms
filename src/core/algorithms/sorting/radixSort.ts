@@ -1,5 +1,5 @@
 'use strict'
-import { DefalutListType } from '../../global.d'
+import { DefalutListType } from '../../utils'
 const LSDRadixSort = (list: DefalutListType): DefalutListType => {
     const max: number = Math.max(...list) /* 获取最大值 */
     let digit: number = `${max}`.length /* 获取最大值位数 */

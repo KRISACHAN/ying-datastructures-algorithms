@@ -1,3 +1,5 @@
+'use strict'
+import { Colors, ColorTexts } from './utils'
 // 链表节点
 export class LLNode<T> {
     constructor(public element: T, public next?: LLNode<T>) {
@@ -39,18 +41,6 @@ export class AVLNode<T> extends BSTNode<T> {
         super(key)
         this.key = key
     }
-}
-
-// 红黑树色值枚举
-export enum Colors {
-    RED = 0,
-    BLACK = 1,
-}
-
-// 红黑树色值文本枚举
-export enum ColorTexts {
-    RED = 'RED',
-    BLACK = 'BLACK',
 }
 
 // 红黑树节点

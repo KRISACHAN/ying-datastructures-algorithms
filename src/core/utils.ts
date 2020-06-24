@@ -1,19 +1,26 @@
-import {
-    DefalutListType,
-    ICompareFunction,
-    IEqualsFunction,
-    IDiffFunction,
-} from './global.d'
-
-// 是否存在当前数据
-export const DOES_NOT_EXIST = -1
-
+export type DefalutListType = number[]
+export type ICompareFunction<T> = (a: T, b: T) => number
+export type IEqualsFunction<T> = (a: T, b: T) => boolean
+export type IDiffFunction<T> = (a: T, b: T) => number
+// 红黑色色值枚举
+export enum Colors {
+    RED = 0,
+    BLACK = 1,
+}
+// 红黑树色值文本枚举
+export enum ColorTexts {
+    RED = 'RED',
+    BLACK = 'BLACK',
+}
 // 对比的枚举
 export enum Compare {
     LESS_THAN = -1,
     BIGGER_THAN = 1,
     EQUALS = 0,
 }
+
+// 是否存在当前数据
+export const DOES_NOT_EXIST = -1
 
 // a 小于 b
 export const lesserEquals = <T>(a: T, b: T, compareFn: ICompareFunction<T>) => {

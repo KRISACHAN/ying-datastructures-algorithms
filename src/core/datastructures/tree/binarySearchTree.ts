@@ -1,7 +1,7 @@
 'use strict'
 import { BSTNode } from '../../node'
-import { defaultCompare, Compare } from '../../utils'
-import { ICompareFunction } from '../../global.d'
+import { defaultCompare, ICompareFunction, Compare } from '../../utils'
+
 /**
  * @二叉搜索树（BST）：是二叉树的一种，但是它只允许你在左侧节点存储（比父节点）小的值，
 在右侧节点存储（比父节点）大（或者等于）的值。
@@ -275,16 +275,21 @@ export default class BinarySearchTree<T> {
             // 第一种情况——一个叶节点
             if (!node.left && !node.right) {
                 node = null
-            } else if (!node.left && node.right) { // 第二种情况——一个只有一个子节点的节点
+            } else if (!node.left && node.right) {
+                // 第二种情况——一个只有一个子节点的节点
                 node = node.right
-            } else if (node.left && !node.right) { // 第二种情况——一个只有一个子节点的节点
+            } else if (node.left && !node.right) {
+                // 第二种情况——一个只有一个子节点的节点
                 node = node.left
             } else {
-                 // 第三种情况——一个有两个子节点的节点
+                // 第三种情况——一个有两个子节点的节点
                 // node有两个子节点，则获取其最小的节点（后序节点）
                 const inOrderNode: BSTNode<T> = this.minNode(node.right)
                 node.key = inOrderNode.key
-                node.right = this.recursionRemoveNode(node.right, inOrderNode.key)
+                node.right = this.recursionRemoveNode(
+                    node.right,
+                    inOrderNode.key,
+                )
             }
         }
         return node

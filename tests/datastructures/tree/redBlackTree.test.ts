@@ -1,4 +1,5 @@
-import { Colors, RBNode } from '../../../src/core/node'
+import { RBNode } from '../../../src/core/node'
+import { Colors } from '../../../src/core/utils'
 import RedBlackTree from '../../../src/core/datastructures/tree/redBlackTree'
 
 describe('RedBlackTree', () => {

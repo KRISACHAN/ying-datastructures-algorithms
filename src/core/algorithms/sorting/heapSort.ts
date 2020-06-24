@@ -1,6 +1,10 @@
 'use strict'
-import { ICompareFunction, DefalutListType } from '../../global.d'
-import { Swap, defaultCompare } from '../../utils'
+import {
+    Swap,
+    defaultCompare,
+    ICompareFunction,
+    DefalutListType,
+} from '../../utils'
 // 使数组变为堆
 const heapify = (
     list: DefalutListType,
