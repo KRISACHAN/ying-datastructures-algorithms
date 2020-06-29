@@ -1,8 +1,15 @@
 'use strict'
-import { DefalutListType } from '../../utils'
+import {
+    DefalutListType,
+    defaultCompare,
+    Compare,
+    Swap,
+    ICompareFunction,
+} from '../../utils'
 const BucketSort = (
     list: DefalutListType,
     bucketsCount: number = 10 /* 默认桶的数量 */,
+    compareFn: ICompareFunction<any> = defaultCompare,
 ): DefalutListType => {
     const max: number = Math.max(...list) /* 序列最大数字 */
     const min: number = Math.min(...list) /* 数列最小数字 */
@@ -20,11 +27,19 @@ const BucketSort = (
         let bLen = __buckets[index].length
         while (bLen > 0) {
             /* 子桶排序 */
-            if (__buckets[index][bLen] < __buckets[index][bLen - 1]) {
-                ;[__buckets[index][bLen], __buckets[index][bLen - 1]] = [
-                    __buckets[index][bLen - 1],
+            // if (__buckets[index][bLen] < __buckets[index][bLen - 1]) {
+            //     ;[__buckets[index][bLen], __buckets[index][bLen - 1]] = [
+            //         __buckets[index][bLen - 1],
+            //         __buckets[index][bLen],
+            //     ]
+            // }
+            if (
+                compareFn(
                     __buckets[index][bLen],
-                ]
+                    __buckets[index][bLen - 1],
+                ) === Compare.LESS_THAN
+            ) {
+                Swap(__buckets[index], bLen, bLen - 1)
             }
             bLen--
         }

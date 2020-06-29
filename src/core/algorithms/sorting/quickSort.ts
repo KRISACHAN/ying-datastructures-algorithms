@@ -1,7 +1,10 @@
 'use strict'
-import { DefalutListType } from '../../utils'
+import { DefalutListType, defaultCompare, Compare } from '../../utils'
 
-export const QuickSort = (list: DefalutListType): DefalutListType => {
+export const QuickSort = (
+    list: DefalutListType,
+    compareFn = defaultCompare,
+): DefalutListType => {
     const len: number = list.length
     if (len < 2) {
         return list
@@ -10,16 +13,24 @@ export const QuickSort = (list: DefalutListType): DefalutListType => {
     const left: DefalutListType = []
     const right: DefalutListType = []
     for (let i: number = 1; i < len; ++i) {
-        if (list[i] >= pivot) {
-            right.push(list[i])
-        }
-        if (list[i] < pivot) {
+        // if (list[i] >= pivot) {
+        //     right.push(list[i])
+        // }
+        // if (list[i] < pivot) {
+        //     left.push(list[i])
+        // }
+        if (compareFn(list[i], pivot) === Compare.LESS_THAN) {
             left.push(list[i])
+        } else {
+            right.push(list[i])
         }
     }
     return [...QuickSort(left), pivot, ...QuickSort(right)]
 }
-export const QuickSort3 = (list: DefalutListType): DefalutListType => {
+export const QuickSort3 = (
+    list: DefalutListType,
+    compareFn = defaultCompare,
+): DefalutListType => {
     const len: number = list.length
     if (len < 2) {
         return list
@@ -29,9 +40,16 @@ export const QuickSort3 = (list: DefalutListType): DefalutListType => {
     let right: DefalutListType = []
     let pivot: number = list[0]
     for (let i: number = 0; i < len; ++i) {
-        if (list[i] < pivot) {
+        // if (list[i] < pivot) {
+        //     left.push(list[i])
+        // } else if (list[i] === pivot) {
+        //     center.push(list[i])
+        // } else {
+        //     right.push(list[i])
+        // }
+        if (compareFn(list[i], pivot) === Compare.LESS_THAN) {
             left.push(list[i])
-        } else if (list[i] === pivot) {
+        } else if (compareFn(list[i], pivot) === Compare.EQUALS) {
             center.push(list[i])
         } else {
             right.push(list[i])

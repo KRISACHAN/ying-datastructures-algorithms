@@ -4,6 +4,7 @@ import {
     defaultCompare,
     ICompareFunction,
     DefalutListType,
+    Compare,
 } from '../../utils'
 // 使数组变为堆
 const heapify = (
@@ -16,11 +17,17 @@ const heapify = (
     const left = 2 * index + 1
     const right = 2 * index + 2
 
-    if (left < heapSize && compareFn(list[left], list[index]) > 0) {
+    if (
+        left < heapSize &&
+        compareFn(list[left], list[index]) === Compare.BIGGER_THAN
+    ) {
         largest = left
     }
 
-    if (right < heapSize && compareFn(list[right], list[largest]) > 0) {
+    if (
+        right < heapSize &&
+        compareFn(list[right], list[largest]) === Compare.BIGGER_THAN
+    ) {
         largest = right
     }
 

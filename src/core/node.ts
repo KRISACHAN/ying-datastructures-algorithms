@@ -82,3 +82,8 @@ export class ValuePair<K, V> {
         return `[#${this.key}: ${this.value}]`
     }
 }
+
+// 表格
+export interface tableType<K, V> {
+    [key: string]: ValuePair<K, V>
+}

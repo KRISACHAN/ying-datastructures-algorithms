@@ -93,3 +93,9 @@ export const SortedLists: number[][] = [
     [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 22, 66, 88, 102, 1024],
     [0, 1, 2, 3, 5, 5, 7, 8, 9, 88, 98, 125, 127, 555, 888],
 ]
+
+// 获取数据类型
+export const dataType = (data: any): string => {
+    const type: string = Object.prototype.toString.call(data)
+    return type.replace(/^\[object\s(.+)\]$/, '$1').toLowerCase()
+}
