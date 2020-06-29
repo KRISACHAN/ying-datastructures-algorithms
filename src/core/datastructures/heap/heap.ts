@@ -1,5 +1,11 @@
 'use strict'
-import { defaultCompare, reverseCompare, Swap, Compare } from '../../utils'
+import {
+    defaultCompare,
+    reverseCompare,
+    Swap,
+    Compare,
+    isExist,
+} from '../../utils'
 /**
  * 堆（英语：Heap）：给定堆中任意节点P和C，若P是C的母节点，那么P的值会小于等于（或大于等于）C的值。
  * 最小堆（min heap）：若母节点的值恒小于等于子节点的值，此堆称为最小堆（min heap）；
@@ -57,7 +63,7 @@ export class Heap<T> {
 
     insert(value: T): Heap<T> {
         // 插入元素
-        if (value !== null) {
+        if (isExist(value)) {
             let h: T[] = this.items.get(this)
             const index: number = h.length
             h.push(value)
@@ -73,7 +79,7 @@ export class Heap<T> {
         )
     }
 
-    private siftDown(index: number): void {
+    private siftDown(index: number, compareFn = defaultCompare): void {
         // 向下筛选
         let h: T[] = this.items.get(this)
         let element: number = index
@@ -81,11 +87,25 @@ export class Heap<T> {
         const right = this.getRightChildIndex(index)
         const size = this.size()
 
-        if (left < size && this.pairIsInCorrectOrder(h[element], h[left])) {
+        // if (left < size && this.pairIsInCorrectOrder(h[element], h[left])) {
+        //     element = left
+        // }
+
+        // if (right < size && this.pairIsInCorrectOrder(h[element], h[right])) {
+        //     element = right
+        // }
+
+        if (
+            compareFn(left, size) === Compare.LESS_THAN &&
+            this.pairIsInCorrectOrder(h[element], h[left])
+        ) {
             element = left
         }
 
-        if (right < size && this.pairIsInCorrectOrder(h[element], h[right])) {
+        if (
+            compareFn(left, size) === Compare.LESS_THAN &&
+            this.pairIsInCorrectOrder(h[element], h[right])
+        ) {
             element = right
         }
 

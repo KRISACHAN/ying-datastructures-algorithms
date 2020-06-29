@@ -99,3 +99,11 @@ export const dataType = (data: any): string => {
     const type: string = Object.prototype.toString.call(data)
     return type.replace(/^\[object\s(.+)\]$/, '$1').toLowerCase()
 }
+
+// 是否存在该数据
+export const isExist = (data: any): boolean => {
+    if (data === 0) {
+        return true
+    }
+    return dataType(data) !== 'undefined' && dataType(data) !== 'null'
+}

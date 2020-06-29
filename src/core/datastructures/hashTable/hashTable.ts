@@ -1,5 +1,5 @@
 'use strict'
-import { defaultToString, dataType } from '../../utils'
+import { defaultToString, dataType, isExist } from '../../utils'
 import { ValuePair, tableType } from '../../node'
 
 /**
@@ -31,8 +31,7 @@ export default class HashTable<K, V> {
         return this.loseloseHashCode(key, div)
     }
     put(key: K, value: V) {
-        if (key && value) {
-            
+        if (isExist(key) && isExist(value)) {
         }
     }
 }

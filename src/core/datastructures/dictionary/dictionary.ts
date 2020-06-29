@@ -1,7 +1,6 @@
 'use strict'
-import { defaultToString } from '../../utils'
+import { defaultToString, isExist } from '../../utils'
 import { ValuePair, tableType } from '../../node'
-
 
 /**
  * 在计算机科学中，关联数组（英语：Associative Array），又称映射（Map）、字典（Dictionary）是一个抽象的数据结构，它包含着类似于（键，值）的有序对。
@@ -32,10 +31,7 @@ export default class Dictionary<K, V> {
     // 如果某个键值存在于这个字典中，则返回true，反之则返回false
     hasKey(key: K): Boolean {
         const dict = this.table[this.toStrFn(key)]
-        return (
-            this.table[this.toStrFn(key)] !== null &&
-            this.table[this.toStrFn(key)] !== undefined
-        )
+        return isExist(this.table[this.toStrFn(key)])
     }
 
     // 通过使用键值来从字典中移除键值对应的数据值
@@ -123,7 +119,9 @@ export default class Dictionary<K, V> {
         if (this.isEmpty()) {
             return ''
         }
-        let objString = this.map((key, value) => `[${key}: ${value}]`).toString()
+        let objString = this.map(
+            (key, value) => `[${key}: ${value}]`,
+        ).toString()
         return objString
     }
 }

@@ -18,14 +18,8 @@ class QueueElement<T> {
  */
 export default class PriorityQueue<T> {
     private items: WeakMap<object, Array<T>> = new WeakMap() // 保存队列的元素
-    public compareFn: ICompareFunction<number>
-    public compare: Compare
-    constructor(
-        compareFn: ICompareFunction<number> = defaultCompare,
-        compare: Compare = Compare.LESS_THAN,
-    ) {
+    constructor(public compareFn: ICompareFunction<number> = defaultCompare) {
         this.compareFn = compareFn
-        this.compare = compare
         this.items.set(this, [])
     }
     enqueue(element: T, priority: number): PriorityQueue<T> {
@@ -42,7 +36,7 @@ export default class PriorityQueue<T> {
             for (let i: number = 0; i < q.length; ++i) {
                 if (
                     this.compareFn(queueElement.priority, q[i].priority) ===
-                    this.compare
+                    Compare.LESS_THAN
                 ) {
                     q.splice(i, 0, queueElement)
                     added = true
