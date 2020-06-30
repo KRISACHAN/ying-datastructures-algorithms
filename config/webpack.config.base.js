@@ -90,9 +90,7 @@ const baseConfig = {
             },
         ],
     },
-    externals: {
-        jquery: 'jQuery',
-    },
+    externals: {},
     plugins: [
         ...HTMLPlugins,
         new CopyWebpackPlugin([

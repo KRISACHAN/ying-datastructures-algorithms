@@ -13,13 +13,7 @@
         "sourceMap": true,
         "declaration": true,
         "importHelpers": true,
-        "paths": {
-            "@": ["src"],
-            "src": ["src"],
-            "tests": ["tests"],
-            "core": ["core"],
-            "static": ["static"]
-        },
+        "paths": {},
         "typeRoots": [
             "node_modules/@types"
         ],
