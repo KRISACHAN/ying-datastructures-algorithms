@@ -8,13 +8,14 @@ const InsertionSort = <T>(
     const len: number = list.length
     let j: number, temp: T
     for (let i: number = 0; i < len; ++i) {
-        j = i - 1
-        temp = list[i]
+        j = i - 1 // 取出前一个位置
+        temp = list[i] // 缓存当前位置数字
         while (j >= 0 && compareFn(list[j], temp) === Compare.BIGGER_THAN) {
-            list[j + 1] = list[j]
-            j--
+            // 如果前一个位置的数组大于当前数字
+            list[j + 1] = list[j] // 将该元素移到下一位置
+            j-- // 保存当前 - 1 的 位置
         }
-        list[j + 1] = temp
+        list[j + 1] = temp // 将新元素插入到该位置
     }
     return list
 }

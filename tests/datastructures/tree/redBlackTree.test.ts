@@ -1,6 +1,6 @@
-import { RBNode } from '../../../src/core/node'
-import { Colors } from '../../../src/core/utils'
-import RedBlackTree from '../../../src/core/datastructures/tree/redBlackTree'
+import { RBNode } from 'core/node'
+import { Colors } from 'core/utils'
+import RedBlackTree from 'core/datastructures/tree/redBlackTree'
 
 describe('RedBlackTree', () => {
     let tree: RedBlackTree<number>

@@ -27,12 +27,6 @@ const BucketSort = (
         let bLen = __buckets[index].length
         while (bLen > 0) {
             /* 子桶排序 */
-            // if (__buckets[index][bLen] < __buckets[index][bLen - 1]) {
-            //     ;[__buckets[index][bLen], __buckets[index][bLen - 1]] = [
-            //         __buckets[index][bLen - 1],
-            //         __buckets[index][bLen],
-            //     ]
-            // }
             if (
                 compareFn(
                     __buckets[index][bLen],

@@ -1,5 +1,5 @@
-import Dictionary from '../../../src/core/datastructures/dictionary/dictionary'
-import { MyObj } from '../../../src/core/node'
+import Dictionary from 'core/datastructures/dictionary/dictionary'
+import { MyObj } from 'core/node'
 
 describe('Dictionary', () => {
     let dictionary: Dictionary<number, number>

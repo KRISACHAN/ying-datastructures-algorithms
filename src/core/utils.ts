@@ -107,3 +107,8 @@ export const isExist = (data: any): boolean => {
     }
     return dataType(data) !== 'undefined' && dataType(data) !== 'null'
 }
+
+// 是否存在当前所有数据
+export const isExistAll = (...dataList: any): boolean => {
+    return dataList.every(isExist)
+}

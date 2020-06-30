@@ -1,4 +1,4 @@
-import { Heap } from '../../../src/core/datastructures/heap/heap2'
+import { Heap } from 'core/datastructures/heap/heap2'
 
 describe('Heap', () => {
     it('should not allow to create instance of the Heap directly', () => {

@@ -1,5 +1,5 @@
-import Queue from '../../../src/core/datastructures/queue/queue'
-import { MyObj } from '../../../src/core/node'
+import Queue from 'core/datastructures/queue/queue'
+import { MyObj } from 'core/node'
 
 describe('Queue', () => {
     let queue: Queue<number>

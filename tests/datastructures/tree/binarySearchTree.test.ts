@@ -1,4 +1,4 @@
-import BinarySearchTree from '../../../src/core/datastructures/tree/binarySearchTree'
+import BinarySearchTree from 'core/datastructures/tree/binarySearchTree'
 
 describe('BinarySearchTree', () => {
     let bst: BinarySearchTree<number>

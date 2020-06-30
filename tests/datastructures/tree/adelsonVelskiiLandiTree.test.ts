@@ -1,4 +1,4 @@
-import AdelsonVelskiiLandiTree from '../../../src/core/datastructures/tree/adelsonVelskiiLandiTree'
+import AdelsonVelskiiLandiTree from 'core/datastructures/tree/adelsonVelskiiLandiTree'
 
 describe('AVLTree', () => {
     let tree: AdelsonVelskiiLandiTree<number>

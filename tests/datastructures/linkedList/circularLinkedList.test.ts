@@ -1,5 +1,5 @@
-import CircularLinkedList from '../../../src/core/datastructures/linkedList/circularLinkedList'
-import { MyObj } from '../../../src/core/node'
+import CircularLinkedList from 'core/datastructures/linkedList/circularLinkedList'
+import { MyObj } from 'core/node'
 
 describe('CircularLinkedList', () => {
     let list: CircularLinkedList<number>

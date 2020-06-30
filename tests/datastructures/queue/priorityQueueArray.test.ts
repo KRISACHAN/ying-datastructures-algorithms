@@ -1,5 +1,5 @@
-import PriorityQueue from '../../../src/core/datastructures/queue/priorityQueueArray'
-import { MyObj } from '../../../src/core/node'
+import PriorityQueue from 'core/datastructures/queue/priorityQueueArray'
+import { MyObj } from 'core/node'
 
 describe('priorityQueue', () => {
     let queue: PriorityQueue<any>

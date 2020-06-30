@@ -1,5 +1,5 @@
-import Deque from '../../../src/core/datastructures/queue/deque'
-import { MyObj } from '../../../src/core/node'
+import Deque from 'core/datastructures/queue/deque'
+import { MyObj } from 'core/node'
 
 describe('Deque', () => {
     let deque: Deque<number>

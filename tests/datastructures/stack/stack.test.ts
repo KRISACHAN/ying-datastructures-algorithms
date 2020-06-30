@@ -1,5 +1,5 @@
-import Stack from '../../../src/core/datastructures/stack/stack'
-import { MyObj } from '../../../src/core/node'
+import Stack from 'core/datastructures/stack/stack'
+import { MyObj } from 'core/node'
 
 describe('Stack', () => {
     let stack: Stack<number>

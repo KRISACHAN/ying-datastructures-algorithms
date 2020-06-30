@@ -1,5 +1,5 @@
-import LinkedList from '../../../src/core/datastructures/linkedList/linkedList'
-import { MyObj } from '../../../src/core/node'
+import LinkedList from 'core/datastructures/linkedList/linkedList'
+import { MyObj } from 'core/node'
 
 describe('LinkedList', () => {
     let list: LinkedList<number>
