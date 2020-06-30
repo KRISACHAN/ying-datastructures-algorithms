@@ -5,7 +5,7 @@ import {
     Compare,
     Swap,
     ICompareFunction,
-} from '../../utils'
+} from 'core/utils'
 const BucketSort = (
     list: DefalutListType,
     bucketsCount: number = 10 /* 默认桶的数量 */,

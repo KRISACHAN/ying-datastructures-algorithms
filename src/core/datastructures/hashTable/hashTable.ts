@@ -1,6 +1,6 @@
 'use strict'
-import { defaultToString, dataType, isExist } from '../../utils'
-import { ValuePair, tableType } from '../../node'
+import { defaultToString, dataType, isExist } from 'core/utils'
+import { ValuePair, tableType } from 'core/node'
 
 /**
  * 散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在内存储存位置的数据结构。

@@ -1,9 +1,9 @@
 'use strict'
-import BinarySearchTree from '../src/core/datastructures/tree/BinarySearchTree'
-import AdelsonVelskiiLandiTree from '../src/core/datastructures/tree/adelsonVelskiiLandiTree'
-import RedBlackTree from '../src/core/datastructures/tree/redBlackTree'
-import Dictionary from '../src/core/datastructures/dictionary/dictionary'
-import { MyObj } from '../src/core/node'
+import BinarySearchTree from 'core/datastructures/tree/BinarySearchTree'
+import AdelsonVelskiiLandiTree from 'core/datastructures/tree/adelsonVelskiiLandiTree'
+import RedBlackTree from 'core/datastructures/tree/redBlackTree'
+import Dictionary from 'core/datastructures/dictionary/dictionary'
+import { MyObj } from 'core/node'
 
 let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
 let avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()

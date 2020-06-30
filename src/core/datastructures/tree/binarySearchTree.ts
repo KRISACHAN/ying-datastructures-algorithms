@@ -1,6 +1,6 @@
 'use strict'
-import { BSTNode } from '../../node'
-import { defaultCompare, ICompareFunction, Compare } from '../../utils'
+import { BSTNode } from 'core/node'
+import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 /**
  * @二叉搜索树（BST）：是二叉树的一种，但是它只允许你在左侧节点存储（比父节点）小的值，

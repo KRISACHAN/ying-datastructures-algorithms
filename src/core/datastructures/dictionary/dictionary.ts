@@ -1,6 +1,6 @@
 'use strict'
-import { defaultToString, isExist } from '../../utils'
-import { ValuePair, tableType } from '../../node'
+import { defaultToString, isExist } from 'core/utils'
+import { ValuePair, tableType } from 'core/node'
 
 /**
  * 在计算机科学中，关联数组（英语：Associative Array），又称映射（Map）、字典（Dictionary）是一个抽象的数据结构，它包含着类似于（键，值）的有序对。

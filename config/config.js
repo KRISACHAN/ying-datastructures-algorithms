@@ -10,6 +10,11 @@ const config = {
         // 开发环境配置
         alias: {
             // 路径重定向
+            '@': resolve('src'),
+            src: resolve('src'),
+            tests: resolve('tests'),
+            core: resolve('src/core/'),
+            static: resolve('static'),
         },
         include: [
             // 处理的文件夹

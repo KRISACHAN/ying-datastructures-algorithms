@@ -1,5 +1,5 @@
 'use strict'
-import { RBNode } from '../../node'
+import { RBNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
 import {
     defaultCompare,
@@ -7,7 +7,7 @@ import {
     Colors,
     ColorTexts,
     Compare,
-} from '../../utils'
+} from 'core/utils'
 
 /**
  * 红黑树（Red Black Tree） 是一种自平衡二叉查找树，是在计算机科学中用到的一种数据结构，典型的用途是实现关联数组。

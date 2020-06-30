@@ -1,5 +1,5 @@
 'use strict'
-import { DefalutListType, Swap, defaultCompare, Compare } from '../../utils'
+import { DefalutListType, Swap, defaultCompare, Compare } from 'core/utils'
 const ShellSort = (
     list: DefalutListType,
     compareFn = defaultCompare,
@@ -10,13 +10,6 @@ const ShellSort = (
         for (let i = gaps[g]; i < len; ++i) {
             let temp = list[i],
                 j: number
-            // for (
-            //     j = i;
-            //     j >= gaps[g] && list[j - gaps[g]] > list[i];
-            //     j -= gaps[g]
-            // ) {
-            //     list[j] = list[j - gaps[g]]
-            // }
             for (
                 j = i;
                 compareFn(j, gaps[g]) !== Compare.LESS_THAN &&

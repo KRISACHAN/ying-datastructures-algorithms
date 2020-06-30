@@ -1,5 +1,5 @@
 'use strict'
-import { DefalutListType, defaultCompare, Compare } from '../../utils'
+import { DefalutListType, defaultCompare, Compare } from 'core/utils'
 
 export const QuickSort = (
     list: DefalutListType,
@@ -13,12 +13,6 @@ export const QuickSort = (
     const left: DefalutListType = []
     const right: DefalutListType = []
     for (let i: number = 1; i < len; ++i) {
-        // if (list[i] >= pivot) {
-        //     right.push(list[i])
-        // }
-        // if (list[i] < pivot) {
-        //     left.push(list[i])
-        // }
         if (compareFn(list[i], pivot) === Compare.LESS_THAN) {
             left.push(list[i])
         } else {
@@ -40,13 +34,6 @@ export const QuickSort3 = (
     let right: DefalutListType = []
     let pivot: number = list[0]
     for (let i: number = 0; i < len; ++i) {
-        // if (list[i] < pivot) {
-        //     left.push(list[i])
-        // } else if (list[i] === pivot) {
-        //     center.push(list[i])
-        // } else {
-        //     right.push(list[i])
-        // }
         if (compareFn(list[i], pivot) === Compare.LESS_THAN) {
             left.push(list[i])
         } else if (compareFn(list[i], pivot) === Compare.EQUALS) {

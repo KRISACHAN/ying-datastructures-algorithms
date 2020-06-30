@@ -1,5 +1,5 @@
 'use strict'
-import { defaultCompare, ICompareFunction, Compare } from '../../utils'
+import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 const Merge = <T>(
     left: T[],
@@ -8,11 +8,6 @@ const Merge = <T>(
 ): T[] => {
     let resArr = []
     while (left.length && right.length) {
-        // if (left[0] < right[0]) {
-        //     resArr.push(left.shift())
-        // } else {
-        //     resArr.push(right.shift())
-        // }
         if (compareFn(left[0], right[0]) === Compare.LESS_THAN) {
             resArr.push(left.shift())
         } else {

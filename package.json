@@ -81,6 +81,7 @@
     "style-loader": "^0.23.1",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.0",
+    "tsconfig-paths-jest": "0.0.1",
     "tslib": "^1.11.1",
     "typescript": "^3.7.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
@@ -102,11 +103,5 @@
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 5%",
-    "last 2 versions",
-    "not ie <= 8",
-    "Android >= 5.0"
-  ]
+  }
 }

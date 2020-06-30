@@ -1,7 +1,7 @@
 'use strict'
-import { AVLNode } from '../../node'
+import { AVLNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
-import { defaultCompare, ICompareFunction, Compare } from '../../utils'
+import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 enum BalanceFactor { // 平衡因子
     UNBALANCED_RIGHT = 1,

@@ -5,7 +5,7 @@ import {
     ICompareFunction,
     DefalutListType,
     Compare,
-} from '../../utils'
+} from 'core/utils'
 // 使数组变为堆
 const heapify = (
     list: DefalutListType,

@@ -1,5 +1,5 @@
 'use strict'
-import { DefalutListType } from '../../utils'
+import { DefalutListType } from 'core/utils'
 const CountSort = (list: DefalutListType): DefalutListType => {
     const C: number[] = []
     for (let i: number = 0, iLen: number = list.length; i < iLen; ++i) {

@@ -1,19 +1,19 @@
-import BubbleSort from '../../../src/core/algorithms/sorting/bubbleSort'
-import BucketSort from '../../../src/core/algorithms/sorting/bucketSort'
-import CocktailSort from '../../../src/core/algorithms/sorting/cocktailSort'
-import CountSort from '../../../src/core/algorithms/sorting/countSort'
-import HeapSort from '../../../src/core/algorithms/sorting/heapSort'
-import InsertionSort from '../../../src/core/algorithms/sorting/insertionSort'
-import MergeSort from '../../../src/core/algorithms/sorting/mergeSort'
+import BubbleSort from 'core/algorithms/sorting/bubbleSort'
+import BucketSort from 'core/algorithms/sorting/bucketSort'
+import CocktailSort from 'core/algorithms/sorting/cocktailSort'
+import CountSort from 'core/algorithms/sorting/countSort'
+import HeapSort from 'core/algorithms/sorting/heapSort'
+import InsertionSort from 'core/algorithms/sorting/insertionSort'
+import MergeSort from 'core/algorithms/sorting/mergeSort'
 import {
     QuickSort,
     QuickSort3,
-} from '../../../src/core/algorithms/sorting/quickSort'
-import RadixSort from '../../../src/core/algorithms/sorting/radixSort'
-import SelectionSort from '../../../src/core/algorithms/sorting/selectionSort'
-import ShellSort from '../../../src/core/algorithms/sorting/shellSort'
+} from 'core/algorithms/sorting/quickSort'
+import RadixSort from 'core/algorithms/sorting/radixSort'
+import SelectionSort from 'core/algorithms/sorting/selectionSort'
+import ShellSort from 'core/algorithms/sorting/shellSort'
 
-import { RandomLists, SortedLists } from '../../../src/core/utils'
+import { RandomLists, SortedLists } from 'core/utils'
 describe('Sorting', () => {
     test('BubbleSort', () => {
         const newSortLists = RandomLists.map(list => BubbleSort(list))
