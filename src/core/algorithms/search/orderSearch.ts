@@ -1,12 +1,23 @@
 'use strict'
-const orderSearch = (list: number[], data: number): number => {
+import {
+    defaultCompare,
+    ICompareFunction,
+    Compare,
+    DOES_NOT_EXIST,
+} from 'core/utils'
+const orderSearch = (
+    list: number[],
+    data: number,
+    compareFn: ICompareFunction<number> = defaultCompare,
+): number => {
     if (!list || !list.length) {
-        return -1
+        return DOES_NOT_EXIST
     }
     for (let i: number = 0, len = list.length; i < len; ++i) {
-        if (list[i] === data) {
+        if (compareFn(list[i], data) === Compare.EQUALS) {
             return i
         }
     }
-    return -1
+    return DOES_NOT_EXIST
 }
+export default orderSearch

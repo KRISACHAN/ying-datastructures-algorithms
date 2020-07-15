@@ -1,7 +1,7 @@
 'use strict'
 import { AVLNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
-import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
+import { defaultCompare, ICompareFunction, Compare, DOES_NOT_EXIST } from 'core/utils'
 
 enum BalanceFactor { // 平衡因子
     UNBALANCED_RIGHT = 1,
@@ -32,7 +32,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     // 这就是平衡因子的概念。
     private getNodeHeight(node: AVLNode<T>): number {
         if (!node) {
-            return -1
+            return DOES_NOT_EXIST
         }
         return (
             Math.max(
