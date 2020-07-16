@@ -23,7 +23,7 @@
 ### 算法
 
 - [x] [十大基础排序算法（sorting）](./src/core/algorithms/sorting/README.md)
-- [ ] [查找（search）](./src/core/algorithms/search/README.md)
+- [ ] [七大基础查找算法（search）](./src/core/algorithms/search/README.md)
 - [ ] [递归（recursion）](./src/core/algorithms/recursion/README.md)
 - [ ] [动态规划（dynamic）](./src/core/algorithms/dynamic/README.md)
 - [ ] [贪心算法（greedy）](./src/core/algorithms/greedy/README.md)
@@ -34,7 +34,7 @@
 ### 参考资料
 
 1. [学习JavaScript数据结构与算法](https://item.m.jd.com/product/12613100.html?wxa_abtest=o&ad_od=share&utm_source=androidapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=CopyURL)
-2. [[Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition](https://github.com/PacktPublishing/Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition)](https://github.com/PacktPublishing/Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition/tree/master/LearningJavaScriptDataStructuresandAlgorithmsThirdEdition_Code)
+2. [Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition](https://github.com/PacktPublishing/Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition)
 
 ### 个人说明
 

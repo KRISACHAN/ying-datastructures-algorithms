@@ -5,7 +5,8 @@ import {
     Compare,
     DOES_NOT_EXIST,
 } from 'core/utils'
-const orderSearch = (
+// 常规法
+export const orderSearch = (
     list: number[],
     data: number,
     compareFn: ICompareFunction<number> = defaultCompare,
@@ -20,4 +21,26 @@ const orderSearch = (
     }
     return DOES_NOT_EXIST
 }
-export default orderSearch
+// 折半法
+export const halfOrderSearch = (
+    list: number[],
+    data: number,
+    compareFn: ICompareFunction<number> = defaultCompare,
+): number => {
+    if (!list || !list.length) {
+        return DOES_NOT_EXIST
+    }
+    const size: number = Math.ceil(list.length / 2)
+    let count: number = 0
+    for (let i = 0; i < size; ++i) {
+        if (compareFn(list[count], data) === Compare.EQUALS) {
+            return count
+        }
+        count++
+        if (compareFn(list[count], data) === Compare.EQUALS) {
+            return count
+        }
+        count++
+    }
+    return DOES_NOT_EXIST
+}
