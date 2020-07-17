@@ -15,7 +15,7 @@ export default class BinarySearchTree<T> {
     private breadthFirstSearchNode(node: BSTNode<T>, callback: Function): void {
         let queue: BSTNode<T>[] = [node]
         while (queue.length) {
-            let head = queue.shift()
+            let head: BSTNode<T> = queue.shift()
             callback(head.key)
             if (head.left) {
                 queue.push(head.left)
@@ -28,6 +28,25 @@ export default class BinarySearchTree<T> {
     // 广度优先遍历方式遍历所有节点。
     breadthFirstSearch(callback: Function): void {
         this.breadthFirstSearchNode(this.root, callback)
+    }
+
+    // 深度优先遍历的核心实现
+    private depthFirstSearchNode(node: BSTNode<T>, callback: Function): void {
+        let stack: BSTNode<T>[] = [node]
+        while (stack.length) {
+            let tail: BSTNode<T> = stack.pop()
+            callback(tail.key)
+            if (tail.right) {
+                stack.push(tail.right)
+            }
+            if (tail.left) {
+                stack.push(tail.left)
+            }
+        }
+    }
+    // 深度优先遍历方式遍历所有节点。
+    depthFirstSearch(callback: Function): void {
+        this.depthFirstSearchNode(this.root, callback)
     }
 
     // 递归插入节点

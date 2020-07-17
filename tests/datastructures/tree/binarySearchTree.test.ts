@@ -103,4 +103,64 @@ describe('BinarySearchTree', () => {
     it('removes a leaf', () => {
         expect(bst.getRoot()).toEqual(undefined)
     })
+
+    it('in order traverse', () => {
+        const list: number[] = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
+        list.forEach(item => {
+            bst.insert(item)
+        })
+        const res: number[] = []
+        bst.inOrderTraverse((key: number): void => {
+            res.push(key)
+        })
+        expect(res.toString()).toStrictEqual('2,3,4,8,9,9,10,13,18,21')
+    })
+
+    it('pre order traverse', () => {
+        const list: number[] = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
+        list.forEach(item => {
+            bst.insert(item)
+        })
+        const res: number[] = []
+        bst.preOrderTraverse((key: number): void => {
+            res.push(key)
+        })
+        expect(res.toString()).toStrictEqual('10,3,2,4,9,8,9,18,13,21')
+    })
+
+    it('post order traverse', () => {
+        const list: number[] = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
+        list.forEach(item => {
+            bst.insert(item)
+        })
+        const res: number[] = []
+        bst.postOrderTraverse((key: number): void => {
+            res.push(key)
+        })
+        expect(res.toString()).toStrictEqual('2,8,9,9,4,3,13,21,18,10')
+    })
+
+    it('breadth first search', () => {
+        const list: number[] = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
+        list.forEach(item => {
+            bst.insert(item)
+        })
+        const res: number[] = []
+        bst.breadthFirstSearch((key: number): void => {
+            res.push(key)
+        })
+        expect(res.toString()).toStrictEqual('10,3,18,2,4,13,21,9,8,9')
+    })
+
+    it('depth first search', () => {
+        const list: number[] = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
+        list.forEach(item => {
+            bst.insert(item)
+        })
+        const res: number[] = []
+        bst.depthFirstSearch((key: number): void => {
+            res.push(key)
+        })
+        expect(res.toString()).toStrictEqual('10,3,2,4,9,8,9,18,13,21')
+    })
 })

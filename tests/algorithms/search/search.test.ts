@@ -15,6 +15,7 @@ import {
     recursionFibonacciSearch,
     loopFibonacciSearch,
 } from 'core/algorithms/search/fibonacciSearch'
+import TreeSearch from 'core/algorithms/search/treeSearch'
 
 describe('Search', () => {
     const list: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
@@ -50,5 +51,18 @@ describe('Search', () => {
 
         expect(loopFibonacciSearch(list, key1)).toEqual(4)
         expect(loopFibonacciSearch(list, key2)).toEqual(-1)
+    })
+
+    test('TreeSearch', () => {
+        let ts: TreeSearch<any> = new TreeSearch<any>()
+        const list = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
+        list.forEach(item => {
+            ts.insert(item)
+        })
+        expect(ts.getInOrder().toString()).toStrictEqual('2,3,4,8,9,9,10,13,18,21')
+        expect(ts.getPreOrder().toString()).toStrictEqual('10,3,2,4,9,8,9,18,13,21')
+        expect(ts.getPostOrder().toString()).toStrictEqual('2,8,9,9,4,3,13,21,18,10')
+        expect(ts.getBFS().toString()).toStrictEqual('10,3,18,2,4,13,21,9,8,9')
+        expect(ts.getDFS().toString()).toStrictEqual('10,3,2,4,9,8,9,18,13,21')
     })
 })
