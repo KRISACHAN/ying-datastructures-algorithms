@@ -1,7 +1,7 @@
 {
-  "name": "ying-template",
+  "name": "ying-datastructures-algorithms",
   "version": "1.0.0",
-  "description": "a template with ts by kris",
+  "description": "a datastructures and algorithms lib with typescript",
   "main": "index.js",
   "dependencies": {
     "webpack": "^4.28.1",
@@ -95,11 +95,16 @@
     "test": "jest --colors --coverage test"
   },
   "keywords": [
-    "js",
-    "ts"
+    "javascript",
+    "typescript",
+    "webpack",
+    "jest",
+    "babel",
+    "datastructures",
+    "algorithms"
   ],
   "author": "chenjinwen77@foxmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
