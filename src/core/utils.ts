@@ -54,7 +54,9 @@ export const defaultCompare = <T>(a: T, b: T): number => {
 }
 
 // 将数据转换成字符串
-export const defaultToString = (item: null | undefined | string): string => {
+export const defaultToString = (
+    item: null | undefined | string | unknown,
+): string => {
     if (item === null) {
         return 'NULL'
     } else if (item === undefined) {
