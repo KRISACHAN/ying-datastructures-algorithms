@@ -13,6 +13,7 @@ initEnv()
 // 核心的文件路径
 const corePath = {
     src: resolve('src'),
+    core: resolve('src/core/'),
     views: resolve('views'),
     dist: resolve('dist'),
 }
@@ -34,6 +35,7 @@ const config = {
         alias: {
             '@': corePath.src,
             src: corePath.src,
+            core: corePath.core,
             tests: assetsPath.tests,
             static: assetsPath.static,
         },

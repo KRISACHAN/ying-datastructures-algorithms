@@ -13,9 +13,9 @@ export default class BinarySearchTree<T> {
 
     // 广度优先遍历的核心实现
     private breadthFirstSearchNode(node: BSTNode<T>, callback: Function): void {
-        let queue: BSTNode<T>[] = [node]
+        const queue: BSTNode<T>[] = [node]
         while (queue.length) {
-            let head: BSTNode<T> = queue.shift()
+            const head: BSTNode<T> = queue.shift()
             callback(head.key)
             if (head.left) {
                 queue.push(head.left)
@@ -32,9 +32,9 @@ export default class BinarySearchTree<T> {
 
     // 深度优先遍历的核心实现
     private depthFirstSearchNode(node: BSTNode<T>, callback: Function): void {
-        let stack: BSTNode<T>[] = [node]
+        const stack: BSTNode<T>[] = [node]
         while (stack.length) {
-            let tail: BSTNode<T> = stack.pop()
+            const tail: BSTNode<T> = stack.pop()
             callback(tail.key)
             if (tail.right) {
                 stack.push(tail.right)
@@ -117,9 +117,9 @@ export default class BinarySearchTree<T> {
     }
     // 循环查找节点
     private loopSearchNode(node: BSTNode<T>, key: T): boolean {
-        let queue: BSTNode<T>[] = [node]
+        const queue: BSTNode<T>[] = [node]
         while (queue.length) {
-            let head = queue.shift()
+            const head = queue.shift()
             if (key === head.key) {
                 return true
             }
@@ -355,7 +355,7 @@ export default class BinarySearchTree<T> {
         }
         let current: BSTNode<T> | any = node
         let parent: BSTNode<T> | any
-        let keyword: string = ''
+        let keyword = ''
         while (current && current.key !== key) {
             parent = current
             if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {
@@ -386,7 +386,7 @@ export default class BinarySearchTree<T> {
         console.log(this.toArray())
     }
     toArray(): T[] {
-        let list: T[] = []
+        const list: T[] = []
         this.breadthFirstSearch((key: T) => {
             list.push(key)
         })

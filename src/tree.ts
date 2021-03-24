@@ -4,11 +4,11 @@ import AdelsonVelskiiLandiTree from 'core/datastructures/tree/adelsonVelskiiLand
 import RedBlackTree from 'core/datastructures/tree/redBlackTree'
 import TreeSearch from 'core/algorithms/search/treeSearch'
 
-let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
-let avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
-let rbt: RedBlackTree<any> = new RedBlackTree<any>()
+const bst: BinarySearchTree<any> = new BinarySearchTree<any>()
+const avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
+const rbt: RedBlackTree<any> = new RedBlackTree<any>()
 
-let ts: TreeSearch<any> = new TreeSearch<any>()
+const ts: TreeSearch<any> = new TreeSearch<any>()
 
 const list = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
 

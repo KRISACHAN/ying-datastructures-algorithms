@@ -9,7 +9,7 @@ import {
 export default class BlockSearch {
     protected compareFn: ICompareFunction<number> = defaultCompare
     private blocks: any[] = []
-    constructor(list: number[] = [], gap: number = 3) {
+    constructor(list: number[] = [], gap = 3) {
         list = list.sort((a, b) => a - b)
         if (gap <= 0) {
             throw new Error('list gap must be a positive integer !')
@@ -17,10 +17,10 @@ export default class BlockSearch {
         if (!list.length) {
             return
         }
-        let newList: any[] = []
-        let blockIndex: number = 0
+        const newList: any[] = []
+        let blockIndex = 0
         // 先按着间隙分好数列元素，然后每一块加上key，最后再进行排序
-        for (let i: number = 0, len: number = list.length; i < len; ++i) {
+        for (let i = 0, len: number = list.length; i < len; ++i) {
             if (!newList[blockIndex]) {
                 newList[blockIndex] = []
             }
@@ -35,7 +35,7 @@ export default class BlockSearch {
         this.blocks = newList.sort((a, b) => a.key - b.key)
     }
     insert(value: number): BlockSearch {
-        let targetIndex: number = this.blocks.findIndex(
+        const targetIndex: number = this.blocks.findIndex(
             block => value < block.key,
         )
         this.blocks[targetIndex].push(value)
@@ -59,12 +59,12 @@ export default class BlockSearch {
         return this
     }
     search(value: number): number[] | number {
-        let blockIndex: number =
+        const blockIndex: number =
             this.blocks.findIndex(block => block.key > value) - 1
         if (blockIndex < 0) {
             return DOES_NOT_EXIST
         }
-        let resIndex: number = this.blocks[blockIndex].findIndex(
+        const resIndex: number = this.blocks[blockIndex].findIndex(
             (block: number) => block === value,
         )
         if (resIndex < 0) {

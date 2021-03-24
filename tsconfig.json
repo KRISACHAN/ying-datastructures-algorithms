@@ -17,7 +17,7 @@
             "@/*": ["src/*"],
             "src/*": ["src/*"],
             "tests/*": ["tests/*"],
-            "core/*": ["core/*"],
+            "core/*": ["src/core/*"],
             "static/*": ["static/*"]
         },
         "typeRoots": ["node_modules/@types"],

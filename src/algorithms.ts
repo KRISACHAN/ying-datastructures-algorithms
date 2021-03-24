@@ -21,8 +21,8 @@ import BlockSearch from 'core/algorithms/search/blockSearch'
 const hs: HashSearch<any, any> = new HashSearch<any, any>()
 
 const list: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
-const key1: number = 17
-const key2: number = 3
+const key1 = 17
+const key2 = 3
 
 const funcs = [
     recursionBinarySearch,

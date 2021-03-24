@@ -53,7 +53,7 @@ export const loopInterpolationSearch = (
         return DOES_NOT_EXIST
     }
     const sortedList: number[] = list.sort((a, b) => a - b)
-    let start: number = 0
+    let start = 0
     let end: number = sortedList.length - 1
     while (compareFn(start, end) !== Compare.BIGGER_THAN) {
         const mid: number =

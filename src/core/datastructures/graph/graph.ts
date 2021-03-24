@@ -45,12 +45,8 @@ export default class Graph<T> {
     }
 
     toString(): string {
-        let res: string = ''
-        for (
-            let i: number = 0, len: number = this.vertices.length;
-            i < len;
-            ++i
-        ) {
+        let res = ''
+        for (let i = 0, len: number = this.vertices.length; i < len; ++i) {
             res += this.vertices[i] + ' -> '
             const neighbors = this.adjList.get(this.vertices[i])
             for (let j = 0; j < neighbors.length; j++) {

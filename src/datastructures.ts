@@ -7,14 +7,14 @@ import Graph from 'core/datastructures/graph/graph'
 
 import { MyObj } from 'core/node'
 
-let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
-let avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
-let rbt: RedBlackTree<any> = new RedBlackTree<any>()
-let dict: Dictionary<any, any> = new Dictionary()
-let dict2 = new Dictionary<MyObj, MyObj>()
-let graph = new Graph<number | string>()
+const bst: BinarySearchTree<any> = new BinarySearchTree<any>()
+const avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
+const rbt: RedBlackTree<any> = new RedBlackTree<any>()
+const dict: Dictionary<any, any> = new Dictionary()
+const dict2 = new Dictionary<MyObj, MyObj>()
+const graph = new Graph<number | string>()
 
-let list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
+const list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
 
 console.log({
     ['list.length']: list.length,

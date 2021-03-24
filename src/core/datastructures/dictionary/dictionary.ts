@@ -29,7 +29,7 @@ export default class Dictionary<K, V> {
     }
 
     // 如果某个键值存在于这个字典中，则返回true，反之则返回false
-    hasKey(key: K): Boolean {
+    hasKey(key: K): boolean {
         const dict = this.table[this.toStrFn(key)]
         return isExist(this.table[this.toStrFn(key)])
     }
@@ -72,7 +72,7 @@ export default class Dictionary<K, V> {
     // 字典循环map
     map(callbackFn: (key: K, value: V) => any): any[] {
         const valuePairs = this.keyValues()
-        let resList: any[] = []
+        const resList: any[] = []
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             const result = callbackFn(valuePairs[i].key, valuePairs[i].value)
             resList.push(result)
@@ -83,7 +83,7 @@ export default class Dictionary<K, V> {
     // 字典循环filter
     filter(callbackFn: (key: K, value: V) => any): any[] {
         const valuePairs = this.keyValues()
-        let resList: any[] = []
+        const resList: any[] = []
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             const result = callbackFn(valuePairs[i].key, valuePairs[i].value)
             if (!result) {
@@ -119,7 +119,7 @@ export default class Dictionary<K, V> {
         if (this.isEmpty()) {
             return ''
         }
-        let objString = this.map(
+        const objString = this.map(
             (key, value) => `[${key}: ${value}]`,
         ).toString()
         return objString

@@ -22,10 +22,10 @@ export const loopFibonacciSearch = (
     if (!list || !list.length) {
         return DOES_NOT_EXIST
     }
-    let start: number = 0
+    let start = 0
     let end: number = list.length - 1
-    let n: number = list.length - 1
-    let k: number = 0
+    const n: number = list.length - 1
+    let k = 0
     const F: number[] = fibonacci(end + 1)
     while (compareFn(end, F[k] - 1) === Compare.BIGGER_THAN) {
         // 寻找第k项
@@ -36,7 +36,7 @@ export const loopFibonacciSearch = (
         list[i] = list[end]
     }
     while (compareFn(start, end) !== Compare.BIGGER_THAN) {
-        let mid: number = start + F[k - 1] - 1
+        const mid: number = start + F[k - 1] - 1
         if (compareFn(list[mid], data) === Compare.LESS_THAN) {
             start = mid + 1
             k = k - 2 // 缩减长度为 F[k-2] -1
@@ -65,10 +65,10 @@ export const recursionFibonacciSearch = (
     if (!list || !list.length) {
         return DOES_NOT_EXIST
     }
-    let start: number = 0
-    let end: number = list.length - 1
-    let n: number = list.length - 1
-    let k: number = 0
+    const start = 0
+    const end: number = list.length - 1
+    const n: number = list.length - 1
+    let k = 0
     const F: number[] = fibonacci(end + 1)
     while (compareFn(end, F[k] - 1) === Compare.BIGGER_THAN) {
         // 寻找第k项

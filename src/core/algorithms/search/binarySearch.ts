@@ -25,7 +25,7 @@ export const recursionBinarySearch = (
         if (start > end) {
             return DOES_NOT_EXIST
         }
-        let mid: number = Math.round(start + (end - start) / 2)
+        const mid: number = Math.round(start + (end - start) / 2)
         if (compareFn(list[mid], key) === Compare.BIGGER_THAN) {
             return coreSearch(sortedList, start, mid - 1, key)
         } else if (compareFn(list[mid], key) === Compare.LESS_THAN) {
@@ -46,10 +46,10 @@ export const loopBinarySearch = (
         return DOES_NOT_EXIST
     }
     const sortedList: number[] = list.sort((a, b) => a - b)
-    let start: number = 0
+    let start = 0
     let end: number = sortedList.length - 1
     while (compareFn(start, end) !== Compare.BIGGER_THAN) {
-        let mid: number = Math.round((start + end) / 2)
+        const mid: number = Math.round((start + end) / 2)
         if (compareFn(data, sortedList[mid]) === Compare.BIGGER_THAN) {
             start = mid + 1
         } else if (compareFn(data, sortedList[mid]) === Compare.LESS_THAN) {

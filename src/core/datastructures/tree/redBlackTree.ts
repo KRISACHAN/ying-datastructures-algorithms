@@ -120,7 +120,7 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
         }
         let current: RBNode<T> | any = node
         let parent: RBNode<T> | any
-        let keyword: string = ''
+        let keyword = ''
         while (current && current.key !== key) {
             parent = current
             if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {
