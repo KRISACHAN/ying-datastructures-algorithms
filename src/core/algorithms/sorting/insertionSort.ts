@@ -1,4 +1,3 @@
-'use strict'
 import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 const InsertionSort = <T>(
@@ -7,7 +6,7 @@ const InsertionSort = <T>(
 ): T[] => {
     const len: number = list.length
     let j: number, temp: T
-    for (let i: number = 0; i < len; ++i) {
+    for (let i = 0; i < len; ++i) {
         j = i - 1 // 取出前一个位置
         temp = list[i] // 缓存当前位置数字
         while (j >= 0 && compareFn(list[j], temp) === Compare.BIGGER_THAN) {

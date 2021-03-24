@@ -1,4 +1,3 @@
-'use strict'
 import { AVLNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
 import {

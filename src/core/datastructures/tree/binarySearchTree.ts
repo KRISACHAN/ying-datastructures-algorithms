@@ -1,4 +1,3 @@
-'use strict'
 import { BSTNode } from 'core/node'
 import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 

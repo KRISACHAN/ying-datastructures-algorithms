@@ -1,4 +1,3 @@
-'use strict'
 import { RBNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
 import {

@@ -1,4 +1,3 @@
-'use strict'
 import { defaultCompare, Swap, Compare, isExist } from 'core/utils'
 /**
  * 堆（英语：Heap）：给定堆中任意节点P和C，若P是C的母节点，那么P的值会小于等于（或大于等于）C的值。
@@ -41,37 +40,37 @@ export class Heap<T> {
 
     private hasLeftChild(parentIndex: number): boolean {
         // 判断是否有左子节点
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return this.getLeftChildIndex(parentIndex) < h.length
     }
 
     private hasRightChild(parentIndex: number): boolean {
         // 判断是否有右子节点
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return this.getRightChildIndex(parentIndex) < h.length
     }
 
     private getLeftChild(parentIndex: number): T {
         // 获取左子节点
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return h[this.getLeftChildIndex(parentIndex)]
     }
 
     private getRightChild(parentIndex: number): T {
         // 获取右子节点
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return h[this.getRightChildIndex(parentIndex)]
     }
 
     private getParent(childIndex: number): T {
         // 获取父节点
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return h[this.getParentIndex(childIndex)]
     }
 
     insert(element: T): Heap<T> {
         // 添加元素
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         h.push(element)
         this.heapifyUp()
         return this
@@ -80,8 +79,8 @@ export class Heap<T> {
     find(element: T, comparator = this.compare): number[] {
         // 寻找指定元素
         const foundList: any[] = []
-        let h: T[] = this.items.get(this)
-        for (let i: number = 0, len: number = h.length; i < len; ++i) {
+        const h: T[] = this.items.get(this)
+        for (let i = 0, len: number = h.length; i < len; ++i) {
             if (comparator(element, h[i]) === Compare.EQUALS) {
                 foundList.push(i)
             }
@@ -92,13 +91,12 @@ export class Heap<T> {
     remove(element: T, comparator = this.compare): Heap<T> {
         // 删除指定元素
         for (
-            let i: number = 0,
-                len: number = this.find(element, comparator).length;
+            let i = 0, len: number = this.find(element, comparator).length;
             i < len;
             ++i
         ) {
             const tail: number = this.find(element, comparator).pop()
-            let h: T[] = this.items.get(this)
+            const h: T[] = this.items.get(this)
             if (tail === h.length - 1) {
                 h.pop()
             } else {
@@ -119,7 +117,7 @@ export class Heap<T> {
 
     peek(): T {
         // 查看堆顶
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         if (h.length === 0) {
             return null
         }
@@ -128,7 +126,7 @@ export class Heap<T> {
 
     poll(): T {
         // 将堆尾换到堆头
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         if (h.length === 0) {
             return null
         }
@@ -143,7 +141,7 @@ export class Heap<T> {
 
     private heapifyUp(startIndex?: number): void {
         // 下标上浮
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         let currentIndex: number = startIndex || h.length - 1
         while (
             this.hasParent(currentIndex) &&
@@ -154,9 +152,9 @@ export class Heap<T> {
         }
     }
 
-    private heapifyDown(startIndex: number = 0): void {
+    private heapifyDown(startIndex = 0): void {
         // 下标下沉
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         let currentIndex: number = startIndex
         let nextIndex: number | null = null
         while (this.hasLeftChild(currentIndex)) {
@@ -185,17 +183,17 @@ export class Heap<T> {
     }
 
     isEmpty(): boolean {
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return !h.length
     }
 
     toString(): string {
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return h.toString()
     }
 
     print(): void {
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         console.log(h)
     }
 }

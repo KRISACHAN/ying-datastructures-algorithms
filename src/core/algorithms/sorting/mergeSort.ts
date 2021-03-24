@@ -1,4 +1,3 @@
-'use strict'
 import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 const Merge = <T>(
@@ -6,7 +5,7 @@ const Merge = <T>(
     right: T[],
     compareFn: ICompareFunction<any>,
 ): T[] => {
-    let resArr = []
+    const resArr = []
     while (left.length && right.length) {
         if (compareFn(left[0], right[0]) === Compare.LESS_THAN) {
             resArr.push(left.shift())
@@ -24,9 +23,9 @@ const MergeSort = <T>(
     if (list.length <= 1) {
         return list
     }
-    let middle: number = Math.floor(list.length / 2)
-    let left: T[] = list.slice(0, middle)
-    let right: T[] = list.slice(middle)
+    const middle: number = Math.floor(list.length / 2)
+    const left: T[] = list.slice(0, middle)
+    const right: T[] = list.slice(middle)
     return Merge(MergeSort(left), MergeSort(right), compareFn)
 }
 export default MergeSort

@@ -1,4 +1,3 @@
-'use strict'
 import { LLNode } from 'core/node'
 import LinkedList from './linkedList'
 /**
@@ -11,7 +10,7 @@ export default class CircularLinkedList<T> extends LinkedList<T> {
 
     append(element: T): CircularLinkedList<T> {
         // 向链表尾部添加一个新的元素。
-        let node: LLNode<T> = new LLNode(element)
+        const node: LLNode<T> = new LLNode(element)
         let current: LLNode<T>
         if (this.head === null) {
             // 链表中第一个节点

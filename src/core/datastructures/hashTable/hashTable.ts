@@ -1,4 +1,3 @@
-'use strict'
 import { defaultToString, dataType, isExistAll } from 'core/utils'
 import { ValuePair, tableType } from 'core/node'
 

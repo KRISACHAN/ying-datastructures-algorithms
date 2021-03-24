@@ -1,4 +1,3 @@
-'use strict'
 import {
     defaultCompare,
     ICompareFunction,
@@ -18,7 +17,7 @@ export const loopFibonacciSearch = (
     list: number[],
     data: number,
     compareFn: ICompareFunction<number> = defaultCompare,
-) => {
+): number => {
     if (!list || !list.length) {
         return DOES_NOT_EXIST
     }

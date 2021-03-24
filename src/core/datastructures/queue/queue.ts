@@ -1,4 +1,3 @@
-'use strict'
 /**
  * 队列（Queue）：先进先出（FIFO, First In First Out）的数据结构
  */
@@ -9,23 +8,23 @@ export default class Queue<T> {
     }
     enqueue(element: T): void {
         // 向队列尾部添加一个新的元素。
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         q.push(element)
     }
     dequeue(): T {
         // 可删除并返回队列的第一个元素。
-        let q: T[] = this.items.get(this)
-        let r: T = q.shift()
+        const q: T[] = this.items.get(this)
+        const r: T = q.shift()
         return r
     }
     peek(): T {
         // 返回队列中第一个元素
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         return q[0]
     }
     isEmpty(): boolean {
         // 能简单地判断队列的长度是否为0
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         return q.length == 0
     }
     clear(): void {
@@ -34,7 +33,7 @@ export default class Queue<T> {
     }
     size(): number {
         // 队列长度
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         return q.length
     }
     toString(): string {
@@ -42,8 +41,8 @@ export default class Queue<T> {
         if (this.isEmpty()) {
             return ''
         }
-        let s: T[] = this.items.get(this)
-        let objString: string = ''
+        const s: T[] = this.items.get(this)
+        let objString = ''
         for (let i = 0, len = this.size(); i < len; ++i) {
             if (i < len - 1) {
                 objString += `${s[i]},`

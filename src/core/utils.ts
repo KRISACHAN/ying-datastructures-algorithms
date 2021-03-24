@@ -23,13 +23,21 @@ export enum Compare {
 export const DOES_NOT_EXIST = -1
 
 // a 小于 b
-export const lesserEquals = <T>(a: T, b: T, compareFn: ICompareFunction<T>) => {
+export const lesserEquals = <T>(
+    a: T,
+    b: T,
+    compareFn: ICompareFunction<T>,
+): boolean => {
     const comp = compareFn(a, b)
     return comp === Compare.LESS_THAN || comp === Compare.EQUALS
 }
 
 // a 大于 b
-export const biggerEquals = <T>(a: T, b: T, compareFn: ICompareFunction<T>) => {
+export const biggerEquals = <T>(
+    a: T,
+    b: T,
+    compareFn: ICompareFunction<T>,
+): boolean => {
     const comp = compareFn(a, b)
     return comp === Compare.BIGGER_THAN || comp === Compare.EQUALS
 }
@@ -46,20 +54,22 @@ export const defaultCompare = <T>(a: T, b: T): number => {
 }
 
 // 将数据转换成字符串
-export const defaultToString = (item: any): string => {
+export const defaultToString = (item: null | undefined | string): string => {
     if (item === null) {
         return 'NULL'
     } else if (item === undefined) {
         return 'UNDEFINED'
-    } else if (typeof item === 'string' || item instanceof String) {
-        return `${item}`
+    } else if (typeof item === 'string') {
+        return item
     }
-    return item.toString()
+    return item + ''
 }
 
 // 数据交换
-export const Swap = (array: any[], a: number, b: number) => {
-    ;[array[a], array[b]] = [array[b], array[a]]
+export const Swap = (array: unknown[], a: number, b: number): void => {
+    const tmpl = array[a]
+    array[a] = array[b]
+    array[b] = tmpl
 }
 
 // 反向对比
@@ -95,13 +105,13 @@ export const SortedLists: number[][] = [
 ]
 
 // 获取数据类型
-export const dataType = (data: any): string => {
+export const dataType = (data: unknown): string => {
     const type: string = Object.prototype.toString.call(data)
     return type.replace(/^\[object\s(.+)\]$/, '$1').toLowerCase()
 }
 
 // 是否存在该数据
-export const isExist = (data: any): boolean => {
+export const isExist = (data: unknown): boolean => {
     if (data === 0) {
         return true
     }
@@ -109,6 +119,6 @@ export const isExist = (data: any): boolean => {
 }
 
 // 是否存在当前所有数据
-export const isExistAll = (...dataList: any): boolean => {
+export const isExistAll = (...dataList: unknown[]): boolean => {
     return dataList.every(isExist)
 }

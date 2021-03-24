@@ -1,4 +1,4 @@
-'use strict'
+
 import BubbleSort from 'core/algorithms/sorting/bubbleSort'
 import BucketSort from 'core/algorithms/sorting/bucketSort'
 import CocktailSort from 'core/algorithms/sorting/cocktailSort'

@@ -1,10 +1,4 @@
-'use strict'
-import {
-    defaultCompare,
-    ICompareFunction,
-    Compare,
-    DOES_NOT_EXIST,
-} from 'core/utils'
+import { defaultCompare, ICompareFunction, DOES_NOT_EXIST } from 'core/utils'
 
 export default class BlockSearch {
     protected compareFn: ICompareFunction<number> = defaultCompare
@@ -75,7 +69,7 @@ export default class BlockSearch {
     toString(): string {
         return this.blocks.toString()
     }
-    print() {
+    print(): void {
         console.log(this.blocks)
     }
 }

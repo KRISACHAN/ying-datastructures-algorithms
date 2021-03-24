@@ -1,4 +1,3 @@
-'use strict'
 import BinarySearchTree from 'core/datastructures/tree/BinarySearchTree'
 import AdelsonVelskiiLandiTree from 'core/datastructures/tree/adelsonVelskiiLandiTree'
 import RedBlackTree from 'core/datastructures/tree/redBlackTree'

@@ -1,4 +1,3 @@
-'use strict'
 import { Colors, ColorTexts } from './utils'
 // 链表节点
 export class LLNode<T> {
@@ -30,7 +29,7 @@ export class BSTNode<T> {
         this.key = key
     }
 
-    toString() {
+    toString(): string {
         return `${this.key}`
     }
 }
@@ -57,19 +56,19 @@ export class RBNode<T> extends BSTNode<T> {
         this.colorText = ColorTexts.RED
     }
     // 判断是否为红色节点
-    isRed() {
+    isRed(): boolean {
         return this.color === Colors.RED
     }
     // 颜色翻转
-    reverseColor() {
+    reverseColor(): void {
         this.color = this.color === Colors.RED ? Colors.BLACK : Colors.RED
     }
 }
 
 // 字符串数据节点
 export class MyObj {
-    constructor(public el1: any, public el2: any) {}
-    toString() {
+    constructor(public el1: unknown, public el2: unknown) {}
+    toString(): string {
         return `${this.el1.toString()}|${this.el2.toString()}`
     }
 }
@@ -78,7 +77,7 @@ export class MyObj {
 export class ValuePair<K, V> {
     constructor(public key: K, public value: V) {}
 
-    toString() {
+    toString(): string {
         return `[#${this.key}: ${this.value}]`
     }
 }

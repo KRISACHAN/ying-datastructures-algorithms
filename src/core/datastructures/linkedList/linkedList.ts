@@ -1,4 +1,3 @@
-'use strict'
 import { LLNode } from 'core/node'
 /**
  * 链表（LinkedList）：链表存储有序的元素集合，但不同于数组，链表中的元素在内存中并不是连续放置的。每个
@@ -6,7 +5,7 @@ import { LLNode } from 'core/node'
  */
 export default class LinkedList<T> {
     public head: null | LLNode<T> = null
-    public length: number = 0
+    public length = 0
     constructor() {
         this.head = null // 链表头部
         this.length = 0 // 链表长度
@@ -14,7 +13,7 @@ export default class LinkedList<T> {
 
     append(element: T): LinkedList<T> {
         // 插入节点
-        let node: LLNode<T> = new LLNode(element)
+        const node: LLNode<T> = new LLNode(element)
         let current: null | LLNode<T>
         if (this.head === null) {
             // 列表中第一个节点
@@ -32,7 +31,7 @@ export default class LinkedList<T> {
         return this
     }
 
-    insert(position: number = -1, element: T): LinkedList<T> {
+    insert(position = -1, element: T): LinkedList<T> {
         // 向列表的特点位置插入一个新的元素
         //检查越界值
         if (position < 0) {
@@ -48,10 +47,10 @@ export default class LinkedList<T> {
             if (this.length === 0) {
                 this.append(element)
             } else {
-                let node: LLNode<T> = new LLNode(element)
+                const node: LLNode<T> = new LLNode(element)
                 let current: null | LLNode<T> = this.head
                 let previous: null | LLNode<T>
-                let index: number = 0
+                let index = 0
                 while (index++ < position) {
                     previous = current
                     current = current.next
@@ -82,7 +81,7 @@ export default class LinkedList<T> {
         if (position > -1 && position < this.length) {
             let current: null | LLNode<T> = this.head
             let previous: null | LLNode<T>
-            let index: number = 0
+            let index = 0
             //移除第一项
             if (position === 0) {
                 this.head = current.next
@@ -103,7 +102,7 @@ export default class LinkedList<T> {
     indexOf(element: T): number {
         // 返回元素在列表中的索引。如果列表中没有该元素则返回-1。
         let current: null | LLNode<T> = this.head
-        let index: number = 0
+        let index = 0
         while (current) {
             if (element === current.element) {
                 return index
@@ -116,7 +115,7 @@ export default class LinkedList<T> {
 
     remove(element: T): T | null {
         // 从列表中移除一项。
-        let index: number = this.indexOf(element)
+        const index: number = this.indexOf(element)
         return this.removeAt(index)
     }
 
@@ -144,7 +143,7 @@ export default class LinkedList<T> {
         if (this.head == null) {
             return ''
         }
-        let objString: string = `${this.head.element}`
+        let objString = `${this.head.element}`
         let current: null | LLNode<T> = this.head.next
         for (let i = 1; i < this.size() && current != null; i++) {
             objString = `${objString},${current.element}`
