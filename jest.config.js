@@ -1,26 +1,26 @@
 const path = require('path')
-const tsconfig = require('./tsconfig.json');
+const tsconfig = require('./tsconfig.json')
 const moduleNameMapper = require('tsconfig-paths-jest')(tsconfig)
 const jestConfig = {
     rootDir: path.join(__dirname, ''),
-    roots: ["<rootDir>/tests"],
-    moduleFileExtensions: [
-        'js',
-        'jsx',
-        'ts',
-        'tsx',
-        'json',
-        'node'
-    ],
-    moduleNameMapper,
-    testPathIgnorePatterns: [
-        '/node_modules/'
-    ],
+    roots: ['<rootDir>/tests'],
+    globals: {},
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+    moduleNameMapper: {
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+            '<rootDir>/fileMock.js',
+        '\\.(scss|less|css)$': 'identity-obj-proxy',
+        ...moduleNameMapper,
+    },
+    coverageDirectory: 'coverage',
+    coverageReporters: ['lcov'],
+    testPathIgnorePatterns: ['/node_modules/'],
     coveragePathIgnorePatterns: [
         '/node_modules/',
         '/dist/',
         '/config/',
-        '/view/'
+        '/view/',
+        '/src/',
     ],
     coverageReporters: [
         'json',
@@ -28,15 +28,15 @@ const jestConfig = {
         'text',
         'clover',
         'html',
-        'text-summary'
+        'text-summary',
     ],
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest'
+        '^.+\\.(ts|tsx)$': 'ts-jest',
     },
     testMatch: [
         '<rootDir>/tests/*.(ts|tsx|js|jsx)',
-        '<rootDir>/tests/**/*.(ts|tsx|js|jsx)'
+        '<rootDir>/tests/**/*.(ts|tsx|js|jsx)',
     ],
-    collectCoverage: true
+    collectCoverage: true,
 }
 module.exports = jestConfig

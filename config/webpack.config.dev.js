@@ -11,12 +11,12 @@ const webpackDev = {
     stats: {
         colors: true,
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-cheap-module-source-map',
     output: {
         filename: 'static/js/[name].[hash:8].bundle.js',
     },
     devServer: {
-        contentBase: './dist/',
+        contentBase: './dist',
         historyApiFallback: true,
         overlay: true,
         inline: true,
@@ -25,28 +25,13 @@ const webpackDev = {
         port: process.env.PORT || '8082',
         useLocalIp: true,
         proxy: {},
+        https: false,
+        open: true,
     },
     module: {
         rules: [
             {
-                test: /\.css$/,
-                include,
-                exclude,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
-            },
-            {
-                test: /\.scss$/,
-                include,
-                exclude,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
-            },
-            {
-                test: /\.less$/,
+                test: /\.(le|c)ss$/,
                 include,
                 exclude,
                 use: [
@@ -58,9 +43,6 @@ const webpackDev = {
             },
         ],
     },
-    plugins: [
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
 }
 module.exports = webpackMerge(webpackBase, webpackDev)
