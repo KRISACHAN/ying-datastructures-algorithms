@@ -2,7 +2,7 @@
  * 栈（Stack）：栈是一种遵从后进先出（LIFO, last-in-first-out）原则的有序集合。
  */
 export default class Stack<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存栈里的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存栈里的元素
     constructor() {
         this.items.set(this, [])
     }

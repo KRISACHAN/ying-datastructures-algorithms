@@ -2,7 +2,7 @@
  * 双端队列（deque，全名double-ended queue）：是一种具有队列和栈性质的抽象数据类型。双端队列中的元素可以从两端弹出，插入和删除操作限定在队列的两边进行。
  */
 export default class Deque<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存队列的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存队列的元素
     constructor() {
         this.items.set(this, [])
     }
@@ -41,7 +41,7 @@ export default class Deque<T> {
     isEmpty(): boolean {
         // 能简单地判断队列的长度是否为0
         const q: T[] = this.items.get(this)
-        return q.length == 0
+        return q.length === 0
     }
     clear(): void {
         // 把队列中的元素全部移除

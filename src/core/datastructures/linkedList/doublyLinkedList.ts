@@ -101,23 +101,23 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
 
     toString(): string {
         // 转换为字符串
-        if (this.tail == null) {
+        if (this.head === undefined) {
             return ''
         }
-        let objString = `${this.tail.element}`
-        let previous = this.tail.prev
-        while (previous != null) {
-            objString = `${objString},${previous.element}`
-            previous = previous.prev
+        let objString = `${this.head?.element || ''}`
+        let current = this.head?.next
+        while (current !== undefined) {
+            objString = `${objString},${current.element}`
+            current = current.next
         }
         return objString
     }
 
-    print() {
+    print(): void {
         console.log(this.toString())
     }
 
-    clear() {
+    clear(): void {
         super.clear()
         this.tail = null
     }

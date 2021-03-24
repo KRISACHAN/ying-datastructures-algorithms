@@ -48,7 +48,7 @@ list.forEach((item, idx) => {
 console.log(hs.toString())
 
 const list2: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
-const bs: BlockSearch<number> = new BlockSearch<number>(list2)
+const bs: BlockSearch = new BlockSearch(list2)
 
 console.log(bs.search(3))
 console.log(bs.search(9))

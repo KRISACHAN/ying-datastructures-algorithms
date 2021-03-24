@@ -3,6 +3,7 @@ import AdelsonVelskiiLandiTree from 'core/datastructures/tree/adelsonVelskiiLand
 import RedBlackTree from 'core/datastructures/tree/redBlackTree'
 import Dictionary from 'core/datastructures/dictionary/dictionary'
 import Graph from 'core/datastructures/graph/graph'
+import DoublyLinkedList from 'core/datastructures/linkedList/doublyLinkedList'
 
 import { MyObj } from 'core/node'
 
@@ -71,4 +72,10 @@ console.log(graph.getAdjList().values())
 console.log(graph.toString())
 console.log(graph.toString() === graph.toString())
 console.log(graph)
+console.groupEnd()
+
+const dll: DoublyLinkedList<number> = new DoublyLinkedList<number>()
+console.group('DoublyLinkedList')
+dll.insert(0, 1)
+dll.print()
 console.groupEnd()

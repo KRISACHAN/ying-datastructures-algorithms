@@ -2,7 +2,7 @@
  * 队列（Queue）：先进先出（FIFO, First In First Out）的数据结构
  */
 export default class Queue<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存队列的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存队列的元素
     constructor() {
         this.items.set(this, [])
     }
@@ -25,7 +25,7 @@ export default class Queue<T> {
     isEmpty(): boolean {
         // 能简单地判断队列的长度是否为0
         const q: T[] = this.items.get(this)
-        return q.length == 0
+        return q.length === 0
     }
     clear(): void {
         // 把队列中的元素全部移除

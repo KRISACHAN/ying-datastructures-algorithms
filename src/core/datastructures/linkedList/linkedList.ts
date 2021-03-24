@@ -67,7 +67,7 @@ export default class LinkedList<T> {
         // 获取指定位置的元素。
         if (position >= 0 && position <= this.length) {
             let node: null | LLNode<T> = this.head
-            for (let i = 0; i < position && node != null; ++i) {
+            for (let i = 0; i < position && node !== null; ++i) {
                 node = node.next
             }
             return node
@@ -140,12 +140,12 @@ export default class LinkedList<T> {
     }
 
     toString(): string {
-        if (this.head == null) {
+        if (this.head === null) {
             return ''
         }
         let objString = `${this.head.element}`
         let current: null | LLNode<T> = this.head.next
-        for (let i = 1; i < this.size() && current != null; i++) {
+        for (let i = 1; i < this.size() && current !== null; i++) {
             objString = `${objString},${current.element}`
             current = current.next
         }

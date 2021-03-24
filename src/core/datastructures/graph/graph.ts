@@ -1,5 +1,4 @@
 import Dictionary from 'core/datastructures/dictionary/dictionary'
-import { ValuePair } from 'core/node'
 
 export default class Graph<T> {
     private vertices: T[] = [] // 存储图中所有顶点的名字
@@ -57,7 +56,7 @@ export default class Graph<T> {
         return res
     }
 
-    print() {
+    print(): void {
         console.log({
             vertices: this.getVertices(),
             adjList: this.getAdjList(),

@@ -129,19 +129,19 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         const balanceFactor = this.getBalanceFactor(node)
         if (balanceFactor === BalanceFactor.UNBALANCED_LEFT) {
             if (this.compareFn(key, node.left.key) === Compare.LESS_THAN) {
-                // 左 - 左（LL）：向右的单旋转
+                // 左-左（LL）：向右的单旋转
                 node = this.rotationLL(node)
             } else {
-                // 左 - 右（LR）：向右的双旋转
+                // 左-右（LR）：向右的双旋转
                 return this.rotationLR(node)
             }
         }
         if (balanceFactor === BalanceFactor.UNBALANCED_RIGHT) {
             if (this.compareFn(key, node.right.key) === Compare.BIGGER_THAN) {
-                // 右 - 右（RR）：向左的单旋转
+                // 右-右（RR）：向左的单旋转
                 node = this.rotationRR(node)
             } else {
-                // 右 - 左（RL）：向左的双旋转
+                // 右-左（RL）：向左的双旋转
                 return this.rotationRL(node)
             }
         }
@@ -158,7 +158,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         const balanceState = this.getBalanceFactor(node)
 
         if (balanceState === BalanceFactor.UNBALANCED_LEFT) {
-            // 左 - 左（LL）：向右的单旋转
+            // 左-左（LL）：向右的单旋转
             if (
                 this.getBalanceFactor(node.left) === BalanceFactor.BALANCED ||
                 this.getBalanceFactor(node.left) ===
@@ -166,7 +166,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
             ) {
                 return this.rotationLL(node)
             }
-            // 左 - 右（LR）：向右的双旋转
+            // 左-右（LR）：向右的双旋转
             if (
                 this.getBalanceFactor(node.left) ===
                 BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
@@ -176,7 +176,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         }
 
         if (balanceState === BalanceFactor.UNBALANCED_RIGHT) {
-            // 右 - 右（RR）：向左的单旋转
+            // 右-右（RR）：向左的单旋转
             if (
                 this.getBalanceFactor(node.right) === BalanceFactor.BALANCED ||
                 this.getBalanceFactor(node.right) ===
@@ -184,7 +184,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
             ) {
                 return this.rotationRR(node)
             }
-            // 右 - 左（RL）：向左的双旋转
+            // 右-左（RL）：向左的双旋转
             if (
                 this.getBalanceFactor(node.right) ===
                 BalanceFactor.SLIGHTLY_UNBALANCED_LEFT

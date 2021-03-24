@@ -12,7 +12,7 @@ import {
  * 根节点（root node）：在堆中最顶端的那一个节点，称作根节点（root node），根节点本身没有母节点（parent node）。
  */
 export class Heap<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存堆结构的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存堆结构的元素
     constructor() {
         if (new.target === Heap) {
             throw new TypeError('Cannot construct Heap instance directly')
@@ -140,7 +140,7 @@ export class Heap<T> {
         return removedValue
     }
 
-    toString() {
+    toString(): string {
         const h: T[] = this.items.get(this)
         return h.toString()
     }
