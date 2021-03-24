@@ -1,4 +1,3 @@
-'use strict'
 import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 class QueueElement<T> {
@@ -17,23 +16,23 @@ class QueueElement<T> {
  * 这里用js的数组来实现
  */
 export default class PriorityQueue<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存队列的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存队列的元素
     constructor(public compareFn: ICompareFunction<number> = defaultCompare) {
         this.compareFn = compareFn
         this.items.set(this, [])
     }
     enqueue(element: T, priority: number): PriorityQueue<T> {
         // 向队尾添加一个元素以及权重
-        let queueElement: QueueElement<T> = new QueueElement<T>(
+        const queueElement: QueueElement<T> = new QueueElement<T>(
             element,
             priority,
         )
-        let added: boolean = false
-        let q: any[] = this.items.get(this)
+        let added = false
+        const q: any[] = this.items.get(this)
         if (this.isEmpty()) {
             q.push(queueElement)
         } else {
-            for (let i: number = 0; i < q.length; ++i) {
+            for (let i = 0; i < q.length; ++i) {
                 if (
                     this.compareFn(queueElement.priority, q[i].priority) ===
                     Compare.LESS_THAN
@@ -51,24 +50,24 @@ export default class PriorityQueue<T> {
     }
     dequeue(): T {
         // 删除队首的元素
-        let q: T[] = this.items.get(this)
-        let r: T = q.shift()
+        const q: T[] = this.items.get(this)
+        const r: T = q.shift()
         return r
     }
     front(): T {
         // 读取队首
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         return q[0]
     }
     back(): T {
         // 读取队尾
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         return q[q.length - 1]
     }
     isEmpty(): boolean {
         // 能简单地判断内部队列的长度是否为0
-        let q: T[] = this.items.get(this)
-        return q.length == 0
+        const q: T[] = this.items.get(this)
+        return q.length === 0
     }
     clear(): void {
         // 把队列中的元素全部移除
@@ -76,7 +75,7 @@ export default class PriorityQueue<T> {
     }
     size(): number {
         // 队列长度
-        let q: T[] = this.items.get(this)
+        const q: T[] = this.items.get(this)
         return q.length
     }
     toString(): string {
@@ -84,8 +83,8 @@ export default class PriorityQueue<T> {
         if (this.isEmpty()) {
             return ''
         }
-        let q: any[] = this.items.get(this)
-        let objString: string = ''
+        const q: any[] = this.items.get(this)
+        let objString = ''
         for (let i = 0, len = this.size(); i < len; ++i) {
             if (i < len - 1) {
                 objString += `${q[i].element},`

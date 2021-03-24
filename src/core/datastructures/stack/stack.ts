@@ -1,27 +1,26 @@
-'use strict'
 /**
  * 栈（Stack）：栈是一种遵从后进先出（LIFO, last-in-first-out）原则的有序集合。
  */
 export default class Stack<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存栈里的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存栈里的元素
     constructor() {
         this.items.set(this, [])
     }
     push(element: T): Stack<T> {
         // 添加一个新元素到栈顶
-        let s: T[] = this.items.get(this)
+        const s: T[] = this.items.get(this)
         s.push(element)
         return this
     }
     pop(): T {
         // 出栈
-        let s: T[] = this.items.get(this)
-        let r: T = s.pop()
+        const s: T[] = this.items.get(this)
+        const r: T = s.pop()
         return r
     }
     peek(): T {
         // 将返回栈顶的元素
-        let s: T[] = this.items.get(this)
+        const s: T[] = this.items.get(this)
         const len: number = s.length
         if (!len) {
             return undefined
@@ -30,7 +29,7 @@ export default class Stack<T> {
     }
     isEmpty(): boolean {
         // 能简单地判断内部栈的长度是否为0
-        let s: T[] = this.items.get(this)
+        const s: T[] = this.items.get(this)
         return s.length === 0
     }
     clear(): void {
@@ -39,7 +38,7 @@ export default class Stack<T> {
     }
     size(): number {
         // 栈长度
-        let s: T[] = this.items.get(this)
+        const s: T[] = this.items.get(this)
         return s.length
     }
     toString(): string {
@@ -47,8 +46,8 @@ export default class Stack<T> {
         if (this.isEmpty()) {
             return ''
         }
-        let s: T[] = this.items.get(this)
-        let objString: string = ''
+        const s: T[] = this.items.get(this)
+        let objString = ''
         for (let i = 0, len = this.size(); i < len; ++i) {
             if (i < len - 1) {
                 objString += `${s[i]},`

@@ -1,4 +1,3 @@
-'use strict'
 import { defaultToString, dataType, isExistAll } from 'core/utils'
 import { ValuePair, tableType } from 'core/node'
 
@@ -15,19 +14,19 @@ export default class HashTable<K, V> {
     }
     // 散列函数
     // 给定一个key参数，我们就能根据组成key的每个字符的ASCII码值的和得到一个数字。
-    private loseloseHashCode(key: K, div: number = 37) {
+    private loseloseHashCode(key: K, div = 37) {
         if (dataType(key) === 'number') {
             return key
         }
         const tableKey: string = this.toStrFn(key)
-        let hash: number = 0
-        for (let i: number = 0, len = tableKey.length; i < len; ++i) {
+        let hash = 0
+        for (let i = 0, len = tableKey.length; i < len; ++i) {
             hash += tableKey.charCodeAt(i)
         }
         return hash % div
     }
     // 创建hash
-    hashCode(key: K, div: number = 37): any {
+    hashCode(key: K, div = 37): any {
         return this.loseloseHashCode(key, div)
     }
     // 向散列表增加一个新的项
@@ -73,7 +72,7 @@ export default class HashTable<K, V> {
     }
 
     // 表中循环forEach
-    forEach(callbackFn: (key: K, value: V) => any) {
+    forEach(callbackFn: (key: K, value: V) => unknown): void {
         const valuePairs = this.keyValues()
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             callbackFn(valuePairs[i].key, valuePairs[i].value)
@@ -81,9 +80,9 @@ export default class HashTable<K, V> {
     }
 
     // 表中循环map
-    map(callbackFn: (key: K, value: V) => any): any[] {
+    map(callbackFn: (key: K, value: V) => unknown): unknown[] {
         const valuePairs = this.keyValues()
-        let resList: any[] = []
+        const resList: unknown[] = []
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             const result = callbackFn(valuePairs[i].key, valuePairs[i].value)
             resList.push(result)
@@ -94,7 +93,7 @@ export default class HashTable<K, V> {
     // 表中循环filter
     filter(callbackFn: (key: K, value: V) => any): any[] {
         const valuePairs = this.keyValues()
-        let resList: any[] = []
+        const resList: unknown[] = []
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             const result = callbackFn(valuePairs[i].key, valuePairs[i].value)
             if (!result) {
@@ -106,27 +105,27 @@ export default class HashTable<K, V> {
     }
 
     // 是否为空
-    isEmpty() {
+    isEmpty(): boolean {
         return this.size() === 0
     }
 
     // 返回表所包含元素的数量。与数组的length属性类似
-    size() {
+    size(): number {
         return Object.keys(this.table).length
     }
 
     // 删除表内元素
-    clear() {
+    clear(): void {
         this.table = {}
     }
 
     // 获取当前表
-    getTable() {
+    getTable(): tableType<K, V> {
         return this.table
     }
 
     // 打印当前表
-    print() {
+    print(): void {
         console.log(this.table)
     }
 
@@ -135,7 +134,7 @@ export default class HashTable<K, V> {
         if (this.isEmpty()) {
             return ''
         }
-        let objString = this.map(
+        const objString = this.map(
             (key, value) => `[#${key}: ${value}]`,
         ).toString()
         return objString

@@ -1,4 +1,3 @@
-'use strict'
 import BinarySearchTree from 'core/datastructures/tree/binarySearchTree'
 
 export default class TreeSearch<T> extends BinarySearchTree<T> {

@@ -1,4 +1,3 @@
-'use strict'
 import { DLLNode } from 'core/node'
 import LinkedList from './linkedList'
 /**
@@ -15,7 +14,7 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
     }
 
     append(element: T): DoublyLinkedList<T> {
-        let node: DLLNode<T> = new DLLNode(element)
+        const node: DLLNode<T> = new DLLNode(element)
         if (this.head === null) {
             // 链表中第一个节点
             this.head = node
@@ -33,10 +32,10 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
         // 向链表的特定位置插入一个新的元素。
         //检查越界值
         if (position >= 0 && position <= this.length) {
-            let node: DLLNode<T> = new DLLNode(element)
+            const node: DLLNode<T> = new DLLNode(element)
             let current: DLLNode<T> = this.head
             let previous: DLLNode<T>
-            let index: number = 0
+            let index = 0
             if (position === 0) {
                 if (!this.head) {
                     this.head = node
@@ -102,23 +101,23 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
 
     toString(): string {
         // 转换为字符串
-        if (this.tail == null) {
+        if (this.head === undefined) {
             return ''
         }
-        let objString = `${this.tail.element}`
-        let previous = this.tail.prev
-        while (previous != null) {
-            objString = `${objString},${previous.element}`
-            previous = previous.prev
+        let objString = `${this.head?.element || ''}`
+        let current = this.head?.next
+        while (current !== undefined) {
+            objString = `${objString},${current.element}`
+            current = current.next
         }
         return objString
     }
 
-    print() {
+    print(): void {
         console.log(this.toString())
     }
 
-    clear() {
+    clear(): void {
         super.clear()
         this.tail = null
     }

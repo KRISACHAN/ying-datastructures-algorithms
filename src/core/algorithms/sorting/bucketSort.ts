@@ -1,4 +1,3 @@
-'use strict'
 import {
     DefalutListType,
     defaultCompare,
@@ -8,7 +7,7 @@ import {
 } from 'core/utils'
 const BucketSort = (
     list: DefalutListType,
-    bucketsCount: number = 10 /* 默认桶的数量 */,
+    bucketsCount = 10 /* 默认桶的数量 */,
     compareFn: ICompareFunction<any> = defaultCompare,
 ): DefalutListType => {
     const max: number = Math.max(...list) /* 序列最大数字 */
@@ -16,7 +15,7 @@ const BucketSort = (
     const bucketsSize: number =
         Math.floor((max - min) / bucketsCount) + 1 /* 桶的深度 */
     const __buckets: number[][] = [] /* 空桶 */
-    for (let i: number = 0, len: number = list.length; i < len; ++i) {
+    for (let i = 0, len: number = list.length; i < len; ++i) {
         const index: number = ~~(
             list[i] / bucketsSize
         ) /* 骚操作，取数列中最大或最小的序列 */
@@ -38,7 +37,7 @@ const BucketSort = (
             bLen--
         }
     }
-    let buckets = [] /* 真实序列 */
+    const buckets = [] /* 真实序列 */
     for (let i = 0, len = __buckets.length; i < len; ++i) {
         if (__buckets[i]) {
             buckets.push(...__buckets[i])

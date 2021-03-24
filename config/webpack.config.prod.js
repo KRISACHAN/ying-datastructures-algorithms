@@ -1,28 +1,32 @@
 // 生产环境配置
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
+// https://www.npmjs.com/package/clean-webpack-plugin  清除文件夹
 const cleanWebpackPlugin = require('clean-webpack-plugin')
+// https://www.npmjs.com/package/uglifyjs-webpack-plugin 压缩文件夹
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin')
+// https://www.npmjs.com/package/mini-css-extract-plugin 将 CSS 提取到单独的文件中
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// https://www.npmjs.com/package/optimize-css-assets-webpack-plugin CSS 优化
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// https://www.npmjs.com/package/compression-webpack-plugin 提供带 Content-Encoding 编码的压缩版的资源
 const compressionPlugin = require('compression-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin
+// https://www.npmjs.com/package/webpack-bundle-analyzer 可视化的输出文件详情
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const webpackBase = require('./webpack.config.base.js')
-const { project, pro } = require('./config.js')
+const { root, prod } = require('./config.js')
 
 const plugins = [
     new MiniCssExtractPlugin({
         filename: 'css/[name].[chunkhash:8].css',
         chunkFilename: 'css/[id].[chunkhash:8].css',
     }),
-    new webpack.HashedModuleIdsPlugin(),
     new cleanWebpackPlugin(['./dist/'], {
-        root: project,
+        root,
     }),
     new compressionPlugin({
         filename: '[path].gz[query]',
-        test: /(\.js|\.css|\.html|\.png|\.jpg|\.webp|\.svg)$/,
+        test: /(\.js|\.css|\.html|\.png|\.jpg|\.webp|\.svg)(\?.*)?$/,
         cache: true,
         algorithm: 'gzip',
         deleteOriginalAssets: false,
@@ -44,28 +48,35 @@ const plugins = [
     }),
 ]
 
-const WATCH_ANALYZER = process.env.WATCH_ANALYZER === 'false' ? false : true
+const WATCH_ANALYZER = process.env.WATCH_ANALYZER !== 'false'
+
+if (WATCH_ANALYZER) {
+    plugins.push(new BundleAnalyzerPlugin())
+}
 
 const webpackProd = {
     mode: 'production',
     stats: {
         colors: true,
     },
-    devtool: 'source-map',
+    // 可与 hidden-source-map 之间二选一
+    // 打开 https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps
+    // https://webpack.js.org/configuration/devtool/
+    devtool: 'nosources-source-map',
     output: {
         filename: 'js/[name].[chunkhash:8].bundle.js',
         publicPath: process.env.PUBLIC_PATH || '/',
     },
     optimization: {
+        moduleIds: 'deterministic',
         minimizer: [
             new uglifyJSPlugin({
                 sourceMap: true,
-                exclude: pro.exclude,
+                exclude: prod.exclude,
                 uglifyOptions: {
                     compress: {
                         drop_console: true,
                         drop_debugger: true,
-                        warnings: false,
                     },
                     comments: false,
                 },
@@ -75,7 +86,7 @@ const webpackProd = {
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
-                vendors: {
+                defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
                 },
@@ -85,18 +96,13 @@ const webpackProd = {
     module: {
         rules: [
             {
-                test: /\.(le|sa|sc|c)ss$/,
+                test: /\.(le|c)ss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
-                    'sass-loader',
                     'less-loader',
                 ],
-            },
-            {
-                test: /(\.jsx|\.js|\.ts|\.tsx)$/,
-                use: ['babel-loader'],
             },
         ],
     },

@@ -1,46 +1,63 @@
 const path = require('path')
 const dotenv = require('dotenv')
-const project = process.cwd()
-const resolve = dir => path.join(__dirname, '..', dir) // 获取文件夹
-dotenv.config() // 添加环境变量
+const root = process.cwd()
+// 获取当前项目下的文件夹路径
+const resolve = dir => path.join(__dirname, '..', dir)
+// 环境变量初始化
+const initEnv = () => {
+    dotenv.config({
+        path: resolve(`.env.${process.env.NODE_ENV || 'production'}`),
+    })
+}
+initEnv()
+// 核心的文件路径
+const corePath = {
+    src: resolve('src'),
+    core: resolve('src/core/'),
+    views: resolve('views'),
+    dist: resolve('dist'),
+}
+// 资源文件路径
+const assetsPath = {
+    nodeModules: resolve('node_modules'),
+    static: resolve('static'),
+    tests: resolve('tests'),
+}
+// 输出的配置
 const config = {
-    project, // 项目目录
-    config: path.resolve(__dirname, '../'), // 配置文件目录
+    // 项目目录
+    root,
+    // 配置文件目录
+    config: path.resolve(__dirname, '../'),
+    // 开发环境配置
     dev: {
-        // 开发环境配置
+        // 路径重定向
         alias: {
-            // 路径重定向
-            '@': resolve('src'),
-            src: resolve('src'),
-            tests: resolve('tests'),
-            core: resolve('src/core/'),
-            static: resolve('static'),
+            '@': corePath.src,
+            src: corePath.src,
+            core: corePath.core,
+            tests: assetsPath.tests,
+            static: assetsPath.static,
         },
-        include: [
-            // 处理的文件夹
-            resolve('src'),
-            resolve('tests'),
-            resolve('core'),
-            resolve('static'),
-        ],
-        exclude: [
-            // 不处理的文件夹
-            resolve('node_modules'),
-        ],
+        // 处理的文件夹
+        include: [corePath.src, assetsPath.tests, assetsPath.static],
+        // 不处理的文件夹
+        exclude: [assetsPath.nodeModules],
     },
-    pro: {
-        // 生产环境配置
-        exclude: [
-            // 不处理的文件夹
-            resolve('node_modules'),
-            resolve('static'),
-        ],
+    // 生产环境配置
+    prod: {
+        // 不处理的文件夹
+        exclude: [assetsPath.nodeModules, assetsPath.static],
     },
-    src: resolve('src'), // 源文件目录
-    build: resolve('dist'), // 打包目录
-    html: resolve('views'), // html文件目录
-    node_modules: resolve('node_modules'), // node_modules目录
-    static: resolve('static'), // 静态资源文件夹
-    ignorePages: [''], // 标识没有入口js文件的html
+    // 源文件目录
+    src: corePath.src,
+    // 打包目录
+    dist: corePath.dist,
+    // html文件目录
+    views: corePath.views,
+    // node_modules目录
+    node_modules: corePath.nodeModules,
+    // 静态资源文件夹
+    static: corePath.static,
 }
 module.exports = config

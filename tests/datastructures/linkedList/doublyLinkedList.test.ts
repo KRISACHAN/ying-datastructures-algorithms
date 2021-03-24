@@ -159,7 +159,7 @@ describe('DoublyLinkedList', () => {
         expect(list.toString()).toEqual('1')
 
         list.append(2)
-        expect(list.toString()).toEqual('2,1')
+        expect(list.toString()).toEqual('1,2')
 
         list.clear()
         expect(list.toString()).toEqual('')
@@ -171,7 +171,7 @@ describe('DoublyLinkedList', () => {
         expect(ds.toString()).toEqual('el1')
 
         ds.append('el2')
-        expect(ds.toString()).toEqual('el2,el1')
+        expect(ds.toString()).toEqual('el1,el2')
     })
 
     it('returns toString primitive types', () => {
@@ -181,7 +181,7 @@ describe('DoublyLinkedList', () => {
         expect(list.toString()).toEqual('1')
 
         list.append(2)
-        expect(list.toString()).toEqual('2,1')
+        expect(list.toString()).toEqual('1,2')
 
         list.clear()
         expect(list.toString()).toEqual('')
@@ -193,6 +193,6 @@ describe('DoublyLinkedList', () => {
         expect(ds.toString()).toEqual('el1')
 
         ds.append('el2')
-        expect(ds.toString()).toEqual('el2,el1')
+        expect(ds.toString()).toEqual('el1,el2')
     })
 })

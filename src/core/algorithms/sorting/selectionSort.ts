@@ -1,9 +1,8 @@
-'use strict'
 import { Swap, defaultCompare, Compare } from 'core/utils'
 const SelectionSort = <T>(list: T[], compareFn = defaultCompare): T[] => {
     const len = list.length
     let min: number
-    for (let i: number = 0; i < len - 1; ++i) {
+    for (let i = 0; i < len - 1; ++i) {
         min = i /* 初始化未排序序列中最小数据数组下标 */
         for (let j = i + 1; j < len; ++j) {
             /* 访问未排序的元素 */

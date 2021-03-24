@@ -1,4 +1,3 @@
-'use strict'
 import { BSTNode } from 'core/node'
 import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
@@ -12,10 +11,13 @@ export default class BinarySearchTree<T> {
     constructor() {}
 
     // 广度优先遍历的核心实现
-    private breadthFirstSearchNode(node: BSTNode<T>, callback: Function): void {
-        let queue: BSTNode<T>[] = [node]
+    private breadthFirstSearchNode(
+        node: BSTNode<T>,
+        callback: (key: T) => void,
+    ): void {
+        const queue: BSTNode<T>[] = [node]
         while (queue.length) {
-            let head: BSTNode<T> = queue.shift()
+            const head: BSTNode<T> = queue.shift()
             callback(head.key)
             if (head.left) {
                 queue.push(head.left)
@@ -26,15 +28,18 @@ export default class BinarySearchTree<T> {
         }
     }
     // 广度优先遍历方式遍历所有节点。
-    breadthFirstSearch(callback: Function): void {
+    breadthFirstSearch(callback: (key: T) => void): void {
         this.breadthFirstSearchNode(this.root, callback)
     }
 
     // 深度优先遍历的核心实现
-    private depthFirstSearchNode(node: BSTNode<T>, callback: Function): void {
-        let stack: BSTNode<T>[] = [node]
+    private depthFirstSearchNode(
+        node: BSTNode<T>,
+        callback: (key: T) => void,
+    ): void {
+        const stack: BSTNode<T>[] = [node]
         while (stack.length) {
-            let tail: BSTNode<T> = stack.pop()
+            const tail: BSTNode<T> = stack.pop()
             callback(tail.key)
             if (tail.right) {
                 stack.push(tail.right)
@@ -45,7 +50,7 @@ export default class BinarySearchTree<T> {
         }
     }
     // 深度优先遍历方式遍历所有节点。
-    depthFirstSearch(callback: Function): void {
+    depthFirstSearch(callback: (key: T) => void): void {
         this.depthFirstSearchNode(this.root, callback)
     }
 
@@ -117,9 +122,9 @@ export default class BinarySearchTree<T> {
     }
     // 循环查找节点
     private loopSearchNode(node: BSTNode<T>, key: T): boolean {
-        let queue: BSTNode<T>[] = [node]
+        const queue: BSTNode<T>[] = [node]
         while (queue.length) {
-            let head = queue.shift()
+            const head = queue.shift()
             if (key === head.key) {
                 return true
             }
@@ -141,7 +146,7 @@ export default class BinarySearchTree<T> {
     // 中序遍历的递归实现
     private recursionInOrderTraverseNode(
         node: BSTNode<T>,
-        callback: Function,
+        callback: (key: T) => void,
     ): void {
         if (node) {
             this.recursionInOrderTraverseNode(node.left, callback)
@@ -152,7 +157,7 @@ export default class BinarySearchTree<T> {
     // 中序遍历的循环实现
     private loopInOrderTraverseNode(
         node: BSTNode<T>,
-        callback: Function,
+        callback: (key: T) => void,
     ): void {
         const stack: BSTNode<T>[] = []
         let current: BSTNode<T> = node
@@ -167,7 +172,7 @@ export default class BinarySearchTree<T> {
         }
     }
     // 通过中序遍历方式遍历所有节点。 中序遍历是一种以上行顺序访问BST所有节点的遍历方式，也就是以从最小到最大的顺序访问所有节点。中序遍历的一种应用就是对树进行排序操作。
-    inOrderTraverse(callback: Function): void {
+    inOrderTraverse(callback: (key: T) => void): void {
         // this.recursionInOrderTraverseNode(this.root, callback)
         this.loopInOrderTraverseNode(this.root, callback)
     }
@@ -175,7 +180,7 @@ export default class BinarySearchTree<T> {
     // 前序遍历的递归实现
     private recursionPreOrderTraverseNode(
         node: BSTNode<T>,
-        callback: Function,
+        callback: (key: T) => void,
     ): void {
         if (node) {
             callback(node.key)
@@ -186,7 +191,7 @@ export default class BinarySearchTree<T> {
     // 前序遍历的循环实现
     private loopPreOrderTraverseNode(
         node: BSTNode<T>,
-        callback: Function,
+        callback: (key: T) => void,
     ): void {
         const stack: BSTNode<T>[] = []
         let current: BSTNode<T> = node
@@ -201,7 +206,7 @@ export default class BinarySearchTree<T> {
         }
     }
     // 通过前序遍历方式遍历所有节点。
-    preOrderTraverse(callback: Function): void {
+    preOrderTraverse(callback: (key: T) => void): void {
         // this.recursionPreOrderTraverseNode(this.root, callback)
         this.loopPreOrderTraverseNode(this.root, callback)
     }
@@ -209,7 +214,7 @@ export default class BinarySearchTree<T> {
     // 后序遍历的递归实现
     private recursionPostOrderTraverseNode(
         node: BSTNode<T>,
-        callback: Function,
+        callback: (key: T) => void,
     ): void {
         if (node) {
             this.recursionPostOrderTraverseNode(node.left, callback)
@@ -220,7 +225,7 @@ export default class BinarySearchTree<T> {
     // 前序遍历的循环实现
     private loopPostOrderTraverseNode(
         node: BSTNode<T>,
-        callback: Function,
+        callback: (key: T) => void,
     ): void {
         const stack: BSTNode<T>[] = []
         let prev: BSTNode<T>
@@ -242,7 +247,7 @@ export default class BinarySearchTree<T> {
         }
     }
     // 通过后序遍历方式遍历所有节点。
-    postOrderTraverse(callback: Function): void {
+    postOrderTraverse(callback: (key: T) => void): void {
         // this.recursionPostOrderTraverseNode(this.root, callback)
         this.loopPostOrderTraverseNode(this.root, callback)
     }
@@ -355,7 +360,7 @@ export default class BinarySearchTree<T> {
         }
         let current: BSTNode<T> | any = node
         let parent: BSTNode<T> | any
-        let keyword: string = ''
+        let keyword = ''
         while (current && current.key !== key) {
             parent = current
             if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {
@@ -386,7 +391,7 @@ export default class BinarySearchTree<T> {
         console.log(this.toArray())
     }
     toArray(): T[] {
-        let list: T[] = []
+        const list: T[] = []
         this.breadthFirstSearch((key: T) => {
             list.push(key)
         })

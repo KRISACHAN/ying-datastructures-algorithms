@@ -1,16 +1,15 @@
-'use strict'
 import { DefalutListType, defaultCompare, Compare } from 'core/utils'
 const ShellSort = (
     list: DefalutListType,
     compareFn = defaultCompare,
 ): DefalutListType => {
-    let gaps: DefalutListType = [5, 3, 1] // 定义步长以及分割次数
-    let len: number = list.length
+    const gaps: DefalutListType = [5, 3, 1] // 定义步长以及分割次数
+    const len: number = list.length
     for (let g = 0, gLen: number = gaps.length; g < gLen; ++g) {
         // 按步长的长度K，对数组进行K趟排序
         for (let i = gaps[g]; i < len; ++i) {
-            let temp = list[i],
-                j: number
+            const temp = list[i]
+            let j: number
             for (
                 j = i;
                 compareFn(j, gaps[g]) !== Compare.LESS_THAN &&
