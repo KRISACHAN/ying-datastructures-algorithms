@@ -1,8 +1,7 @@
-'use strict'
 import { Swap, defaultCompare, Compare } from 'core/utils'
 const CocktailSort = <T>(list: T[], compareFn = defaultCompare): T[] => {
     let i: number,
-        left: number = 0,
+        left = 0,
         right: number = list.length - 1
     while (left < right) {
         for (i = left; i < right; ++i) {

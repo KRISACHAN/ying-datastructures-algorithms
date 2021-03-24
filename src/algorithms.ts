@@ -1,4 +1,3 @@
-'use strict'
 import {
     recursionBinarySearch,
     loopBinarySearch,
@@ -21,8 +20,8 @@ import BlockSearch from 'core/algorithms/search/blockSearch'
 const hs: HashSearch<any, any> = new HashSearch<any, any>()
 
 const list: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
-const key1: number = 17
-const key2: number = 3
+const key1 = 17
+const key2 = 3
 
 const funcs = [
     recursionBinarySearch,
@@ -49,7 +48,7 @@ list.forEach((item, idx) => {
 console.log(hs.toString())
 
 const list2: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
-const bs: BlockSearch<number> = new BlockSearch<number>(list2)
+const bs: BlockSearch = new BlockSearch(list2)
 
 console.log(bs.search(3))
 console.log(bs.search(9))

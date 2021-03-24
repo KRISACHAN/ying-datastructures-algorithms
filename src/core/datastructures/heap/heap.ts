@@ -1,4 +1,3 @@
-'use strict'
 import {
     defaultCompare,
     reverseCompare,
@@ -13,7 +12,7 @@ import {
  * 根节点（root node）：在堆中最顶端的那一个节点，称作根节点（root node），根节点本身没有母节点（parent node）。
  */
 export class Heap<T> {
-    private items: WeakMap<object, Array<T>> = new WeakMap() // 保存堆结构的元素
+    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存堆结构的元素
     constructor() {
         if (new.target === Heap) {
             throw new TypeError('Cannot construct Heap instance directly')
@@ -40,13 +39,13 @@ export class Heap<T> {
 
     size(): number {
         // 获取堆长度
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return h.length
     }
 
     isEmpty(): boolean {
         // 判断堆是否为空
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         return !h.length
     }
 
@@ -57,14 +56,14 @@ export class Heap<T> {
 
     print(): void {
         // 打印堆
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         console.log(h)
     }
 
     insert(value: T): Heap<T> {
         // 插入元素
         if (isExist(value)) {
-            let h: T[] = this.items.get(this)
+            const h: T[] = this.items.get(this)
             const index: number = h.length
             h.push(value)
             this.siftUp(index)
@@ -72,7 +71,7 @@ export class Heap<T> {
         return this
     }
 
-    pairIsInCorrectOrder(firstElement: T, secondElement: T): Boolean {
+    pairIsInCorrectOrder(firstElement: T, secondElement: T): boolean {
         // 判断是否正确的命令
         throw new Error(
             `You have to implement heap pair comparision method for ${firstElement} and ${secondElement} values. `,
@@ -81,7 +80,7 @@ export class Heap<T> {
 
     private siftDown(index: number, compareFn = defaultCompare): void {
         // 向下筛选
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         let element: number = index
         const left = this.getLeftChildIndex(index)
         const right = this.getRightChildIndex(index)
@@ -118,7 +117,7 @@ export class Heap<T> {
     private siftUp(index: number): void {
         // 向上筛选
         let parent: number = this.getParentIndex(index)
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         while (index > 0 && this.pairIsInCorrectOrder(h[parent], h[index])) {
             Swap(h, parent, index)
             index = parent
@@ -131,7 +130,7 @@ export class Heap<T> {
         if (this.isEmpty()) {
             return undefined
         }
-        let h: T[] = this.items.get(this)
+        const h: T[] = this.items.get(this)
         if (this.size() === 1) {
             return h.shift()
         }
@@ -141,8 +140,8 @@ export class Heap<T> {
         return removedValue
     }
 
-    toString() {
-        let h: T[] = this.items.get(this)
+    toString(): string {
+        const h: T[] = this.items.get(this)
         return h.toString()
     }
 
@@ -152,7 +151,7 @@ export class Heap<T> {
             this.items.set(this, list)
         }
         const maxIndex: number = Math.floor(this.size() / 2) - 1
-        for (let i: number = 0; i <= maxIndex; ++i) {
+        for (let i = 0; i <= maxIndex; ++i) {
             this.siftDown(i)
         }
         return this
@@ -164,7 +163,7 @@ export class MinHeap<T> extends Heap<T> {
     constructor() {
         super()
     }
-    pairIsInCorrectOrder(firstElement: T, secondElement: T): Boolean {
+    pairIsInCorrectOrder(firstElement: T, secondElement: T): boolean {
         return (
             defaultCompare(firstElement, secondElement) === Compare.BIGGER_THAN
         )
@@ -176,7 +175,7 @@ export class MaxHeap<T> extends Heap<T> {
     constructor() {
         super()
     }
-    pairIsInCorrectOrder(firstElement: T, secondElement: T): Boolean {
+    pairIsInCorrectOrder(firstElement: T, secondElement: T): boolean {
         return (
             reverseCompare(defaultCompare)(firstElement, secondElement) ===
             Compare.BIGGER_THAN

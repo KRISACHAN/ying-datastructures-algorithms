@@ -1,4 +1,3 @@
-'use strict'
 import {
     defaultCompare,
     ICompareFunction,
@@ -14,7 +13,7 @@ export const orderSearch = (
     if (!list || !list.length) {
         return DOES_NOT_EXIST
     }
-    for (let i: number = 0, len = list.length; i < len; ++i) {
+    for (let i = 0, len = list.length; i < len; ++i) {
         if (compareFn(list[i], data) === Compare.EQUALS) {
             return i
         }
@@ -31,7 +30,7 @@ export const halfOrderSearch = (
         return DOES_NOT_EXIST
     }
     const size: number = Math.ceil(list.length / 2)
-    let count: number = 0
+    let count = 0
     for (let i = 0; i < size; ++i) {
         if (compareFn(list[count], data) === Compare.EQUALS) {
             return count

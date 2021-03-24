@@ -1,20 +1,20 @@
-'use strict'
 import BinarySearchTree from 'core/datastructures/tree/BinarySearchTree'
 import AdelsonVelskiiLandiTree from 'core/datastructures/tree/adelsonVelskiiLandiTree'
 import RedBlackTree from 'core/datastructures/tree/redBlackTree'
 import Dictionary from 'core/datastructures/dictionary/dictionary'
 import Graph from 'core/datastructures/graph/graph'
+import DoublyLinkedList from 'core/datastructures/linkedList/doublyLinkedList'
 
 import { MyObj } from 'core/node'
 
-let bst: BinarySearchTree<any> = new BinarySearchTree<any>()
-let avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
-let rbt: RedBlackTree<any> = new RedBlackTree<any>()
-let dict: Dictionary<any, any> = new Dictionary()
-let dict2 = new Dictionary<MyObj, MyObj>()
-let graph = new Graph<number | string>()
+const bst: BinarySearchTree<any> = new BinarySearchTree<any>()
+const avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
+const rbt: RedBlackTree<any> = new RedBlackTree<any>()
+const dict: Dictionary<any, any> = new Dictionary()
+const dict2 = new Dictionary<MyObj, MyObj>()
+const graph = new Graph<number | string>()
 
-let list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
+const list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
 
 console.log({
     ['list.length']: list.length,
@@ -72,4 +72,10 @@ console.log(graph.getAdjList().values())
 console.log(graph.toString())
 console.log(graph.toString() === graph.toString())
 console.log(graph)
+console.groupEnd()
+
+const dll: DoublyLinkedList<number> = new DoublyLinkedList<number>()
+console.group('DoublyLinkedList')
+dll.insert(0, 1)
+dll.print()
 console.groupEnd()

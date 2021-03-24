@@ -1,61 +1,73 @@
 const path = require('path')
 const fs = require('fs')
+// https://www.npmjs.com/package/html-webpack-plugin 简化了 HTML 文件的创建
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+// https://www.npmjs.com/package/copy-webpack-plugin 复制文件夹到构建目录
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const {
-    html,
-    ignorePages,
-    project,
+    views,
+    src,
+    root,
     dev: { alias, include, exclude },
-    build,
+    dist,
 } = require('./config.js')
-// 获取html文件名，生成多页面入口
-const getPagesEnter = path => {
-    const dirArr = fs.readdirSync(path)
-    const filesArr = dirArr
-        .filter(e => e.indexOf('html') >= 0)
-        .map(e => e.replace('.html', ''))
-    return filesArr
+// 生成 html 处理插件以及入口
+const genHTMLPluginsAndEntries = viewsPath => {
+    // 获取html文件名，生成多页面入口
+    const getViewEntries = viewsPath => {
+        const viewsDir = fs.readdirSync(viewsPath)
+        const genViewsNameWithoutSuffix = viewsDir
+            .filter(e => e.indexOf('html') >= 0)
+            .map(e => e.replace('.html', ''))
+        return genViewsNameWithoutSuffix
+    }
+    const viewEntries = getViewEntries(viewsPath)
+    // 保存HTMLWebpackPlugin实例
+    const plugins = []
+    // 保存入口列表
+    const entries = {}
+    // 生成HTMLWebpackPlugin实例和入口列表
+    viewEntries.forEach(view => {
+        const htmlConfig = {
+            filename: `${view}.html`,
+            template: path.join(views, `./${view}.html`), // 模板文件
+        }
+        const entryFile = path.join(src, `./${view}.ts`)
+        if (!fs.existsSync(entryFile)) {
+            htmlConfig.chunks = []
+        } else {
+            htmlConfig.chunks = [view, 'vendors']
+            entries[view] = `./src/${view}.ts`
+        }
+        const htmlPlugin = new HTMLWebpackPlugin(htmlConfig)
+        plugins.push(htmlPlugin)
+    })
+    return {
+        entries,
+        plugins,
+    }
 }
-const HTMLArr = getPagesEnter(html)
-const HTMLPlugins = [] // 保存HTMLWebpackPlugin实例
-const Entries = {} // 保存入口列表
 
-// 生成HTMLWebpackPlugin实例和入口列表
-HTMLArr.forEach(page => {
-    const htmlConfig = {
-        filename: `${page}.html`,
-        template: path.join(html, `./${page}.html`), // 模板文件
-    }
-    const hasIgnorePages = ignorePages.findIndex(val => val === page)
-    if (hasIgnorePages === -1) {
-        // 有入口js文件的html，添加本页的入口js，与公共js，并将入口js写入Entries中
-        htmlConfig.chunks = [page, 'vendors']
-        Entries[page] = `./src/${page}.ts`
-    } else {
-        // 没有入口js文件，chunk为空
-        htmlConfig.chunks = []
-    }
-    const htmlPlugin = new HTMLWebpackPlugin(htmlConfig)
-    HTMLPlugins.push(htmlPlugin)
-})
+const { entries, plugins: htmlPlugins } = genHTMLPluginsAndEntries(views)
 
 const baseConfig = {
-    context: project, // 入口、插件路径会基于context查找
-    entry: {
-        ...Entries,
-    },
+    // 入口路径
+    context: root,
+    entry: entries,
     output: {
-        path: build, // 打包路径
+        // 打包路径
+        path: dist,
     },
     resolve: {
-        alias, // 文件名简写
-        extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'], // 文件查询扩展
+        // 文件名简写
+        alias,
+        // 文件查询扩展
+        extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'],
     },
     module: {
         rules: [
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(woff|woff2|eot|ttf|otf)(\?.*)?$/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -67,7 +79,7 @@ const baseConfig = {
                 exclude,
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif)(\?.*)?$/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -79,10 +91,16 @@ const baseConfig = {
                 exclude,
             },
             {
-                test: /(\.jsx|\.js|\.ts|\.tsx)$/,
+                test: /\.(t|j)sx?$/,
                 use: [
+                    // https://www.npmjs.com/package/thread-loader 将下方的 loader 放入 worker 池里。每个 worker 都是一个单独的有 600ms 限制的 node.js 进程。同时跨进程的数据交换也会被限制。
+                    'thread-loader',
                     {
                         loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true,
+                            cacheCompression: true,
+                        },
                     },
                 ],
                 include,
@@ -92,7 +110,7 @@ const baseConfig = {
     },
     externals: {},
     plugins: [
-        ...HTMLPlugins,
+        ...htmlPlugins,
         new CopyWebpackPlugin([
             {
                 from: 'static',

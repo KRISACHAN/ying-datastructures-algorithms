@@ -1,14 +1,14 @@
 # 前端进阶必备 — 手撕排序算法
 
->* 作者：陈大鱼头
+> -   作者：陈大鱼头
 >
->* github：<https://github.com/KRISACHAN>
+> -   github：<https://github.com/KRISACHAN>
 
 ## 算法是什么？
 
 **算法（Algorithm）** 已经是一个老生常谈的概念了，最早来自于数学领域。
 
- **算法（Algorithm）** 代表着用系统的方法描述解决问题的策略机制，可以通过一定规范的 **输入**，在有限时间内获得所需要的 **输出**。
+**算法（Algorithm）** 代表着用系统的方法描述解决问题的策略机制，可以通过一定规范的 **输入**，在有限时间内获得所需要的 **输出**。
 
 **如下图示便是算法：**
 
@@ -18,7 +18,7 @@
 
 一个算法的好坏是通过 **时间复杂度** 与 **空间复杂度** 来衡量的。
 
-举个🌰：
+举个 🌰：
 
 <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/lizi.png" style="display: block; margin: 10px auto;">
 
@@ -40,9 +40,9 @@
 
 ### 复杂度
 
-**时间复杂度** 与 **空间复杂度** 都是用 **“大O”** 来表示，写作 **O(*)**。有一点值得注意的是，我们谈论复杂度，一般谈论的都是时间复杂度。
+**时间复杂度** 与 **空间复杂度** 都是用 **“大 O”** 来表示，写作 **O(\*)**。有一点值得注意的是，我们谈论复杂度，一般谈论的都是时间复杂度。
 
-常见时间复杂度的 **“大O表示法”** 描述有以下几种：
+常见时间复杂度的 **“大 O 表示法”** 描述有以下几种：
 
 | 时间复杂度       | 非正式术语 |
 | :--------------- | :--------- |
@@ -54,7 +54,7 @@
 | O(n<sup>3</sup>) | 立方阶     |
 | O(2<sup>n</sup>) | 指数阶     |
 
-一个算法在N规模下所消耗的时间消耗从大到小如下：
+一个算法在 N 规模下所消耗的时间消耗从大到小如下：
 
 **O(1) < O(log n) < O(n) < O(n log n) < O(n<sup>2</sup>) < O(n<sup>3</sup>) < O(2<sup>n</sup>)**
 
@@ -82,25 +82,26 @@
 
 ### 概述
 
-根据时间复杂度的不同，常见的算法可以分为3大类。
+根据时间复杂度的不同，常见的算法可以分为 3 大类。
 
 1. **O(n²)** 的排序算法
-   * 冒泡排序
-   * 选择排序
-   * 插入排序
-   * 希尔排序
+
+    - 冒泡排序
+    - 选择排序
+    - 插入排序
+    - 希尔排序
 
 2. **O(n log n)** 的排序算法
 
-   * 并归排序
+    - 并归排序
 
-   * 快速排序
-   * 堆排序
+    - 快速排序
+    - 堆排序
 
 3. 线性的排序算法
-   * 计数排序
-   * 桶排序
-   * 基数排序
+    - 计数排序
+    - 桶排序
+    - 基数排序
 
 各种排序的具体信息
 
@@ -108,10 +109,10 @@
 
 **图片解释：**
 
-- 均按从小到大排列
-- k代表数值中的"数字"个数
-- n代表数据规模
-- m代表数据的最大值减最小值
+-   均按从小到大排列
+-   k 代表数值中的"数字"个数
+-   n 代表数据规模
+-   m 代表数据的最大值减最小值
 
 ### **冒泡排序（Bubble Sort）**
 
@@ -135,10 +136,13 @@
 ```javascript
 const bubbleSort = arr => {
     const len = arr.length - 1
-    for (let i = 0; i < len; ++i) { /* 外循环为排序趟数，len个数进行len-1趟 */
-        for (let j = 0; j < len - i; ++j) { /* 内循环为每趟比较的次数，第i趟比较len-i次 */
-            if (arr[j] > arr[j + 1]) { /* 相邻元素比较，若逆序则交换（升序为左大于右，逆序反之） */
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+    for (let i = 0; i < len; ++i) {
+        /* 外循环为排序趟数，len个数进行len-1趟 */
+        for (let j = 0; j < len - i; ++j) {
+            /* 内循环为每趟比较的次数，第i趟比较len-i次 */
+            if (arr[j] > arr[j + 1]) {
+                /* 相邻元素比较，若逆序则交换（升序为左大于右，逆序反之） */
+                ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
             }
         }
     }
@@ -174,12 +178,14 @@ const selectionSort = arr => {
     let min
     for (let i = 0; i < len - 1; ++i) {
         min = i /* 初始化未排序序列中最小数据数组下标 */
-        for (let j = i + 1; j < len; ++j) { /* 访问未排序的元素 */
-            if (arr[j] < arr[min]) { /* 找到目前最小值 */
+        for (let j = i + 1; j < len; ++j) {
+            /* 访问未排序的元素 */
+            if (arr[j] < arr[min]) {
+                /* 找到目前最小值 */
                 min = j /* 记录最小值 */
             }
         }
-        [arr[i], arr[min]] = [arr[min], arr[i]] /* 交换位置 */
+        ;[arr[i], arr[min]] = [arr[min], arr[i]] /* 交换位置 */
     }
     return arr
 }
@@ -196,9 +202,9 @@ const selectionSort = arr => {
 1. 从第一个元素开始，该元素可以认为已经被排序；
 2. 取出下一个元素，在已经排序的元素序列中从后向前扫描；
 3. 如果该元素（已排序）大于新元素，将该元素移到下一位置；
-4. 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
+4. 重复步骤 3，直到找到已排序的元素小于或者等于新元素的位置；
 5. 将新元素插入到该位置后；
-6. 重复步骤2~5。
+6. 重复步骤 2~5。
 
 图示如下：
 
@@ -214,8 +220,8 @@ const insertionSort = arr => {
         j = i - 1
         temp = arr[i]
         while (j >= 0 && arr[j] > temp) {
-          arr[j + 1] = arr[j]
-          j--
+            arr[j + 1] = arr[j]
+            j--
         }
         arr[j + 1] = temp
     }
@@ -234,18 +240,18 @@ const insertionSort = arr => {
 
 步长的选择是希尔排序的重要部分。
 
-只要最终步长为1任何步长序列都可以工作。
+只要最终步长为 1 任何步长序列都可以工作。
 
 算法最开始以一定的步长进行排序。
 
-然后会继续以一定步长进行排序，最终算法以步长为1进行排序。
+然后会继续以一定步长进行排序，最终算法以步长为 1 进行排序。
 
-当步长为1时，算法变为普通插入排序，这就保证了数据一定会被排序。
+当步长为 1 时，算法变为普通插入排序，这就保证了数据一定会被排序。
 
 插入排序的算法步骤如下：
 
 1. 定义一个用来分割的步长；
-2. 按步长的长度K，对数组进行K趟排序；
+2. 按步长的长度 K，对数组进行 K 趟排序；
 3. 不断重复上述步骤。
 
 图示如下：
@@ -260,8 +266,13 @@ const shellSort = arr => {
     let len = arr.length
     for (let g = 0, gLen = gaps.length; g < gaps.length; ++g) {
         for (let i = gaps[g]; i < len; ++i) {
-            let temp = arr[i], j
-            for (j = i; j >= gaps[g] && arr[j - gaps[g]] > arr[i]; j -= gaps[g]) {
+            let temp = arr[i],
+                j
+            for (
+                j = i;
+                j >= gaps[g] && arr[j - gaps[g]] > arr[i];
+                j -= gaps[g]
+            ) {
                 arr[j] = arr[j - gaps[g]]
             }
             arr[j] = temp
@@ -277,7 +288,7 @@ const shellSort = arr => {
 
 **快速排序（Quicksort）** 在平均状况下，排序 **n** 个项目要 **O(n log n)** 次比较。在最坏状况下则需要 **O(n<sup>2</sup>)** 次比较，但这种状况并不常见。事实上，快速排序 **O(n log n)** 通常明显比其他算法更快，因为它的 **内部循环（inner loop）** 可以在大部分的架构上很有效率地达成。
 
-快速排序使用 **分治法（Divide and conquer）** 策略来把一个序列分为较小和较大的2个子序列，然后递归地排序两个子序列。
+快速排序使用 **分治法（Divide and conquer）** 策略来把一个序列分为较小和较大的 2 个子序列，然后递归地排序两个子序列。
 
 快速排序的算法步骤如下：
 
@@ -324,7 +335,7 @@ const quickSort = arr => {
 
 基于这种情况，就有了 **三路快排（3 Ways Quick Sort）**
 
-三路快排就是将序列分为三部分：小于**pivot**，等于 **pivot** 和大于 **pivot**，之后递归的对小于v和大于v部分进行排序。
+三路快排就是将序列分为三部分：小于**pivot**，等于 **pivot** 和大于 **pivot**，之后递归的对小于 v 和大于 v 部分进行排序。
 
 <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/QuickSort3.png" style="display: block; margin: 10px auto; width: 100%;">
 
@@ -340,7 +351,7 @@ const quickSort = arr => {
     let center = []
     let right = []
     let pivot = arr[0]
-    for (let i = 0; i < len; ++i) {      
+    for (let i = 0; i < len; ++i) {
         if (arr[i] < pivot) {
             left.push(arr[i])
         } else if (arr[i] === pivot) {
@@ -359,7 +370,7 @@ const quickSort = arr => {
 
 ### **并归排序（Merge Sort）**
 
-**归并排序（Merge sort）** ，是创建在归并操作上的一种有效的排序算法，时间复杂度为 **O(n log n)** 。1945年由约翰·冯·诺伊曼首次提出。该算法是采用 **分治法（Divide and Conquer）** 的一个非常典型的应用，且各层分治递归可以同时进行。
+**归并排序（Merge sort）** ，是创建在归并操作上的一种有效的排序算法，时间复杂度为 **O(n log n)** 。1945 年由约翰·冯·诺伊曼首次提出。该算法是采用 **分治法（Divide and Conquer）** 的一个非常典型的应用，且各层分治递归可以同时进行。
 
 其实说白了就是将两个已经排序的序列合并成一个序列的操作。
 
@@ -370,7 +381,7 @@ const quickSort = arr => {
 1. 申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列；
 2. 设定两个指针，最初位置分别为两个已经排序序列的起始位置；
 3. 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置；
-4. 重复步骤3直到某一指针到达序列尾；
+4. 重复步骤 3 直到某一指针到达序列尾；
 5. 将另一序列剩下的所有元素直接复制到合并序列尾。
 
 具体实现如下：
@@ -402,8 +413,8 @@ const mergeSort = arr => {
 第二种是 **自下而上的迭代** ，由于 **分治法** 的具体算法基本都能用 **递归** 跟 **迭代** 来实现，所有才有这种写法，其主要步骤如下：
 
 1. 将序列每相邻两个数字进行 **归并操作** ，形成 **ceil(n / 2)** 个序列，排序后每个序列包含两/一个元素；
-2. 若此时序列数不是1个则将上述序列再次归并，形成 **ceil(n / 4)**  个序列，每个序列包含四/三个元素；
-3. 重复步骤2，直到所有元素排序完毕，即序列数为1。
+2. 若此时序列数不是 1 个则将上述序列再次归并，形成 **ceil(n / 4)** 个序列，每个序列包含四/三个元素；
+3. 重复步骤 2，直到所有元素排序完毕，即序列数为 1。
 
 具体实现如下：
 
@@ -482,23 +493,23 @@ const mergeSort = arr => {
 
 1. 最大堆： 最大堆任何一个父节点的值，都**大于等于**它左右孩子节点的值。
 
-   * 图示如下：
+    - 图示如下：
 
-     <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapB.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
+        <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapB.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
 
-   * 数组表示如下： 
+    - 数组表示如下：
 
-     `[10, 8, 9, 7, 5, 4, 6, 3, 2]`
+        `[10, 8, 9, 7, 5, 4, 6, 3, 2]`
 
 2. 最小堆：最小堆任何一个父节点的值，都**小于等于**它左右孩子节点的值。
 
-   * 图示如下：
+    - 图示如下：
 
-     <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapS.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
+        <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapS.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
 
-   * 数组表示如下： 
+    - 数组表示如下：
 
-     `[1, 3, 2, 6, 5, 7, 8, 9, 10]`
+        `[1, 3, 2, 6, 5, 7, 8, 9, 10]`
 
 堆排序的算法步骤如下：
 
@@ -510,43 +521,45 @@ const mergeSort = arr => {
 ```javascript
 // 位置交换
 const Swap = (array, a, b) => {
-    [array[a], array[b]] = [array[b], array[a]];
+    ;[array[a], array[b]] = [array[b], array[a]]
 }
 /* 堆下沉调整 */
 const adjustHeap = (arr, parentIndex, length) => {
-    let temp = list[parentIndex] /* temp保存父节点值，用于最后赋值 */
-    let childIndex = 2 * parentIndex + 1 /* 保存子节点位置 */
-    while (childIndex < length) {
+    let temp = list[parentIndex] /* temp保存父节点值，用于最后赋值 */
+    let childIndex = 2 * parentIndex + 1 /* 保存子节点位置 */
+    while (childIndex < length) {
         /* 如果有右子节点，且右子节点大于左子节点的值，则定位到右子节点 */
-        if (childIndex + 1 < length && list[childIndex + 1] > list[childIndex]) {
+        if (
+            childIndex + 1 < length &&
+            list[childIndex + 1] > list[childIndex]
+        ) {
             childIndex++
         }
         /* 如果父节点小于任何一个子节点的值，直接退出循环 */
-        if (temp >= list[childIndex]) {
+        if (temp >= list[childIndex]) {
             break
         }
         /* 无序交换，单向赋值即可 */
-        list[parentIndex] = list[childIndex]
-        parentIndex = childIndex
-        childIndex = 2 * childIndex + 1
+        list[parentIndex] = list[childIndex]
+        parentIndex = childIndex
+        childIndex = 2 * childIndex + 1
     }
-    list[parentIndex] = temp
+    list[parentIndex] = temp
 }
 // 使数组变为堆
-const heapify = (list, index, heapSize) => {
+const heapify = (list, index, heapSize) => {
     let largest = index
-    const left = (2 * index) + 1
-    const right = (2 * index) + 2
-  
-    
+    const left = 2 * index + 1
+    const right = 2 * index + 2
+
     if (left < heapSize && list[left] < list[index]) {
         largest = left
     }
-  
+
     if (right < heapSize && list[right] < list[largest]) {
         largest = right
     }
-  
+
     if (largest !== index) {
         Swap(list, index, largest)
         heapify(list, largest, heapSize)
@@ -582,11 +595,9 @@ const HeapSort = list => {
 
 <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/HeapSort.gif" style="display: block; margin: 10px auto;">
 
-
-
 ### **计数排序（Counting Sort）**
 
-**计数排序（Counting sort）** 是一种稳定的线性时间排序算法。该算法于1954年由 Harold H. Seward 提出。计数排序使用一个额外的数组来存储输入的元素，计数排序要求输入的数据必须是有确定范围的整数。
+**计数排序（Counting sort）** 是一种稳定的线性时间排序算法。该算法于 1954 年由 Harold H. Seward 提出。计数排序使用一个额外的数组来存储输入的元素，计数排序要求输入的数据必须是有确定范围的整数。
 
 当输入的元素是 **n** 个 **0** 到 **k** 之间的整数时，它的运行时间是 **O(n + k)** 。计数排序不是比较排序，排序的速度快于任何比较排序算法。
 
@@ -595,7 +606,7 @@ const HeapSort = list => {
 1. 找出待排序的数组中最大和最小的元素；
 2. 统计数组中每个值为 **i** 的元素出现的次数，存入数组 **C** 的第 **i** 项；
 3. 对所有的计数累加（从数组 **C** 中的第一个元素开始，每一项和前一项相加）；
-4. 反向填充目标数组：将每个元素 **i** 放在新数组的第 **C[i]** 项，每放一个元素就将 C[i] 减去1。
+4. 反向填充目标数组：将每个元素 **i** 放在新数组的第 **C[i]** 项，每放一个元素就将 C[i] 减去 1。
 
 具体实现如下：
 
@@ -647,18 +658,25 @@ const bucketSort = arr => {
     let bucketsCount = 10 /* 默认桶的数量 */
     const max = Math.max(...arr) /* 序列最大数字 */
     const min = Math.min(...arr) /* 数列最小数字 */
-    const bucketsSize = Math.floor((max - min) / bucketsCount) + 1 /* 桶的深度 */
+    const bucketsSize =
+        Math.floor((max - min) / bucketsCount) + 1 /* 桶的深度 */
     const __buckets = [] /* 空桶 */
     for (let i = 0, len = arr.length; i < len; ++i) {
-        const index = ~~(arr[i] / bucketsSize) /* 骚操作，取数列中最大或最小的序列 */
+        const index = ~~(
+            arr[i] / bucketsSize
+        ) /* 骚操作，取数列中最大或最小的序列 */
         if (!__buckets[index]) {
             __buckets[index] = [] /* 创建子桶 */
         }
         __buckets[index].push(arr[i])
         let bLen = __buckets[index].length
-        while (bLen > 0) { /* 子桶排序 */
+        while (bLen > 0) {
+            /* 子桶排序 */
             if (__buckets[index][bLen] < __buckets[index][bLen - 1]) {
-                [__buckets[index][bLen], __buckets[index][bLen - 1]] = [__buckets[index][bLen - 1], __buckets[index][bLen]]
+                ;[__buckets[index][bLen], __buckets[index][bLen - 1]] = [
+                    __buckets[index][bLen - 1],
+                    __buckets[index][bLen],
+                ]
             }
             bLen--
         }
@@ -693,9 +711,9 @@ const bucketSort = arr => {
 
 **基数排序** 、 **桶排序** 、 **计数排序** 原理都差不多，都借助了 **“桶”** 的概念，但是使用方式有明显的差异，其差异如下：
 
-* 基数排序：根据键值的每位数字来分配桶；
-* 桶排序：每个桶存储一定范围的数值；
-* 计数排序：每个桶只存储单一键值。
+-   基数排序：根据键值的每位数字来分配桶；
+-   桶排序：每个桶存储一定范围的数值；
+-   计数排序：每个桶只存储单一键值。
 
 **LSD** 图示如下：
 
@@ -713,7 +731,7 @@ const LSDRadixSort = arr => {
         start *= 10
         /* 入桶 */
         for (let i = 0, len = arr.length; i < len; ++i) {
-            const index = (arr[i] % start)
+            const index = arr[i] % start
             if (!buckets[index]) {
                 buckets[index] = []
             }
@@ -721,13 +739,13 @@ const LSDRadixSort = arr => {
         }
         arr = []
         /* 出桶 */
-        for(let i = 0; i < buckets.length; i++) {
+        for (let i = 0; i < buckets.length; i++) {
             if (buckets[i]) {
                 arr = arr.concat(buckets[i])
             }
         }
         buckets = []
-        digit --
+        digit--
     }
     return arr
 }
@@ -755,12 +773,12 @@ const cocktailSort = arr => {
     while (left < right) {
         for (i = left; i < right; ++i)
             if (arr[i] > arr[i + 1]) {
-                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
+                ;[arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
             }
         right--
         for (i = right; i > left; --i)
             if (arr[i - 1] > arr[i]) {
-                [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]]
+                ;[arr[i], arr[i - 1]] = [arr[i - 1], arr[i]]
             }
         left++
     }
@@ -770,7 +788,7 @@ const cocktailSort = arr => {
 
 ### **不正经的排序——睡眠排序（Sleep Sort）**
 
-这种排序算法是基于定时器来实现的，时间复杂度Mmmmmmmmmmm，空间复杂度Mmmmmmmmm，没有图示，具体实现如下：
+这种排序算法是基于定时器来实现的，时间复杂度 Mmmmmmmmmmm，空间复杂度 Mmmmmmmmm，没有图示，具体实现如下：
 
 ```javascript
 const list = [3, 4, 5, 8, 9, 7, 1, 3, 4, 3, 6]
@@ -778,13 +796,11 @@ const newList = []
 list.forEach(item => {
     setTimeout(function () {
         newList.push(item)
-	}, item * 100)
+    }, item * 100)
 })
 ```
 
-实用性为0，纯属娱乐，哈哈哈哈~
-
-
+实用性为 0，纯属娱乐，哈哈哈哈~
 
 <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/end.gif" style="display: block; margin: 10px auto;">
 
@@ -795,6 +811,5 @@ list.forEach(item => {
 算法的重要性是不言而喻的，虽然我们在日常生活中不一定会用得上怎样深奥的算法，但是或多或少都会接触到有，而且对于一些复杂的业务，算法思维往往能给我们不一样的灵感，更重要一点就是现在如果我们出去面试，算法也是一个绕不开的考点。
 
 本篇内容只是算法这个话题的入门知识点，更多的欢迎大家深入探索，有兴趣的也可以加鱼头的微信 **“krisChans95”** 一起探讨。
-
 
 ![https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/base/qrcode-all1.png](https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/base/qrcode-all1.png)
