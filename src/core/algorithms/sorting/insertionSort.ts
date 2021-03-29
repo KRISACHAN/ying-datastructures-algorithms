@@ -2,7 +2,7 @@ import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 
 const InsertionSort = <T>(
     list: T[],
-    compareFn: ICompareFunction<any> = defaultCompare,
+    compareFn: ICompareFunction<number | T> = defaultCompare,
 ): T[] => {
     const len: number = list.length
     let j: number, temp: T

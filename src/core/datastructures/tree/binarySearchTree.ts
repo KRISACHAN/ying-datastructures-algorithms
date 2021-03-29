@@ -358,9 +358,9 @@ export default class BinarySearchTree<T> {
         if (this.compareFn(key, node.key) === Compare.EQUALS) {
             return this.mergeChild(node)
         }
-        let current: BSTNode<T> | any = node
-        let parent: BSTNode<T> | any
-        let keyword = ''
+        let current: BSTNode<T> = node
+        let parent: BSTNode<T>
+        let keyword: 'left' | 'right'
         while (current && current.key !== key) {
             parent = current
             if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {

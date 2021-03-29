@@ -7,10 +7,10 @@ import DoublyLinkedList from 'core/datastructures/linkedList/doublyLinkedList'
 
 import { MyObj } from 'core/node'
 
-const bst: BinarySearchTree<any> = new BinarySearchTree<any>()
-const avlt: AdelsonVelskiiLandiTree<any> = new AdelsonVelskiiLandiTree<any>()
-const rbt: RedBlackTree<any> = new RedBlackTree<any>()
-const dict: Dictionary<any, any> = new Dictionary()
+const bst: BinarySearchTree<unknown> = new BinarySearchTree<unknown>()
+const avlt: AdelsonVelskiiLandiTree<unknown> = new AdelsonVelskiiLandiTree<unknown>()
+const rbt: RedBlackTree<unknown> = new RedBlackTree<unknown>()
+const dict: Dictionary<unknown, unknown> = new Dictionary()
 const dict2 = new Dictionary<MyObj, MyObj>()
 const graph = new Graph<number | string>()
 

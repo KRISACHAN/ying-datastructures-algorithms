@@ -2,7 +2,7 @@
  * 队列（Queue）：先进先出（FIFO, First In First Out）的数据结构
  */
 export default class Queue<T> {
-    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存队列的元素
+    private items: WeakMap<Queue<T>, Array<T>> = new WeakMap() // 保存队列的元素
     constructor() {
         this.items.set(this, [])
     }

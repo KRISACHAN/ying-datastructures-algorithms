@@ -10,7 +10,7 @@ const heapify = (
     list: DefalutListType,
     index: number,
     heapSize: number,
-    compareFn: ICompareFunction<any>,
+    compareFn: ICompareFunction<number>,
 ): void => {
     let largest = index
     const left = 2 * index + 1
@@ -39,7 +39,7 @@ const heapify = (
 // 创建最大堆
 const buildMaxHeap = (
     list: DefalutListType,
-    compareFn: ICompareFunction<any>,
+    compareFn: ICompareFunction<number>,
 ): DefalutListType => {
     for (let i = Math.floor(list.length / 2); i >= 0; i -= 1) {
         heapify(list, i, list.length, compareFn)

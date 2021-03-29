@@ -16,10 +16,10 @@ class QueueElement<T> {
  * 这里用js的数组来实现
  */
 export default class PriorityQueue<T> {
-    private items: WeakMap<Record<string, any>, Array<T>> = new WeakMap() // 保存队列的元素
+    private items: QueueElement<T>[] // 保存队列的元素
     constructor(public compareFn: ICompareFunction<number> = defaultCompare) {
         this.compareFn = compareFn
-        this.items.set(this, [])
+        this.items = []
     }
     enqueue(element: T, priority: number): PriorityQueue<T> {
         // 向队尾添加一个元素以及权重
@@ -28,68 +28,62 @@ export default class PriorityQueue<T> {
             priority,
         )
         let added = false
-        const q: any[] = this.items.get(this)
         if (this.isEmpty()) {
-            q.push(queueElement)
+            this.items.push(queueElement)
         } else {
-            for (let i = 0; i < q.length; ++i) {
+            for (let i = 0; i < this.size(); ++i) {
                 if (
-                    this.compareFn(queueElement.priority, q[i].priority) ===
-                    Compare.LESS_THAN
+                    this.compareFn(
+                        queueElement.priority,
+                        this.items[i].priority,
+                    ) === Compare.LESS_THAN
                 ) {
-                    q.splice(i, 0, queueElement)
+                    this.items.splice(i, 0, queueElement)
                     added = true
                     break
                 }
             }
             if (!added) {
-                q.push(queueElement)
+                this.items.push(queueElement)
             }
         }
         return this
     }
-    dequeue(): T {
+    dequeue(): QueueElement<T> {
         // 删除队首的元素
-        const q: T[] = this.items.get(this)
-        const r: T = q.shift()
-        return r
+        return this.items.shift()
     }
-    front(): T {
+    front(): QueueElement<T> {
         // 读取队首
-        const q: T[] = this.items.get(this)
-        return q[0]
+        return this.items[0]
     }
-    back(): T {
+    back(): QueueElement<T> {
         // 读取队尾
-        const q: T[] = this.items.get(this)
-        return q[q.length - 1]
+        return this.items[this.size() - 1]
     }
     isEmpty(): boolean {
         // 能简单地判断内部队列的长度是否为0
-        const q: T[] = this.items.get(this)
-        return q.length === 0
+        return this.size() === 0
     }
     clear(): void {
         // 把队列中的元素全部移除
-        this.items.set(this, [])
+        this.items = []
     }
     size(): number {
         // 队列长度
-        const q: T[] = this.items.get(this)
-        return q.length
+        return this.items.length
     }
     toString(): string {
         // 字符串化
         if (this.isEmpty()) {
             return ''
         }
-        const q: any[] = this.items.get(this)
         let objString = ''
         for (let i = 0, len = this.size(); i < len; ++i) {
             if (i < len - 1) {
-                objString += `${q[i].element},`
+                objString += `${this.items[i].element},`
             } else {
-                objString += `${q[i].element}`
+                objString += `${this.items[i].element}`
             }
         }
         return objString

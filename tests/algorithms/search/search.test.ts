@@ -16,6 +16,7 @@ import {
 } from 'core/algorithms/search/fibonacciSearch'
 import TreeSearch from 'core/algorithms/search/treeSearch'
 import HashSearch from 'core/algorithms/search/hashSearch'
+import BlockSearch from 'core/algorithms/search/blockSearch'
 
 describe('Search', () => {
     const list: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
@@ -73,7 +74,7 @@ describe('Search', () => {
     })
 
     test('HashTable', () => {
-        const hs: HashSearch<any, any> = new HashSearch<any, any>()
+        const hs: HashSearch<any> = new HashSearch<any>()
         const list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
         list.forEach((item, idx) => {
             hs.put(`id-${idx}`, item)
@@ -85,5 +86,21 @@ describe('Search', () => {
             list.map((item, idx) => `[#id-${idx}: ${item}]`).join(','),
         )
         expect(hs.remove(`id-${1}`).get(`id-${1}`)).toEqual(undefined)
+    })
+
+    test('BlockSearch', () => {
+        const LIST = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67, 50]
+        const DEPTH = 3
+        const bs: BlockSearch = new BlockSearch(LIST, DEPTH)
+        const NOT_EXIST = [-1]
+        expect(bs.search(3)).toEqual(NOT_EXIST)
+        expect(bs.search(9)).toEqual([0, 0])
+        bs.insert(38)
+        expect(bs.search(38)).toEqual([2, 3])
+        bs.remove(9)
+        expect(bs.search(9)).toEqual(NOT_EXIST)
+        bs.remove(50)
+        expect(bs.size()).toEqual(10)
+        expect(bs.blockSize()).toEqual(4)
     })
 })

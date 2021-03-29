@@ -3,7 +3,7 @@ import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 const Merge = <T>(
     left: T[],
     right: T[],
-    compareFn: ICompareFunction<any>,
+    compareFn: ICompareFunction<number | T>,
 ): T[] => {
     const resArr = []
     while (left.length && right.length) {
@@ -18,7 +18,7 @@ const Merge = <T>(
 
 const MergeSort = <T>(
     list: T[],
-    compareFn: ICompareFunction<any> = defaultCompare,
+    compareFn: ICompareFunction<number> = defaultCompare,
 ): T[] => {
     if (list.length <= 1) {
         return list

@@ -8,7 +8,7 @@ import {
 const BucketSort = (
     list: DefalutListType,
     bucketsCount = 10 /* 默认桶的数量 */,
-    compareFn: ICompareFunction<any> = defaultCompare,
+    compareFn: ICompareFunction<number> = defaultCompare,
 ): DefalutListType => {
     const max: number = Math.max(...list) /* 序列最大数字 */
     const min: number = Math.min(...list) /* 数列最小数字 */

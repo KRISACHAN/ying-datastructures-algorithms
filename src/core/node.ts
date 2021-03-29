@@ -1,4 +1,5 @@
 import { Colors, ColorTexts } from './utils'
+
 // 链表节点
 export class LLNode<T> {
     constructor(public element: T, public next?: LLNode<T>) {

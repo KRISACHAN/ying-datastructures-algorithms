@@ -495,7 +495,7 @@ const mergeSort = arr => {
 
     - 图示如下：
 
-        <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapB.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
+          <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapB.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
 
     - 数组表示如下：
 
@@ -505,7 +505,7 @@ const mergeSort = arr => {
 
     - 图示如下：
 
-        <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapS.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
+          <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapS.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
 
     - 数组表示如下：
 

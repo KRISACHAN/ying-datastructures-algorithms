@@ -7,14 +7,19 @@ import { ValuePair, tableType } from 'core/node'
  * 这个映射函数称做散列函数，存放记录的数组称做散列表。
  * 散列算法的作用是尽可能快地在数据结构中找到一个值。
  */
-export default class HashTable<K, V> {
-    private table: tableType<K, V> = {} // 数据源
-    constructor(private toStrFn = (key: K): string => defaultToString(key)) {
+
+type KeyType = number | string
+
+export default class HashTable<V> {
+    private table: tableType<KeyType, V> = {} // 数据源
+    constructor(
+        private toStrFn = (key: KeyType): string => defaultToString(key),
+    ) {
         this.toStrFn = toStrFn
     }
     // 散列函数
     // 给定一个key参数，我们就能根据组成key的每个字符的ASCII码值的和得到一个数字。
-    private loseloseHashCode(key: K, div = 37) {
+    private loseloseHashCode(key: KeyType, div = 37): KeyType {
         if (dataType(key) === 'number') {
             return key
         }
@@ -26,25 +31,25 @@ export default class HashTable<K, V> {
         return hash % div
     }
     // 创建hash
-    hashCode(key: K, div = 37): any {
+    hashCode(key: KeyType, div = 37): KeyType {
         return this.loseloseHashCode(key, div)
     }
     // 向散列表增加一个新的项
-    put(key: K, value: V): HashTable<K, V> {
+    put(key: KeyType, value: V): HashTable<V> {
         if (isExistAll(key, value)) {
-            const position: any = this.hashCode(key) // 查看表中位置
+            const position: KeyType = this.hashCode(key) // 查看表中位置
             this.table[position] = new ValuePair(key, value) // 赋值
         }
         return this
     }
     // 返回根据键值检索到的特定的值。
-    get(key: K): V {
-        const valuePair: any = this.table[this.hashCode(key)]
+    get(key: KeyType): V {
+        const valuePair: ValuePair<KeyType, V> = this.table[this.hashCode(key)]
         return valuePair?.value
     }
     // 根据键值从散列表中移除值。
-    remove(key: K): HashTable<K, V> {
-        const hash: any = this.hashCode(key)
+    remove(key: KeyType): HashTable<V> {
+        const hash: KeyType = this.hashCode(key)
         const valuePair = this.table[hash]
         if (valuePair) {
             delete this.table[hash]
@@ -55,24 +60,24 @@ export default class HashTable<K, V> {
     // 将表中所包含的所有数值以数组形式返回
     values(): V[] {
         return this.keyValues().map(
-            (valuePair: ValuePair<K, V>) => valuePair.value,
+            (valuePair: ValuePair<KeyType, V>) => valuePair.value,
         )
     }
 
     // 将表中所包含的所有键名以数组形式返回
-    keys(): K[] {
+    keys(): KeyType[] {
         return this.keyValues().map(
-            (valuePair: ValuePair<K, V>) => valuePair.key,
+            (valuePair: ValuePair<KeyType, V>) => valuePair.key,
         )
     }
 
     // 将表中所包含的所有键与值以数组形式返回
-    keyValues(): ValuePair<K, V>[] {
+    keyValues(): ValuePair<KeyType, V>[] {
         return Object.values(this.table)
     }
 
     // 表中循环forEach
-    forEach(callbackFn: (key: K, value: V) => unknown): void {
+    forEach(callbackFn: (key: KeyType, value: V) => unknown): void {
         const valuePairs = this.keyValues()
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             callbackFn(valuePairs[i].key, valuePairs[i].value)
@@ -80,7 +85,7 @@ export default class HashTable<K, V> {
     }
 
     // 表中循环map
-    map(callbackFn: (key: K, value: V) => unknown): unknown[] {
+    map(callbackFn: (key: KeyType, value: V) => unknown): unknown[] {
         const valuePairs = this.keyValues()
         const resList: unknown[] = []
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
@@ -91,7 +96,7 @@ export default class HashTable<K, V> {
     }
 
     // 表中循环filter
-    filter(callbackFn: (key: K, value: V) => any): any[] {
+    filter(callbackFn: (key: KeyType, value: V) => unknown): unknown[] {
         const valuePairs = this.keyValues()
         const resList: unknown[] = []
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
@@ -120,7 +125,7 @@ export default class HashTable<K, V> {
     }
 
     // 获取当前表
-    getTable(): tableType<K, V> {
+    getTable(): tableType<KeyType, V> {
         return this.table
     }
 

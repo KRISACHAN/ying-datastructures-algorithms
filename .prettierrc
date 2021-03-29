@@ -1,4 +1,5 @@
 {
+    "tabWidth": 4,
     "printWidth": 80,
     "semi": false,
     "singleQuote": true,
@@ -6,5 +7,5 @@
     "bracketSpacing": true,
     "arrowParens": "avoid",
     "requirePragma": false,
-    "endOfLine": "auto" 
+    "endOfLine": "auto"
 }

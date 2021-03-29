@@ -117,9 +117,9 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
         if (this.compareFn(key, node.key) === Compare.EQUALS) {
             return this.mergeChild(node)
         }
-        let current: RBNode<T> | any = node
-        let parent: RBNode<T> | any
-        let keyword = ''
+        let current: RBNode<T> = node
+        let parent: RBNode<T>
+        let keyword: 'left' | 'right'
         while (current && current.key !== key) {
             parent = current
             if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {

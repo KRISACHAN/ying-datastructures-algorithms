@@ -54,7 +54,7 @@ export const defaultCompare = <T>(a: T, b: T): number => {
 }
 
 // 将数据转换成字符串
-export const defaultToString = (item: null | undefined | string): string => {
+export const defaultToString = (item: unknown): string => {
     if (item === null) {
         return 'NULL'
     } else if (item === undefined) {
@@ -62,7 +62,7 @@ export const defaultToString = (item: null | undefined | string): string => {
     } else if (typeof item === 'string') {
         return item
     }
-    return item + ''
+    return item.toString()
 }
 
 // 数据交换

@@ -17,7 +17,7 @@ import {
 import HashSearch from 'core/algorithms/search/HashSearch'
 import BlockSearch from 'core/algorithms/search/blockSearch'
 
-const hs: HashSearch<any, any> = new HashSearch<any, any>()
+const hs: HashSearch<unknown> = new HashSearch<unknown>()
 
 const list: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
 const key1 = 17
@@ -42,16 +42,18 @@ console.log({
 })
 
 list.forEach((item, idx) => {
-    hs.put(`id-${idx}`, item)
+    hs.put(idx, item)
 })
 
 console.log(hs.toString())
 
-const list2: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
-const bs: BlockSearch = new BlockSearch(list2)
-
+const LIST = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67, 50]
+const DEPTH = 3
+const bs: BlockSearch = new BlockSearch(LIST, DEPTH)
 console.log(bs.search(3))
-console.log(bs.search(9))
 bs.insert(38)
-bs.remove(9).remove(12).remove(13)
-bs.print()
+console.log(bs.search(38))
+bs.remove(9)
+console.log(bs.search(9))
+bs.remove(50)
+console.log(bs.size())
