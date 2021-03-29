@@ -491,23 +491,23 @@ const mergeSort = arr => {
 
 **鱼头注：以下图片来自于：[漫画：什么是二叉堆？（修正版）](https://mp.weixin.qq.com/s/cq2EhVtOTzTVpNpLDXfeJg)**
 
-1. 最大堆： 最大堆任何一个父节点的值，都**大于等于**它左右孩子节点的值。
+1.  最大堆： 最大堆任何一个父节点的值，都**大于等于**它左右孩子节点的值。
 
-    - 图示如下：
+    -   图示如下：
 
-          <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapB.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
+            <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapB.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
 
-    - 数组表示如下：
+    -   数组表示如下：
 
         `[10, 8, 9, 7, 5, 4, 6, 3, 2]`
 
-2. 最小堆：最小堆任何一个父节点的值，都**小于等于**它左右孩子节点的值。
+2.  最小堆：最小堆任何一个父节点的值，都**小于等于**它左右孩子节点的值。
 
-    - 图示如下：
+    -   图示如下：
 
-          <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapS.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
+            <img src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/cs/sorting/BinaryHeapS.png" style="display: block; margin: 10px auto; max-width: 300px; width: 100%;" />
 
-    - 数组表示如下：
+    -   数组表示如下：
 
         `[1, 3, 2, 6, 5, 7, 8, 9, 10]`
 
