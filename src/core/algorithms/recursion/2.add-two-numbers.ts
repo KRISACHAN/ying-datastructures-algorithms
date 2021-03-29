@@ -11,7 +11,7 @@
  * @input l1 = [0], l2 = [0]
  * @output [0]
  *
- * @example2
+ * @example3
  * @input l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
  * @output [8,9,9,9,0,0,0,1]
  */
@@ -29,15 +29,18 @@ const coreRecursiver = (
     l2: ListNode | null,
     prevCount = 0,
 ): ListNode | null => {
+    // 边界处理
     if (l1 === null && l2 === null && prevCount === 0) {
         return null
     }
     const l1Val: number = l1 ? l1.val : 0
     const l2Val: number = l2 ? l2.val : 0
+    // 当前节点需要的值，要确保小于10
     const curCount: number = l1Val + l2Val + prevCount
     const curNode: ListNode | null = new ListNode(curCount % 10)
     const l1Next: ListNode | null = l1 ? l1.next : null
     const l2Next: ListNode | null = l2 ? l2.next : null
+    // 当前子节点需要的值，往下要传递超过10的部分，不超过10则传递0
     curNode.next = coreRecursiver(l1Next, l2Next, Math.floor(curCount / 10))
     return curNode
 }

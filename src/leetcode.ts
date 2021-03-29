@@ -14,6 +14,14 @@ l2.next.next = new ListNode(4)
 console.log(l1)
 console.log(l2)
 
-const res = addTwoNumbers(l1, l2)
+let resNode = addTwoNumbers(l1, l2)
+
+const res = []
+
+while (resNode && resNode.val !== null) {
+    console.log(resNode)
+    res.push(resNode.val)
+    resNode = resNode.next
+}
 
 console.log(res)
