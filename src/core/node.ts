@@ -87,3 +87,13 @@ export class ValuePair<K, V> {
 export interface tableType<K, V> {
     [key: string]: ValuePair<K, V>
 }
+
+// leetcode 用
+export class LeetListNode {
+    val: number
+    next: LeetListNode | null
+    constructor(val?: number, next?: LeetListNode | null) {
+        this.val = val === undefined ? 0 : val
+        this.next = next === undefined ? null : next
+    }
+}
