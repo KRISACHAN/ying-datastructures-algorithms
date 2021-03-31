@@ -7,28 +7,43 @@ import { letterCombinations } from 'core/algorithms/recursion/17.letter-combinat
 import { mergeTwoLists } from 'core/algorithms/recursion/21.merge-two-sorted-lists'
 
 describe('recursion', () => {
+    const createNode = (data: unknown) => {
+        let curNode
+        if (data === undefined || data === null) {
+            curNode = new LeetListNode(null)
+        } else if (Array.isArray(data)) {
+            const [head, ...list] = data
+            curNode = new LeetListNode(head)
+            let nextNode = curNode
+            list.forEach(item => {
+                nextNode.next = new LeetListNode(item)
+                nextNode = nextNode.next
+            })
+        }
+
+        return curNode
+    }
+
+    const getRes = (node: LeetListNode): number[] => {
+        const res = []
+
+        while (node && node.val !== null) {
+            res.push(node.val)
+            node = node.next
+        }
+
+        return res
+    }
+
     test(`
         add-two-numbers
             l1 = [2,4,3]
             l2 = [5,6,4]
     `, () => {
-        const l1 = new LeetListNode(2)
-        l1.next = new LeetListNode(4)
-        l1.next.next = new LeetListNode(3)
-
-        const l2 = new LeetListNode(5)
-        l2.next = new LeetListNode(6)
-        l2.next.next = new LeetListNode(4)
-
-        let resNode = addTwoNumbers(l1, l2)
-
-        const res = []
-
-        while (resNode && resNode.val !== null) {
-            res.push(resNode.val)
-            resNode = resNode.next
-        }
-
+        const l1 = createNode([2, 4, 3])
+        const l2 = createNode([5, 6, 4])
+        const resNode = addTwoNumbers(l1, l2)
+        const res = getRes(resNode)
         expect(res).toEqual([7, 0, 8])
     })
 
