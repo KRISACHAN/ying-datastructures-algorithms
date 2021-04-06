@@ -89,10 +89,12 @@ export interface tableType<K, V> {
 }
 
 // leetcode 用
+
+export type LeetListNodeType = LeetListNode | null
 export class LeetListNode {
     val: number
-    next: LeetListNode | null
-    constructor(val?: number, next?: LeetListNode | null) {
+    next: LeetListNodeType
+    constructor(val?: number, next?: LeetListNodeType) {
         this.val = val === undefined ? 0 : val
         this.next = next === undefined ? null : next
     }
