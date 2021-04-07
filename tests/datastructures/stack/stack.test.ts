@@ -2,9 +2,9 @@ import Stack from 'core/datastructures/stack/stack'
 import { MyObj } from 'core/node'
 
 describe('Stack', () => {
-    let stack: Stack<number>
+    let stack: Stack<number | string>
     beforeEach(() => {
-        stack = new Stack<number>()
+        stack = new Stack<number | string>()
     })
     it('starts empty', () => {
         expect(stack.size()).toBe(0)
@@ -129,11 +129,11 @@ describe('Stack', () => {
         expect(stack.isEmpty()).toBe(true)
     })
     it('is palindrome', () => {
-        const isPalindrome = (word: any): boolean => {
-            for (let i: number = 0, len: number = word.length; i < len; ++i) {
+        const isPalindrome = (word: string): boolean => {
+            for (let i = 0, len: number = word.length; i < len; ++i) {
                 stack.push(word[i])
             }
-            let rword: string = ''
+            let rword = ''
             while (stack.size() > 0) {
                 rword += stack.pop()
             }
@@ -145,15 +145,15 @@ describe('Stack', () => {
     it('hex converter', () => {
         const hexConverter = (decNumber: number, base: number): string => {
             let rem: number
-            let binaryString: string = ''
-            let digits: string = '0123456789ABCDEF'
+            let binaryString = ''
+            const digits = '0123456789ABCDEF'
             while (decNumber > 0) {
                 rem = Math.floor(decNumber % base)
                 stack.push(rem)
                 decNumber = Math.floor(decNumber / base)
             }
             while (!stack.isEmpty()) {
-                binaryString += digits[stack.pop()]
+                binaryString += digits[(stack as Stack<number>).pop()]
             }
             return binaryString
         }

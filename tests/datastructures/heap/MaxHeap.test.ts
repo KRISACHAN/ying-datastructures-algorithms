@@ -157,7 +157,7 @@ describe('MaxHeap', () => {
 
         expect(maxHeap.toString()).toBe('dddd,ccc,bb,a')
 
-        const comparator = (a: any, b: any): number => {
+        const comparator = (a: number[], b: number[]): number => {
             if (a.length === b.length) {
                 return 0
             }

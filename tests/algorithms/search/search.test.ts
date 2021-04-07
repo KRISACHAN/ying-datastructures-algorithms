@@ -20,8 +20,8 @@ import BlockSearch from 'core/algorithms/search/blockSearch'
 
 describe('Search', () => {
     const list: number[] = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
-    const key1: number = 17
-    const key2: number = 3
+    const key1 = 17
+    const key2 = 3
     test('BinarySearch', () => {
         expect(recursionBinarySearch(list, key1)).toEqual(4)
         expect(recursionBinarySearch(list, key2)).toEqual(-1)
@@ -55,7 +55,7 @@ describe('Search', () => {
     })
 
     test('TreeSearch', () => {
-        let ts: TreeSearch<any> = new TreeSearch<any>()
+        const ts: TreeSearch<any> = new TreeSearch<any>()
         const list = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9]
         list.forEach(item => {
             ts.insert(item)
@@ -74,7 +74,9 @@ describe('Search', () => {
     })
 
     test('HashTable', () => {
-        const hs: HashSearch<any> = new HashSearch<any>()
+        const hs: HashSearch<string | number> = new HashSearch<
+            string | number
+        >()
         const list = [50, 17, 72, 12, 13, 54, 76, 9, 14, 19, 67]
         list.forEach((item, idx) => {
             hs.put(`id-${idx}`, item)

@@ -5,7 +5,7 @@ import RedBlackTree from 'core/datastructures/tree/redBlackTree'
 describe('RedBlackTree', () => {
     let tree: RedBlackTree<number>
 
-    const assertNode = (node: RBNode<any>, key: any, color: Colors) => {
+    const assertNode = (node: RBNode<number>, key: number, color: Colors) => {
         expect(node.color).toEqual(color)
         expect(node.key).toEqual(key)
     }

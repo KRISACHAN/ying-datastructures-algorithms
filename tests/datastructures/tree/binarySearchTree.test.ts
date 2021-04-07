@@ -1,3 +1,4 @@
+import { BSTNode } from 'core/node'
 import BinarySearchTree from 'core/datastructures/tree/binarySearchTree'
 
 describe('BinarySearchTree', () => {
@@ -11,7 +12,12 @@ describe('BinarySearchTree', () => {
         expect(bst.getRoot()).toEqual(undefined)
     })
 
-    function assertNode(node: any, key: number, left: number, right: number) {
+    function assertNode(
+        node: BSTNode<number>,
+        key: number,
+        left: number,
+        right: number,
+    ) {
         if (key) {
             expect(node.key).toEqual(key)
         } else {
