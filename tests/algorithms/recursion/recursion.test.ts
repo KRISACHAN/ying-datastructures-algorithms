@@ -1,29 +1,33 @@
-import { LeetListNode, LeetListNodeType } from 'core/node'
+import { ListNode, ListNodeType } from 'core/leetNode'
 import { addTwoNumbers } from 'core/algorithms/recursion/2.add-two-numbers'
 import { letterCombinations } from 'core/algorithms/recursion/17.letter-combinations-of-a-phone-number'
 import { mergeTwoLists } from 'core/algorithms/recursion/21.merge-two-sorted-lists'
 import { swapPairs } from 'core/algorithms/recursion/24.swap-nodes-in-pairs'
+import { isValidBST } from 'core/algorithms/recursion/98.validate-binary-search-tree'
+import { TreeNodeType, TreeNode } from 'core/leetNode'
 
 describe('recursion', () => {
-    const createNode = (data: number | undefined | null | number[]) => {
-        let curNode: LeetListNodeType
+    const createNode = (
+        data: number | undefined | null | number[],
+    ): ListNodeType => {
+        let curNode: ListNodeType
         if (data === undefined || data === null) {
-            curNode = new LeetListNode(null)
+            curNode = new ListNode(null)
         } else if (Array.isArray(data)) {
             const [head, ...list] = data
-            curNode = new LeetListNode(head)
+            curNode = new ListNode(head)
             let nextNode = curNode
             list.forEach(item => {
-                nextNode.next = new LeetListNode(item)
+                nextNode.next = new ListNode(item)
                 nextNode = nextNode.next
             })
         } else {
-            curNode = new LeetListNode(data)
+            curNode = new ListNode(data)
         }
         return curNode
     }
 
-    const getRes = (node: LeetListNode): number[] => {
+    const getRes = (node: ListNode): number[] => {
         const res = []
         while (node && node.val !== null) {
             res.push(node.val)
@@ -153,5 +157,29 @@ describe('recursion', () => {
         const swapedHead = swapPairs(head)
         const res = createNode([1])
         expect(swapedHead).toEqual(res)
+    })
+
+    test(`
+        validate-binary-search-tree
+        输入: [2, 1, 3]
+        输出: true
+    `, () => {
+        const left: TreeNodeType = new TreeNode(1)
+        const right: TreeNodeType = new TreeNode(3)
+        const root: TreeNodeType = new TreeNode(2, left, right)
+        expect(isValidBST(root)).toEqual(true)
+    })
+
+    test(`
+        validate-binary-search-tree
+        输入: [5,1,4,null,null,3,6]
+        输出: false
+    `, () => {
+        const left: TreeNodeType = new TreeNode(1)
+        const rightLeft: TreeNodeType = new TreeNode(3)
+        const rightRight: TreeNodeType = new TreeNode(3)
+        const right: TreeNodeType = new TreeNode(4, rightLeft, rightRight)
+        const root: TreeNodeType = new TreeNode(5, left, right)
+        expect(isValidBST(root)).toEqual(false)
     })
 })

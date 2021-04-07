@@ -14,12 +14,9 @@
  * @input l1 = [], l2 = [0]
  * @output [0]
  */
-import { LeetListNodeType } from 'core/node'
+import { ListNodeType } from 'core/leetNode'
 
-const coreRecursiver = (
-    l1: LeetListNodeType,
-    l2: LeetListNodeType,
-): LeetListNodeType => {
+const coreRecursiver = (l1: ListNodeType, l2: ListNodeType): ListNodeType => {
     // 边界处理
     if (!l1 && !l2) {
         return null
@@ -47,6 +44,6 @@ const coreRecursiver = (
 }
 
 export const mergeTwoLists = (
-    l1: LeetListNodeType,
-    l2: LeetListNodeType,
-): LeetListNodeType => coreRecursiver(l1, l2)
+    l1: ListNodeType,
+    l2: ListNodeType,
+): ListNodeType => coreRecursiver(l1, l2)

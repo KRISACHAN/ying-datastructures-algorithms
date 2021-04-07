@@ -14,18 +14,18 @@
  * @input head = [1]
  * @output [1]
  */
-import { LeetListNodeType } from 'core/node'
+import { ListNodeType } from 'core/leetNode'
 
-const coreRecursiver = (head: LeetListNodeType): LeetListNodeType => {
+const coreRecursiver = (head: ListNodeType): ListNodeType => {
     // 边界处理
     if (!head || !head.next) {
         return head
     }
-    const tmpNode: LeetListNodeType = head.next
+    const tmpNode: ListNodeType = head.next
     head.next = coreRecursiver(tmpNode.next)
     tmpNode.next = head
     return tmpNode
 }
 
-export const swapPairs = (head: LeetListNodeType): LeetListNodeType =>
+export const swapPairs = (head: ListNodeType): ListNodeType =>
     coreRecursiver(head)

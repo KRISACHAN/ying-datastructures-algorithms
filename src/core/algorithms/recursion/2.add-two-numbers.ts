@@ -15,13 +15,13 @@
  * @input l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
  * @output [8,9,9,9,0,0,0,1]
  */
-import { LeetListNode, LeetListNodeType } from 'core/node'
+import { ListNode, ListNodeType } from 'core/leetNode'
 
 const coreRecursiver = (
-    l1: LeetListNodeType,
-    l2: LeetListNodeType,
+    l1: ListNodeType,
+    l2: ListNodeType,
     prevCount = 0,
-): LeetListNodeType => {
+): ListNodeType => {
     // 边界处理
     if (!l1 && !l2 && prevCount === 0) {
         return null
@@ -30,15 +30,15 @@ const coreRecursiver = (
     const l2Val: number = l2?.val || 0
     // 当前节点需要的值，要确保小于10
     const curCount: number = l1Val + l2Val + prevCount
-    const curNode: LeetListNodeType = new LeetListNode(curCount % 10)
-    const l1Next: LeetListNodeType = l1?.next || null
-    const l2Next: LeetListNodeType = l2?.next || null
+    const curNode: ListNodeType = new ListNode(curCount % 10)
+    const l1Next: ListNodeType = l1?.next || null
+    const l2Next: ListNodeType = l2?.next || null
     // 当前子节点需要的值，往下要传递超过10的部分，不超过10则传递0
     curNode.next = coreRecursiver(l1Next, l2Next, Math.floor(curCount / 10))
     return curNode
 }
 
 export const addTwoNumbers = (
-    l1: LeetListNodeType,
-    l2: LeetListNodeType,
-): LeetListNodeType => coreRecursiver(l1, l2, 0)
+    l1: ListNodeType,
+    l2: ListNodeType,
+): ListNodeType => coreRecursiver(l1, l2, 0)
