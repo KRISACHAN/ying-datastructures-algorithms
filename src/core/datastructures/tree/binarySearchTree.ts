@@ -6,7 +6,7 @@ import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
 在右侧节点存储（比父节点）大（或者等于）的值。
  */
 export default class BinarySearchTree<T> {
-    protected root: BSTNode<T>
+    root: BSTNode<T>
     protected compareFn: ICompareFunction<T> = defaultCompare
     constructor() {}
 

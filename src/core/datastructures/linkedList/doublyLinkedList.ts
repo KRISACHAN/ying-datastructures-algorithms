@@ -9,8 +9,6 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
 
     constructor() {
         super()
-        // this.head = null // 链表头部
-        // this.length = 0 // 链表长度
     }
 
     append(element: T): DoublyLinkedList<T> {

@@ -1,3 +1,4 @@
+import { DLLNode } from 'core/node'
 import DoublyLinkedList from 'core/datastructures/linkedList/doublyLinkedList'
 describe('DoublyLinkedList', () => {
     let list: DoublyLinkedList<number>
@@ -10,7 +11,7 @@ describe('DoublyLinkedList', () => {
         max = 3
     })
 
-    function verifyNode(current: any, i: number) {
+    function verifyNode(current: DLLNode<number>, i: number) {
         expect(current.element).not.toBeUndefined()
         expect(current.element).toEqual(i)
 
@@ -40,7 +41,6 @@ describe('DoublyLinkedList', () => {
         let current = list.getHead()
         for (let i = min; i <= max; i++) {
             expect(current).not.toBeNull()
-            // TS strictNullChecks
             if (current) {
                 verifyNode(current, i)
                 current = current.next
@@ -53,7 +53,6 @@ describe('DoublyLinkedList', () => {
         let current = list.getTail()
         for (let i = max; i >= min; i--) {
             expect(current).not.toBeNull()
-            // TS strictNullChecks
             if (current) {
                 verifyNode(current, i)
                 current = current.prev
@@ -69,7 +68,6 @@ describe('DoublyLinkedList', () => {
     })
 
     it('returns element at specific index: invalid position', () => {
-        // list is empty
         expect(list.getAt(3)).toBeNull()
     })
 

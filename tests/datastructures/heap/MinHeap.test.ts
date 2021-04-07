@@ -157,7 +157,7 @@ describe('MinHeap', () => {
 
         expect(minHeap.toString()).toBe('a,bb,ccc,dddd')
 
-        const comparator = (a: any, b: any): any => {
+        const comparator = (a: number[], b: number[]): number => {
             if (a.length === b.length) {
                 return 0
             }

@@ -3,21 +3,23 @@ import { MyObj } from 'core/node'
 
 describe('HashTable', () => {
     it('starts empty', () => {
-        const hashTable = new HashTable<number, number>()
+        const hashTable = new HashTable<number>()
         expect(hashTable.size()).toEqual(0)
         expect(hashTable.isEmpty()).toEqual(true)
     })
 
     it('generates hashcode', () => {
         // numbers
-        let hashTable: any = new HashTable<number, number>()
+        let hashTable: HashTable<
+            number | string | MyObj
+        > = new HashTable<number>()
         expect(hashTable.hashCode(1)).toEqual(1)
         expect(hashTable.hashCode(10)).toEqual(10)
         expect(hashTable.hashCode(100)).toEqual(100)
         expect(hashTable.hashCode(1000)).toEqual(1000)
 
         // strings
-        hashTable = new HashTable<string, number>()
+        hashTable = new HashTable<string>()
         expect(hashTable.hashCode('1')).toEqual(12)
         expect(hashTable.hashCode('10')).toEqual(23)
         expect(hashTable.hashCode('100')).toEqual(34)
@@ -27,10 +29,10 @@ describe('HashTable', () => {
         expect(hashTable.hashCode('Aba')).toEqual(1)
 
         // objects
-        hashTable = new HashTable<MyObj, MyObj>()
+        hashTable = new HashTable<MyObj>()
         const myObjList = []
         for (let i = 1; i <= 5; i++) {
-            myObjList.push(new MyObj(i, i + 1))
+            myObjList.push(new MyObj(i, i + 1).toString())
         }
         expect(hashTable.hashCode(myObjList[0])).toEqual(1)
         expect(hashTable.hashCode(myObjList[1])).toEqual(3)
@@ -40,7 +42,7 @@ describe('HashTable', () => {
     })
 
     it('puts undefined and null keys and values', () => {
-        const hashTable = new HashTable<string, number>()
+        const hashTable = new HashTable<string>()
 
         expect(hashTable.get('undefined')).toEqual(undefined)
 
@@ -60,7 +62,7 @@ describe('HashTable', () => {
         const min = 1
         const max = 5
         const size = max - min + 1
-        const hashTable = new HashTable<number, number>()
+        const hashTable = new HashTable<number>()
 
         for (let i = min; i <= max; i++) {
             hashTable.put(i, i)
@@ -75,7 +77,7 @@ describe('HashTable', () => {
     })
 
     it('puts values with string key', () => {
-        const hashTable = new HashTable<string, number>()
+        const hashTable = new HashTable<number>()
         hashTable.put('1', 1)
         hashTable.put('10', 10)
         hashTable.put('100', 100)
@@ -97,11 +99,11 @@ describe('HashTable', () => {
     })
 
     it('puts values with object key', () => {
-        const hashTable = new HashTable<MyObj, MyObj>()
+        const hashTable = new HashTable<string>()
 
         const myObjList = []
         for (let i = 1; i <= 5; i++) {
-            myObjList.push(new MyObj(i, i + 1))
+            myObjList.push(new MyObj(i, i + 1).toString())
             hashTable.put(myObjList[i - 1], myObjList[i - 1])
         }
 
@@ -124,7 +126,7 @@ describe('HashTable', () => {
     })
 
     it('does NOT handle collision, replaces values', () => {
-        const hashTable = new HashTable<number, number>()
+        const hashTable = new HashTable<number>()
 
         for (let i = 0; i < 5; i++) {
             hashTable.put(1, i)
@@ -136,7 +138,7 @@ describe('HashTable', () => {
         const min = 1
         const max = 5
         const size = max - min + 1
-        const hashTable = new HashTable<number, number>()
+        const hashTable = new HashTable<number>()
 
         for (let i = min; i <= max; i++) {
             hashTable.put(i, i)
@@ -156,7 +158,7 @@ describe('HashTable', () => {
     })
 
     it('returns toString primitive types', () => {
-        const hashTable = new HashTable<number, number>()
+        const hashTable = new HashTable<number>()
 
         expect(hashTable.toString()).toEqual('')
 
@@ -171,7 +173,7 @@ describe('HashTable', () => {
     })
 
     it('returns toString primitive types', () => {
-        const hashTable = new HashTable<string, number>()
+        const hashTable = new HashTable<number>()
 
         hashTable.put('el1', 1)
         expect(hashTable.toString()).toEqual('[#el1: 1]')
@@ -181,13 +183,13 @@ describe('HashTable', () => {
     })
 
     it('returns toString objects', () => {
-        const hashTable = new HashTable<MyObj, MyObj>()
+        const hashTable = new HashTable<string>()
 
-        let myObj = new MyObj(1, 2)
+        let myObj = new MyObj(1, 2).toString()
         hashTable.put(myObj, myObj)
         expect(hashTable.toString()).toEqual('[#1|2: 1|2]')
 
-        myObj = new MyObj(3, 4)
+        myObj = new MyObj(3, 4).toString()
         hashTable.put(myObj, myObj)
         expect(hashTable.toString()).toEqual('[#1|2: 1|2],[#3|4: 3|4]')
     })

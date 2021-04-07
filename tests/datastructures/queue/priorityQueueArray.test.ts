@@ -2,9 +2,9 @@ import PriorityQueue from 'core/datastructures/queue/priorityQueueArray'
 import { MyObj } from 'core/node'
 
 describe('priorityQueue', () => {
-    let queue: PriorityQueue<any>
+    let queue: PriorityQueue<string | number>
     beforeEach(() => {
-        queue = new PriorityQueue<any>()
+        queue = new PriorityQueue<string | number>()
     })
     it('starts empty', () => {
         expect(queue.size()).toBe(0)
