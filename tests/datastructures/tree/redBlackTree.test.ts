@@ -107,4 +107,20 @@ describe('RedBlackTree', () => {
         assertNode(node.right.right, 9, Colors.BLACK)
         assertNode(node.right.right.right, 10, Colors.RED)
     })
+
+    it('removes elements in the RedBlackTree', () => {
+        expect(tree.getRoot()).toEqual(undefined)
+        tree.insert(1)
+            .insert(2)
+            .insert(3)
+            .insert(4)
+            .insert(5)
+            .insert(6)
+            .insert(7)
+            .insert(8)
+        expect(tree.toArray()).toEqual([4, 2, 6, 1, 3, 5, 7, 8])
+
+        tree.remove(5).remove(6).remove(11)
+        expect(tree.toArray()).toEqual([4, 2, 7, 1, 3, 8])
+    })
 })

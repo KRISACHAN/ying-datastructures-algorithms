@@ -115,7 +115,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         }
     }
 
-    insertNode(node: AVLNode<T>, key: T): AVLNode<T> {
+    protected insertNode(node: AVLNode<T>, key: T): AVLNode<T> {
         if (!node) {
             return new AVLNode(key)
         } else if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
