@@ -5,7 +5,6 @@ import { ValuePair, tableType } from 'core/node'
  * 在计算机科学中，关联数组（英语：Associative Array），又称映射（Map）、字典（Dictionary）是一个抽象的数据结构，它包含着类似于（键，值）的有序对。
  * 一个关联数组中的有序对可以重复（如C++中的multimap）也可以不重复（如C++中的map）。
  */
-// 讲道理，我觉得在 JS 里实现 dict 类是很弱智的行为...
 export default class Dictionary<K, V> {
     private table: tableType<K, V> = {} // 数据源
     constructor(private toStrFn = (key: K): string => defaultToString(key)) {

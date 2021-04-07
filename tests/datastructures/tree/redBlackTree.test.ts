@@ -5,7 +5,7 @@ import RedBlackTree from 'core/datastructures/tree/redBlackTree'
 describe('RedBlackTree', () => {
     let tree: RedBlackTree<number>
 
-    const assertNode = (node: RBNode<any>, key: any, color: Colors) => {
+    const assertNode = (node: RBNode<number>, key: number, color: Colors) => {
         expect(node.color).toEqual(color)
         expect(node.key).toEqual(key)
     }
@@ -106,5 +106,21 @@ describe('RedBlackTree', () => {
         assertNode(node.right.left, 7, Colors.BLACK)
         assertNode(node.right.right, 9, Colors.BLACK)
         assertNode(node.right.right.right, 10, Colors.RED)
+    })
+
+    it('removes elements in the RedBlackTree', () => {
+        expect(tree.getRoot()).toEqual(undefined)
+        tree.insert(1)
+            .insert(2)
+            .insert(3)
+            .insert(4)
+            .insert(5)
+            .insert(6)
+            .insert(7)
+            .insert(8)
+        expect(tree.toArray()).toEqual([4, 2, 6, 1, 3, 5, 7, 8])
+
+        tree.remove(5).remove(6).remove(11)
+        expect(tree.toArray()).toEqual([4, 2, 7, 1, 3, 8])
     })
 })
