@@ -1,48 +1,28 @@
-import {
-    Swap,
-    defaultCompare,
-    ICompareFunction,
-    DefalutListType,
-    Compare,
-} from 'core/utils'
+import { Swap, gt, lt, eq } from 'core/utils2'
 // 使数组变为堆
-const heapify = (
-    list: DefalutListType,
-    index: number,
-    heapSize: number,
-    compareFn: ICompareFunction<number>,
-): void => {
+const heapify = (list: number[], index: number, heapSize: number): void => {
     let largest = index
     const left = 2 * index + 1
     const right = 2 * index + 2
 
-    if (
-        left < heapSize &&
-        compareFn(list[left], list[index]) === Compare.BIGGER_THAN
-    ) {
+    if (lt(left, heapSize) && gt(list[left], list[index])) {
         largest = left
     }
 
-    if (
-        right < heapSize &&
-        compareFn(list[right], list[largest]) === Compare.BIGGER_THAN
-    ) {
+    if (lt(right, heapSize) && gt(list[right], list[largest])) {
         largest = right
     }
 
-    if (largest !== index) {
+    if (!eq(largest, index)) {
         Swap(list, index, largest)
-        heapify(list, largest, heapSize, compareFn)
+        heapify(list, largest, heapSize)
     }
 }
 
 // 创建最大堆
-const buildMaxHeap = (
-    list: DefalutListType,
-    compareFn: ICompareFunction<number>,
-): DefalutListType => {
+const buildMaxHeap = (list: number[]): number[] => {
     for (let i = Math.floor(list.length / 2); i >= 0; i -= 1) {
-        heapify(list, i, list.length, compareFn)
+        heapify(list, i, list.length)
     }
     return list
 }
@@ -53,16 +33,13 @@ const buildMaxHeap = (
 // 3. 节点L的左子节点是2*L；
 // 4. 节点R的右子节点是2*R+1。
 
-const HeapSort = (
-    list: DefalutListType,
-    compareFn = defaultCompare,
-): DefalutListType => {
+const HeapSort = (list: number[]): number[] => {
     // 最大堆排序
     let heapSize = list.length
-    buildMaxHeap(list, compareFn) // 创建最大堆
+    buildMaxHeap(list) // 创建最大堆
     while (heapSize > 1) {
         Swap(list, 0, --heapSize) // 交换堆里第一个元素（数组中较大的值）和最后一个元素的位置。这样，最大的值就会出现在它已排序的位置。
-        heapify(list, 0, heapSize, compareFn) // 当堆属性失去时，重新将数组转换成堆
+        heapify(list, 0, heapSize) // 当堆属性失去时，重新将数组转换成堆
     }
     return list
 }

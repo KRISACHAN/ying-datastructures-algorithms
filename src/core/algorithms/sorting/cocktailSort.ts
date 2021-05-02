@@ -1,17 +1,17 @@
-import { Swap, defaultCompare, Compare } from 'core/utils'
-const CocktailSort = <T>(list: T[], compareFn = defaultCompare): T[] => {
+import { Swap, lt, gt } from 'core/utils2'
+const CocktailSort = (list: number[]): number[] => {
     let i: number,
         left = 0,
         right: number = list.length - 1
     while (left < right) {
         for (i = left; i < right; ++i) {
-            if (compareFn(list[i], list[i + 1]) === Compare.BIGGER_THAN) {
+            if (gt(list[i], list[i + 1])) {
                 Swap(list, i, i + 1)
             }
         }
         right--
         for (i = right; i > left; --i) {
-            if (compareFn(list[i], list[i - 1]) === Compare.LESS_THAN) {
+            if (lt(list[i], list[i - 1])) {
                 Swap(list, i, i - 1)
             }
         }

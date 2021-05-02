@@ -1,5 +1,4 @@
-import { DefalutListType } from 'core/utils'
-const CountSort = (list: DefalutListType): DefalutListType => {
+const CountSort = (list: number[]): number[] => {
     const C: number[] = []
     for (let i = 0, iLen: number = list.length; i < iLen; ++i) {
         const j: number = list[i]
