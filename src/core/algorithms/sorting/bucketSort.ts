@@ -1,4 +1,5 @@
 import { Swap, lt } from 'core/utils2'
+
 const BucketSort = (
     list: number[],
     bucketsCount = 10 /* 默认桶的数量 */,

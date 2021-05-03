@@ -12,6 +12,7 @@ export default class Graph<T> {
             this.vertices.push(v) // 将该顶点添加到顶点列表中
             this.adjList.set(v, []) // 设置顶点v作为键对应的字典值为一个空数组
         }
+
         return this
     }
 
@@ -20,6 +21,7 @@ export default class Graph<T> {
         if (!this.adjList.get(a)) {
             this.addVertex(a)
         }
+
         if (!this.adjList.get(b)) {
             this.addVertex(b)
         }
@@ -30,6 +32,7 @@ export default class Graph<T> {
             // 当图为无向图时，再添加一条边
             this.adjList.get(b).push(a)
         }
+
         return this
     }
 
@@ -45,6 +48,7 @@ export default class Graph<T> {
 
     toString(): string {
         let res = ''
+
         for (let i = 0, len: number = this.vertices.length; i < len; ++i) {
             res += this.vertices[i] + ' -> '
             const neighbors = this.adjList.get(this.vertices[i])
@@ -53,6 +57,7 @@ export default class Graph<T> {
             }
             res += '\n'
         }
+
         return res
     }
 

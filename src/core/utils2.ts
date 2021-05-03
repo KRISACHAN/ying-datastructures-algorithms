@@ -18,7 +18,7 @@ export const Swap = (array: unknown[], a: number, b: number): void => {
     array[b] = tmpl
 }
 // 数据转为字符串
-export const toString = (data: unknown & string): string => {
+export const toString = (data: unknown): string => {
     if (dataType(data) === 'null') {
         return 'NULL'
     }
@@ -29,9 +29,6 @@ export const toString = (data: unknown & string): string => {
         return `${(data as unknown & string & []).map(item =>
             !isExist(item) ? item : toString(item),
         )}`
-    }
-    if (dataType(data) === 'string') {
-        return data
     }
     return data.toString()
 }

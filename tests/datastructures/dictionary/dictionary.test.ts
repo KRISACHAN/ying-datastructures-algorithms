@@ -112,12 +112,8 @@ describe('Dictionary', () => {
         }
     })
 
-    function customToString(key: MyObj) {
-        return `####${key.toString()}`
-    }
-
     it('sets values with custom toString function', () => {
-        const dict = new Dictionary<MyObj, MyObj>(customToString)
+        const dict = new Dictionary<MyObj, MyObj>()
         const min = 0
         const max = 5
         const size = max - min

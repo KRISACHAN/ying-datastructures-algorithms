@@ -24,6 +24,7 @@ const buildMaxHeap = (list: number[]): number[] => {
     for (let i = Math.floor(list.length / 2); i >= 0; i -= 1) {
         heapify(list, i, list.length)
     }
+
     return list
 }
 
@@ -36,11 +37,14 @@ const buildMaxHeap = (list: number[]): number[] => {
 const HeapSort = (list: number[]): number[] => {
     // 最大堆排序
     let heapSize = list.length
+
     buildMaxHeap(list) // 创建最大堆
+
     while (heapSize > 1) {
         Swap(list, 0, --heapSize) // 交换堆里第一个元素（数组中较大的值）和最后一个元素的位置。这样，最大的值就会出现在它已排序的位置。
         heapify(list, 0, heapSize) // 当堆属性失去时，重新将数组转换成堆
     }
+
     return list
 }
 

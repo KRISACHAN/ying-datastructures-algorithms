@@ -1,45 +1,40 @@
-import {
-    defaultCompare,
-    ICompareFunction,
-    Compare,
-    DOES_NOT_EXIST,
-} from 'core/utils'
+import { eq } from 'core/utils2'
+
 // 常规法
-export const orderSearch = (
-    list: number[],
-    data: number,
-    compareFn: ICompareFunction<number> = defaultCompare,
-): number => {
-    if (!list || !list.length) {
-        return DOES_NOT_EXIST
+export const orderSearch = (list: number[], data: number): number => {
+    if (!list?.length) {
+        return
     }
+
     for (let i = 0, len = list.length; i < len; ++i) {
-        if (compareFn(list[i], data) === Compare.EQUALS) {
+        if (eq(list[i], data)) {
             return i
         }
     }
-    return DOES_NOT_EXIST
+
+    return -1
 }
 // 折半法
-export const halfOrderSearch = (
-    list: number[],
-    data: number,
-    compareFn: ICompareFunction<number> = defaultCompare,
-): number => {
-    if (!list || !list.length) {
-        return DOES_NOT_EXIST
+export const halfOrderSearch = (list: number[], data: number): number => {
+    if (!list?.length) {
+        return
     }
+
     const size: number = Math.ceil(list.length / 2)
     let count = 0
+
     for (let i = 0; i < size; ++i) {
-        if (compareFn(list[count], data) === Compare.EQUALS) {
+        if (eq(list[count], data)) {
             return count
         }
         count++
-        if (compareFn(list[count], data) === Compare.EQUALS) {
+
+        if (eq(list[count], data)) {
             return count
         }
+
         count++
     }
-    return DOES_NOT_EXIST
+
+    return -1
 }

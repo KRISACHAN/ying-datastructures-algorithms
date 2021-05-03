@@ -1,6 +1,8 @@
 import { Swap, gt } from 'core/utils2'
+
 const BubbleSort = (list: number[]): number[] => {
     const len: number = list.length - 1
+
     for (let i = 0; i < len; ++i) {
         /* 外循环为排序趟数，len个数进行len-1趟 */
         for (let j = 0; j < len - i; ++j) {
@@ -11,6 +13,7 @@ const BubbleSort = (list: number[]): number[] => {
             }
         }
     }
+
     return list
 }
 export default BubbleSort
