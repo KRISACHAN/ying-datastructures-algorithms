@@ -1,5 +1,7 @@
 import { DLLNode } from 'core/node'
 import LinkedList from './linkedList'
+import { eq, isExist, gte, lte, lt } from 'core/utils2'
+
 /**
  * 双向链表（DoublyLinkedList）：双向链表与普通链表的区别在于，双向链表是双向的....有点废话
  */
@@ -13,7 +15,7 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
 
     append(element: T): DoublyLinkedList<T> {
         const node: DLLNode<T> = new DLLNode(element)
-        if (this.head === null) {
+        if (!isExist(this.head)) {
             // 链表中第一个节点
             this.head = node
             this.tail = node
@@ -22,19 +24,22 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
             node.prev = this.tail
             this.tail = node
         }
+
         this.length++ // 更新链表的长度
+
         return this
     }
 
     insert(position: number, element: T): DoublyLinkedList<T> {
         // 向链表的特定位置插入一个新的元素。
         //检查越界值
-        if (position >= 0 && position <= this.length) {
+        if (gte(position, 0) && lte(position, this.length)) {
             const node: DLLNode<T> = new DLLNode(element)
             let current: DLLNode<T> = this.head
             let previous: DLLNode<T>
             let index = 0
-            if (position === 0) {
+
+            if (eq(position, 0)) {
                 if (!this.head) {
                     this.head = node
                     this.tail = node
@@ -43,16 +48,17 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
                     current.prev = node
                     this.head = node
                 }
-            } else if (position === this.length) {
+            } else if (eq(position, this.length)) {
                 current = this.tail
                 current.next = node
                 node.prev = current
                 this.tail = node
             } else {
-                while (index++ < position) {
+                while (lt(index++, position)) {
                     previous = current
                     current = current.next
                 }
+
                 node.next = current
                 previous.next = node
 
@@ -66,16 +72,18 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
 
     removeAt(position: number): T | null {
         // 删除指定位置元素
-        if (position >= 0 && position < this.length) {
+        if (gte(position, 0) && lt(position, this.length)) {
             let current = this.head
-            if (position === 0) {
+
+            if (eq(position, 0)) {
                 this.head = this.head.next
-                if (this.length === 1) {
+
+                if (eq(this.length, 1)) {
                     this.tail = null
                 } else {
                     this.head.prev = null
                 }
-            } else if (position === this.length - 1) {
+            } else if (eq(position, this.length - 1)) {
                 current = this.tail
                 this.tail = current.prev
                 this.tail.next = null
@@ -85,7 +93,9 @@ export default class DoublyLinkedList<T> extends LinkedList<T> {
                 previous.next = current.next
                 current.next.prev = previous
             }
+
             this.length--
+
             return current.element
         } else {
             return null

@@ -43,59 +43,26 @@ export enum ColorTexts {
     BLACK = 'BLACK',
 }
 // 大于判断
-export const gt = (data1: string | number, data2: string | number): boolean => {
-    if (dataType(data1) === 'string') {
-        data1 = +data1
-    }
-    if (dataType(data2) === 'string') {
-        data2 = +data2
-    }
+export const gt = (data1: unknown, data2: unknown): boolean => {
     return data1 > data2
 }
 // 大于等于判断
-export const gte = (
-    data1: string | number,
-    data2: string | number,
-): boolean => {
-    if (dataType(data1) === 'string') {
-        data1 = +data1
-    }
-    if (dataType(data2) === 'string') {
-        data2 = +data2
-    }
+export const gte = (data1: unknown, data2: unknown): boolean => {
     return data1 >= data2
 }
 // 小于判断
-export const lt = (data1: string | number, data2: string | number): boolean => {
-    if (dataType(data1) === 'string') {
-        data1 = +data1
-    }
-    if (dataType(data2) === 'string') {
-        data2 = +data2
-    }
+export const lt = (data1: unknown, data2: unknown): boolean => {
     return data1 < data2
 }
 // 小于等于判断
-export const lte = (
-    data1: string | number,
-    data2: string | number,
-): boolean => {
-    if (dataType(data1) === 'string') {
-        data1 = +data1
-    }
-    if (dataType(data2) === 'string') {
-        data2 = +data2
-    }
+export const lte = (data1: unknown, data2: unknown): boolean => {
     return data1 <= data2
 }
 // 等于判断
-export const eq = (data1: string | number, data2: string | number): boolean => {
+export const eq = (data1: unknown, data2: unknown): boolean => {
     return data1 === data2 || (data1 !== data1 && data2 !== data2)
 }
 // 不等于判断
-export const neq = (
-    data1: string | number,
-    data2: string | number,
-): boolean => {
+export const neq = (data1: unknown, data2: unknown): boolean => {
     return !eq(data1, data2)
 }
