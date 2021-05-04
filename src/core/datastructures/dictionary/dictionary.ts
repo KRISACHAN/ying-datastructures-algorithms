@@ -1,4 +1,4 @@
-import { defaultToString, isExist } from 'core/utils'
+import { toString, isExist, eq } from 'core/utils2'
 import { ValuePair, tableType } from 'core/node'
 
 /**
@@ -7,35 +7,34 @@ import { ValuePair, tableType } from 'core/node'
  */
 export default class Dictionary<K, V> {
     private table: tableType<K, V> = {} // 数据源
-    constructor(private toStrFn = (key: K): string => defaultToString(key)) {
-        this.toStrFn = toStrFn
-    }
+    constructor() {}
 
     // 向字典中添加新元素
     set(key: K, value: V): Dictionary<K, V> {
         if (key) {
-            const tableKey = this.toStrFn(key)
+            const tableKey = toString(key)
             this.table[tableKey] = new ValuePair(key, value)
         }
+
         return this
     }
 
     // 通过键值查找特定的数值并返回
     get(key: K): V {
-        const valuePair = this.table[this.toStrFn(key)]
-        return valuePair?.value
+        return this.table[toString(key)]?.value
     }
 
     // 如果某个键值存在于这个字典中，则返回true，反之则返回false
     hasKey(key: K): boolean {
-        return isExist(this.table[this.toStrFn(key)])
+        return isExist(this.table[toString(key)])
     }
 
     // 通过使用键值来从字典中移除键值对应的数据值
     remove(key: K): Dictionary<K, V> {
         if (this.hasKey(key)) {
-            delete this.table[this.toStrFn(key)]
+            delete this.table[toString(key)]
         }
+
         return this
     }
 
@@ -61,6 +60,7 @@ export default class Dictionary<K, V> {
     // 字典循环forEach
     forEach(callbackFn: (key: K, value: V) => unknown): void {
         const valuePairs = this.keyValues()
+
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             callbackFn(valuePairs[i].key, valuePairs[i].value)
         }
@@ -70,10 +70,12 @@ export default class Dictionary<K, V> {
     map(callbackFn: (key: K, value: V) => unknown): unknown[] {
         const valuePairs = this.keyValues()
         const resList: unknown[] = []
+
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             const result = callbackFn(valuePairs[i].key, valuePairs[i].value)
             resList.push(result)
         }
+
         return resList
     }
 
@@ -81,13 +83,17 @@ export default class Dictionary<K, V> {
     filter(callbackFn: (key: K, value: V) => unknown): unknown[] {
         const valuePairs = this.keyValues()
         const resList: unknown[] = []
+
         for (let i = 0, len = valuePairs.length; i < len; ++i) {
             const result = callbackFn(valuePairs[i].key, valuePairs[i].value)
+
             if (!result) {
                 continue
             }
+
             resList.push(result)
         }
+
         return resList
     }
 
@@ -98,7 +104,7 @@ export default class Dictionary<K, V> {
 
     // 是否为空
     isEmpty(): boolean {
-        return this.size() === 0
+        return eq(this.size(), 0)
     }
 
     // 将这个字典中的所有元素全部删除
@@ -116,9 +122,11 @@ export default class Dictionary<K, V> {
         if (this.isEmpty()) {
             return ''
         }
+
         const objString = this.map(
             (key, value) => `[${key}: ${value}]`,
         ).toString()
+
         return objString
     }
 }

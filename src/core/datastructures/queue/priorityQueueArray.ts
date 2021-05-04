@@ -1,4 +1,4 @@
-import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
+import { eq, lt } from 'core/utils2'
 
 class QueueElement<T> {
     // 带权重的队列元素
@@ -17,8 +17,7 @@ class QueueElement<T> {
  */
 export default class PriorityQueue<T> {
     private items: QueueElement<T>[] // 保存队列的元素
-    constructor(public compareFn: ICompareFunction<number> = defaultCompare) {
-        this.compareFn = compareFn
+    constructor() {
         this.items = []
     }
     enqueue(element: T, priority: number): PriorityQueue<T> {
@@ -32,12 +31,7 @@ export default class PriorityQueue<T> {
             this.items.push(queueElement)
         } else {
             for (let i = 0; i < this.size(); ++i) {
-                if (
-                    this.compareFn(
-                        queueElement.priority,
-                        this.items[i].priority,
-                    ) === Compare.LESS_THAN
-                ) {
+                if (lt(queueElement.priority, this.items[i].priority)) {
                     this.items.splice(i, 0, queueElement)
                     added = true
                     break
@@ -63,11 +57,12 @@ export default class PriorityQueue<T> {
     }
     isEmpty(): boolean {
         // 能简单地判断内部队列的长度是否为0
-        return this.size() === 0
+        return eq(this.items.length, 0)
     }
     clear(): void {
         // 把队列中的元素全部移除
         this.items = []
+        this.items.length = 0
     }
     size(): number {
         // 队列长度
@@ -78,14 +73,12 @@ export default class PriorityQueue<T> {
         if (this.isEmpty()) {
             return ''
         }
+
         let objString = ''
         for (let i = 0, len = this.size(); i < len; ++i) {
-            if (i < len - 1) {
-                objString += `${this.items[i].element},`
-            } else {
-                objString += `${this.items[i].element}`
-            }
+            objString += `${this.items[i].element}${i < len - 1 ? ',' : ''}`
         }
+
         return objString
     }
     print(): void {

@@ -14,6 +14,7 @@
  * @input digits = "2"
  * @output ["a","b","c"]
  */
+import { eq, gte } from 'core/utils2'
 interface DigitsMapType {
     [propName: string]: string[]
 }
@@ -22,7 +23,7 @@ export const letterCombinations = (digits: string): string[] => {
     const res: string[] = []
 
     // 边界处理
-    if (digits.length === 0) {
+    if (eq(digits.length, 0)) {
         return res
     }
 
@@ -39,7 +40,7 @@ export const letterCombinations = (digits: string): string[] => {
 
     // 深度遍历（回溯），各个组合都尝试一遍，把符合的结果保存起来，不符合的剪枝剪掉
     const coreRecursiver = (curLetter = '', curDigit = 0): void => {
-        if (curDigit >= digits.length) {
+        if (gte(curDigit, digits.length)) {
             res.push(curLetter)
             return
         }

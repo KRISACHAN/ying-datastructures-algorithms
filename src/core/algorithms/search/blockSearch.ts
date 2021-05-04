@@ -1,73 +1,91 @@
-import { defaultCompare, ICompareFunction, DOES_NOT_EXIST } from 'core/utils'
+import { gt, gte, lt, lte, eq, neq, toString } from 'core/utils2'
 
 interface BlockTypes extends Array<number> {
     key?: number
 }
 
 export default class BlockSearch {
-    protected compareFn: ICompareFunction<number> = defaultCompare
     private blocks: BlockTypes[] = []
     constructor(list: number[] = [], depth = 3) {
-        list = list.sort((a, b) => a - b)
-        if (depth <= 0) {
-            throw new Error('depth of block must be a positive integer !')
-        }
-        if (!list.length) {
+        if (!list?.length) {
             return
         }
+
+        list = list.sort((a, b) => a - b)
+
+        if (lte(depth, 0)) {
+            throw new Error('depth of block must be a positive integer !')
+        }
+
         const newList: BlockTypes[] = []
         let blockIndex = 0
+
         // 先按着间隙分好数列元素，然后每一块加上key，最后再进行排序
         for (let i = 0, len: number = list.length; i < len; ++i) {
             if (!newList[blockIndex]) {
                 newList[blockIndex] = []
             }
-            if (i % depth === 0) {
+
+            if (eq(i % depth, 0)) {
                 newList[blockIndex].key = list[i]
             }
+
             newList[blockIndex].push(list[i])
-            if (newList[blockIndex].length >= depth) {
+
+            if (gte(newList[blockIndex].length, depth)) {
                 blockIndex++
             }
         }
+
         this.blocks = newList.sort((a, b) => a.key - b.key)
     }
     insert(value: number): BlockSearch {
-        const targetIndex: number = this.blocks.findIndex(
-            block => value < block.key,
+        const targetIndex: number = this.blocks.findIndex(block =>
+            lt(value, block.key),
         )
+
         this.blocks[targetIndex].push(value)
         this.blocks[targetIndex].key = value
+
         return this
     }
     remove(value: number): BlockSearch {
         const resPos: number[] = this.search(value)
-        if (resPos[0] !== DOES_NOT_EXIST) {
+
+        if (neq(resPos[0], -1)) {
             const key = this.blocks[resPos[0]].key
-            this.blocks[resPos[0]] = this.blocks[resPos[0]].filter(
-                (data: number) => data !== value,
-            )
+
+            this.blocks[resPos[0]] = this.blocks[
+                resPos[0]
+            ].filter((data: number) => neq(data, value))
+
             if (!this.blocks[resPos[0]].length) {
-                this.blocks = this.blocks.filter(block => block.length > 0)
+                this.blocks = this.blocks.filter(block => gt(block.length, 0))
             }
-            if (value === key) {
+
+            if (eq(value, key)) {
                 this.blocks[resPos[0]].key = Math.min(...this.blocks[resPos[0]])
             }
         }
+
         return this
     }
     search(value: number): number[] {
         const blockIndex: number =
-            this.blocks.findIndex(block => block.key > value) - 1
-        if (blockIndex < 0) {
-            return [DOES_NOT_EXIST]
+            this.blocks.findIndex(block => gt(block.key, value)) - 1
+
+        if (lt(blockIndex, 0)) {
+            return [-1]
         }
-        const resIndex: number = this.blocks[blockIndex].findIndex(
-            (block: number) => block === value,
-        )
+
+        const resIndex: number = this.blocks[
+            blockIndex
+        ].findIndex((block: number) => eq(block, value))
+
         if (resIndex < 0) {
-            return [DOES_NOT_EXIST]
+            return [-1]
         }
+
         return [blockIndex, resIndex]
     }
     size(): number {
@@ -77,7 +95,7 @@ export default class BlockSearch {
         return this.blocks.length
     }
     toString(): string {
-        return this.blocks.toString()
+        return toString(this.blocks)
     }
     print(): void {
         console.log(this.blocks)

@@ -1,11 +1,6 @@
 import { AVLNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
-import {
-    defaultCompare,
-    ICompareFunction,
-    Compare,
-    DOES_NOT_EXIST,
-} from 'core/utils'
+import { eq, lt, gt } from 'core/utils2'
 
 enum BalanceFactor { // 平衡因子
     UNBALANCED_RIGHT = 1,
@@ -26,7 +21,6 @@ enum BalanceFactor { // 平衡因子
  */
 export default class AVLTree<T> extends BinarySearchTree<T> {
     protected root: AVLNode<T>
-    protected compareFn: ICompareFunction<T> = defaultCompare
     constructor() {
         super()
     }
@@ -36,8 +30,9 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     // 这就是平衡因子的概念。
     private getNodeHeight(node: AVLNode<T>): number {
         if (!node) {
-            return DOES_NOT_EXIST
+            return -1
         }
+
         return (
             Math.max(
                 this.getNodeHeight(node.left),
@@ -62,6 +57,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         const tmp: AVLNode<T> = node.left
         node.left = tmp.right
         tmp.right = node
+
         return tmp
     }
     /**
@@ -79,6 +75,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         const tmp: AVLNode<T> = node.right
         node.right = tmp.left
         tmp.left = node
+
         return tmp
     }
     /**
@@ -87,6 +84,7 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     // 由于在*a的左子树根节点的右子树上插入节点，*a的平衡因子由1增至2，致使以*a为根的子树失去平衡，则需进行两次旋转（先左旋后右旋）操作。
     private rotationLR(node: AVLNode<T>): AVLNode<T> {
         node.left = this.rotationRR(node.left)
+
         return this.rotationLL(node)
     }
     /**
@@ -95,40 +93,41 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
     // 由于在*a的右子树根节点的左子树上插入节点，*a的平衡因子由-1变为-2，致使以*a为根的子树失去平衡，则需进行两次旋转（先右旋后左旋）操作。
     private rotationRL(node: AVLNode<T>): AVLNode<T> {
         node.right = this.rotationLL(node.right)
+
         return this.rotationRR(node)
     }
     // 获取平衡系数
     private getBalanceFactor(node: AVLNode<T>): number {
-        const heightDifference: number =
-            this.getNodeHeight(node.left) - this.getNodeHeight(node.right)
-        switch (heightDifference) {
-            case -2:
-                return BalanceFactor.UNBALANCED_RIGHT
-            case -1:
-                return BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
-            case 1:
-                return BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
-            case 2:
-                return BalanceFactor.UNBALANCED_LEFT
-            default:
-                return BalanceFactor.BALANCED
-        }
+        const heightDiff: number =
+            this.getNodeHeight(node.left) - this.getNodeHeight(node.right) + 2
+
+        const diffList = [
+            BalanceFactor.UNBALANCED_RIGHT,
+            BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT,
+            BalanceFactor.BALANCED,
+            BalanceFactor.SLIGHTLY_UNBALANCED_LEFT,
+            BalanceFactor.UNBALANCED_LEFT,
+        ]
+
+        return diffList[heightDiff]
     }
 
     protected insertNode(node: AVLNode<T>, key: T): AVLNode<T> {
         if (!node) {
             return new AVLNode(key)
-        } else if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        } else if (lt(key, node.key)) {
             node.left = this.insertNode(node.left, key)
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+        } else if (gt(key, node.key)) {
             node.right = this.insertNode(node.right, key)
         } else {
             return node
         }
+
         // 验证树是否平衡
         const balanceFactor = this.getBalanceFactor(node)
-        if (balanceFactor === BalanceFactor.UNBALANCED_LEFT) {
-            if (this.compareFn(key, node.left.key) === Compare.LESS_THAN) {
+
+        if (eq(balanceFactor, BalanceFactor.UNBALANCED_LEFT)) {
+            if (lt(key, node.left.key)) {
                 // 左-左（LL）：向右的单旋转
                 node = this.rotationLL(node)
             } else {
@@ -136,8 +135,9 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
                 return this.rotationLR(node)
             }
         }
-        if (balanceFactor === BalanceFactor.UNBALANCED_RIGHT) {
-            if (this.compareFn(key, node.right.key) === Compare.BIGGER_THAN) {
+
+        if (eq(balanceFactor, BalanceFactor.UNBALANCED_RIGHT)) {
+            if (gt(key, node.right.key)) {
                 // 右-右（RR）：向左的单旋转
                 node = this.rotationRR(node)
             } else {
@@ -157,37 +157,45 @@ export default class AVLTree<T> extends BinarySearchTree<T> {
         // 验证是否平衡
         const balanceState = this.getBalanceFactor(node)
 
-        if (balanceState === BalanceFactor.UNBALANCED_LEFT) {
+        if (eq(balanceState, BalanceFactor.UNBALANCED_LEFT)) {
             // 左-左（LL）：向右的单旋转
             if (
-                this.getBalanceFactor(node.left) === BalanceFactor.BALANCED ||
-                this.getBalanceFactor(node.left) ===
-                    BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
+                eq(this.getBalanceFactor(node.left), BalanceFactor.BALANCED) ||
+                eq(
+                    this.getBalanceFactor(node.left),
+                    BalanceFactor.SLIGHTLY_UNBALANCED_LEFT,
+                )
             ) {
                 return this.rotationLL(node)
             }
             // 左-右（LR）：向右的双旋转
             if (
-                this.getBalanceFactor(node.left) ===
-                BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
+                eq(
+                    this.getBalanceFactor(node.left),
+                    BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT,
+                )
             ) {
                 return this.rotationLR(node.left)
             }
         }
 
-        if (balanceState === BalanceFactor.UNBALANCED_RIGHT) {
+        if (eq(balanceState, BalanceFactor.UNBALANCED_RIGHT)) {
             // 右-右（RR）：向左的单旋转
             if (
-                this.getBalanceFactor(node.right) === BalanceFactor.BALANCED ||
-                this.getBalanceFactor(node.right) ===
-                    BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
+                eq(this.getBalanceFactor(node.right), BalanceFactor.BALANCED) ||
+                eq(
+                    this.getBalanceFactor(node.right),
+                    BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT,
+                )
             ) {
                 return this.rotationRR(node)
             }
             // 右-左（RL）：向左的双旋转
             if (
-                this.getBalanceFactor(node.right) ===
-                BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
+                eq(
+                    this.getBalanceFactor(node.right),
+                    BalanceFactor.SLIGHTLY_UNBALANCED_LEFT,
+                )
             ) {
                 return this.rotationRL(node.right)
             }

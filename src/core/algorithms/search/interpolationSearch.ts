@@ -1,44 +1,43 @@
-import {
-    defaultCompare,
-    ICompareFunction,
-    Compare,
-    DOES_NOT_EXIST,
-} from 'core/utils'
+import { gt, lt } from 'core/utils2'
 
 // 递归实现
 export const recursionInterpolationSearch = (
     list: number[],
     data: number,
-    compareFn: ICompareFunction<number> = defaultCompare,
 ): number => {
-    if (!list || !list.length) {
-        return DOES_NOT_EXIST
+    if (!list?.length) {
+        return
     }
+
     const sortedList = list.sort((a, b) => a - b)
+
     const coreSearch = (
         sortedList: number[],
         start: number,
         end: number,
         key: number,
     ): number => {
-        if (start > end) {
-            return DOES_NOT_EXIST
+        if (gt(start, end)) {
+            return -1
         }
-        if (compareFn(start, end) !== Compare.BIGGER_THAN) {
+
+        if (!gt(start, end)) {
             const mid: number =
                 Math.round(
                     ((end - start) * (data - list[start])) /
                         (list[end] - list[start]),
                 ) + start
-            if (key < sortedList[mid]) {
+
+            if (lt(key, sortedList[mid])) {
                 return coreSearch(sortedList, start, mid - 1, key)
-            } else if (key > sortedList[mid]) {
+            } else if (gt(key, sortedList[mid])) {
                 return coreSearch(sortedList, mid + 1, end, key)
             } else {
                 return mid
             }
         }
     }
+
     return coreSearch(sortedList, 0, list.length - 1, data)
 }
 
@@ -46,33 +45,34 @@ export const recursionInterpolationSearch = (
 export const loopInterpolationSearch = (
     list: number[],
     data: number,
-    compareFn: ICompareFunction<number> = defaultCompare,
 ): number => {
-    if (!list || !list.length) {
-        return DOES_NOT_EXIST
+    if (!list?.length) {
+        return
     }
+
     const sortedList: number[] = list.sort((a, b) => a - b)
     let start = 0
     let end: number = sortedList.length - 1
-    while (compareFn(start, end) !== Compare.BIGGER_THAN) {
+
+    while (!gt(start, end)) {
         const mid: number =
             Math.round(
                 ((end - start) * (data - list[start])) /
                     (list[end] - list[start]),
             ) + start
-        if (
-            compareFn(mid, start) === Compare.LESS_THAN ||
-            compareFn(mid, end) === Compare.BIGGER_THAN
-        ) {
+
+        if (lt(mid, start) || gt(mid, end)) {
             break
         }
-        if (compareFn(data, sortedList[mid]) === Compare.LESS_THAN) {
+
+        if (lt(data, sortedList[mid])) {
             end = mid - 1
-        } else if (compareFn(data, sortedList[mid]) === Compare.BIGGER_THAN) {
+        } else if (gt(data, sortedList[mid])) {
             start = mid + 1
         } else {
             return mid
         }
     }
-    return DOES_NOT_EXIST
+
+    return -1
 }

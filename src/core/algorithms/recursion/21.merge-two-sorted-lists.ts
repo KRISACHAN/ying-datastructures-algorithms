@@ -15,6 +15,7 @@
  * @output [0]
  */
 import { ListNodeType } from 'core/leetNode'
+import { lte } from 'core/utils2'
 
 const coreRecursiver = (l1: ListNodeType, l2: ListNodeType): ListNodeType => {
     // 边界处理
@@ -34,13 +35,12 @@ const coreRecursiver = (l1: ListNodeType, l2: ListNodeType): ListNodeType => {
     const l2Val: number = l2.val
 
     // 确保每次最小的值都在前
-    if (l1Val <= l2Val) {
+    if (lte(l1Val, l2Val)) {
         l1.next = coreRecursiver(l1.next, l2)
         return l1
-    } else {
-        l2.next = coreRecursiver(l1, l2.next)
-        return l2
     }
+    l2.next = coreRecursiver(l1, l2.next)
+    return l2
 }
 
 export const mergeTwoLists = (

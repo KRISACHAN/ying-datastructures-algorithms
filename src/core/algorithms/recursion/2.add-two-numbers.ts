@@ -16,6 +16,7 @@
  * @output [8,9,9,9,0,0,0,1]
  */
 import { ListNode, ListNodeType } from 'core/leetNode'
+import { eq } from 'core/utils2'
 
 const coreRecursiver = (
     l1: ListNodeType,
@@ -23,7 +24,7 @@ const coreRecursiver = (
     prevCount = 0,
 ): ListNodeType => {
     // 边界处理
-    if (!l1 && !l2 && prevCount === 0) {
+    if (!l1 && !l2 && eq(prevCount, 0)) {
         return null
     }
     const l1Val: number = l1?.val || 0

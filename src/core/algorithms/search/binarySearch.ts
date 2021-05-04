@@ -1,18 +1,10 @@
-import {
-    defaultCompare,
-    ICompareFunction,
-    Compare,
-    DOES_NOT_EXIST,
-} from 'core/utils'
+import { gt, lt } from 'core/utils2'
 // 递归实现
-export const recursionBinarySearch = (
-    list: number[],
-    data: number,
-    compareFn: ICompareFunction<number> = defaultCompare,
-): number => {
-    if (!list || !list.length) {
-        return DOES_NOT_EXIST
+export const recursionBinarySearch = (list: number[], data: number): number => {
+    if (!list?.length) {
+        return -1
     }
+
     const sortedList = list.sort((a, b) => a - b)
 
     const coreSearch = (
@@ -21,13 +13,15 @@ export const recursionBinarySearch = (
         end: number,
         key: number,
     ): number => {
-        if (start > end) {
-            return DOES_NOT_EXIST
+        if (gt(start, end)) {
+            return -1
         }
+
         const mid: number = Math.round(start + (end - start) / 2)
-        if (compareFn(list[mid], key) === Compare.BIGGER_THAN) {
+
+        if (gt(list[mid], key)) {
             return coreSearch(sortedList, start, mid - 1, key)
-        } else if (compareFn(list[mid], key) === Compare.LESS_THAN) {
+        } else if (lt(list[mid], key)) {
             return coreSearch(sortedList, mid + 1, end, key)
         } else {
             return mid
@@ -36,26 +30,25 @@ export const recursionBinarySearch = (
     return coreSearch(sortedList, 0, list.length - 1, data)
 }
 // 迭代实现
-export const loopBinarySearch = (
-    list: number[],
-    data: number,
-    compareFn: ICompareFunction<number> = defaultCompare,
-): number => {
-    if (!list || !list.length) {
-        return DOES_NOT_EXIST
+export const loopBinarySearch = (list: number[], data: number): number => {
+    if (!list?.length) {
+        return -1
     }
+
     const sortedList: number[] = list.sort((a, b) => a - b)
     let start = 0
     let end: number = sortedList.length - 1
-    while (compareFn(start, end) !== Compare.BIGGER_THAN) {
+
+    while (!gt(start, end)) {
         const mid: number = Math.round((start + end) / 2)
-        if (compareFn(data, sortedList[mid]) === Compare.BIGGER_THAN) {
+        if (gt(data, sortedList[mid])) {
             start = mid + 1
-        } else if (compareFn(data, sortedList[mid]) === Compare.LESS_THAN) {
+        } else if (lt(data, sortedList[mid])) {
             end = mid - 1
         } else {
             return mid
         }
     }
-    return DOES_NOT_EXIST
+
+    return -1
 }

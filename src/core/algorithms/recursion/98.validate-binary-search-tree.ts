@@ -25,6 +25,7 @@
  * @answer 输入为: [5,1,4,null,null,3,6]。根节点的值为 5 ，但是其右子节点值为 4 。
  */
 import { TreeNodeType } from 'core/leetNode'
+import { lte, gte, isExist } from 'core/utils2'
 
 // 使用中序遍历去递归判断当前二叉树元素的值是否匹配规则
 // 左子节点一定比根节点小，所以可以传递左子节点跟根节点去比较，一旦有一个左子节点比根节点大，则说明不是一个二叉搜索数
@@ -34,13 +35,13 @@ const coreRecursiver = (
     right: null | number,
     root: TreeNodeType,
 ): boolean => {
-    if (!root) {
+    if (!isExist(root)) {
         return true
     }
-    if (left !== null && root.val <= left) {
+    if (isExist(left) && lte(root.val, left)) {
         return false
     }
-    if (right !== null && root.val >= right) {
+    if (isExist(right) && gte(root.val, right)) {
         return false
     }
     return (
