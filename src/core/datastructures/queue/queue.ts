@@ -1,3 +1,4 @@
+import { eq, toString } from 'core/utils2'
 /**
  * 队列（Queue）：先进先出（FIFO, First In First Out）的数据结构
  */
@@ -22,7 +23,7 @@ export default class Queue<T> {
     }
     isEmpty(): boolean {
         // 能简单地判断队列的长度是否为0
-        return this.size() === 0
+        return eq(this.items.length, 0)
     }
     clear(): void {
         // 把队列中的元素全部移除
@@ -34,18 +35,7 @@ export default class Queue<T> {
     }
     toString(): string {
         // 字符串化
-        if (this.isEmpty()) {
-            return ''
-        }
-        let objString = ''
-        for (let i = 0, len = this.size(); i < len; ++i) {
-            if (i < len - 1) {
-                objString += `${this.items[i]},`
-            } else {
-                objString += `${this.items[i]}`
-            }
-        }
-        return objString
+        return toString(this.items)
     }
     print(): void {
         // 打印队列

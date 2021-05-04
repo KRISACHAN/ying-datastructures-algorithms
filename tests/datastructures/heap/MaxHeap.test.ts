@@ -147,24 +147,4 @@ describe('MaxHeap', () => {
         expect(maxHeap.remove(7).toString()).toEqual('8')
         expect(maxHeap.remove(8).toString()).toEqual('')
     })
-
-    it('should be possible to remove items from heap with custom finding comparator', () => {
-        const maxHeap = new MaxHeap()
-        maxHeap.insert('a')
-        maxHeap.insert('bb')
-        maxHeap.insert('ccc')
-        maxHeap.insert('dddd')
-
-        expect(maxHeap.toString()).toBe('dddd,ccc,bb,a')
-
-        const comparator = (a: number[], b: number[]): number => {
-            if (a.length === b.length) {
-                return 0
-            }
-            return a.length < b.length ? -1 : 1
-        }
-
-        maxHeap.remove('hey', comparator)
-        expect(maxHeap.toString()).toBe('dddd,a,bb')
-    })
 })

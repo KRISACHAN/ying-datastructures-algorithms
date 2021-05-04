@@ -148,27 +148,6 @@ describe('MinHeap', () => {
         expect(minHeap.remove(4).toString()).toEqual('')
     })
 
-    it('should be possible to remove items from heap with custom finding comparator', () => {
-        const minHeap = new MinHeap()
-        minHeap.insert('dddd')
-        minHeap.insert('ccc')
-        minHeap.insert('bb')
-        minHeap.insert('a')
-
-        expect(minHeap.toString()).toBe('a,bb,ccc,dddd')
-
-        const comparator = (a: number[], b: number[]): number => {
-            if (a.length === b.length) {
-                return 0
-            }
-
-            return a.length < b.length ? -1 : 1
-        }
-
-        minHeap.remove('hey', comparator)
-        expect(minHeap.toString()).toBe('a,bb,dddd')
-    })
-
     it('should remove values from heap and correctly re-order the tree', () => {
         const minHeap = new MinHeap()
 

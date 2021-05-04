@@ -1,5 +1,5 @@
 import { BSTNode } from 'core/node'
-import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
+import { eq, lt, gt, neq } from 'core/utils2'
 
 /**
  * @二叉搜索树（BST）：是二叉树的一种，但是它只允许你在左侧节点存储（比父节点）小的值，
@@ -7,7 +7,6 @@ import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
  */
 export default class BinarySearchTree<T> {
     protected root: BSTNode<T>
-    protected compareFn: ICompareFunction<T> = defaultCompare
     constructor() {}
 
     // 广度优先遍历的核心实现
@@ -18,7 +17,9 @@ export default class BinarySearchTree<T> {
         const queue: BSTNode<T>[] = [node]
         while (queue.length) {
             const head: BSTNode<T> = queue.shift()
+
             callback(head.key)
+
             if (head.left) {
                 queue.push(head.left)
             }
@@ -38,9 +39,12 @@ export default class BinarySearchTree<T> {
         callback: (key: T) => void,
     ): void {
         const stack: BSTNode<T>[] = [node]
+
         while (stack.length) {
             const tail: BSTNode<T> = stack.pop()
+
             callback(tail.key)
+
             if (tail.right) {
                 stack.push(tail.right)
             }
@@ -57,7 +61,7 @@ export default class BinarySearchTree<T> {
     // 递归插入节点
     protected recursionInsertNode(node: BSTNode<T>, key: T): void {
         // 将节点加在非根节点的其他位置，找到新节点应该插入的正确位置
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        if (lt(key, node.key)) {
             if (!node.left) {
                 node.left = new BSTNode<T>(key)
             } else {
@@ -78,17 +82,21 @@ export default class BinarySearchTree<T> {
             node = newNode
             return
         }
+
         let current: BSTNode<T> = node
         let parent: BSTNode<T>
+
         while (current) {
             parent = current
-            if (this.compareFn(key, parent.key) === Compare.LESS_THAN) {
+            if (lt(key, parent.key)) {
                 current = current.left
+
                 if (!current) {
                     parent.left = newNode
                 }
             } else {
                 current = current.right
+
                 if (!current) {
                     parent.right = newNode
                     return
@@ -112,9 +120,9 @@ export default class BinarySearchTree<T> {
         if (!node) {
             return false
         }
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        if (lt(key, node.key)) {
             return this.recursionSearchNode(node.left, key)
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+        } else if (gt(key, node.key)) {
             return this.recursionSearchNode(node.right, key)
         }
         // 当键值等于当前节点时，返回true
@@ -125,12 +133,15 @@ export default class BinarySearchTree<T> {
         const queue: BSTNode<T>[] = [node]
         while (queue.length) {
             const head = queue.shift()
-            if (key === head.key) {
+
+            if (eq(key, head.key)) {
                 return true
             }
+
             if (head.left) {
                 queue.push(head.left)
             }
+
             if (head.right) {
                 queue.push(head.right)
             }
@@ -150,7 +161,9 @@ export default class BinarySearchTree<T> {
     ): void {
         if (node) {
             this.recursionInOrderTraverseNode(node.left, callback)
+
             callback(node.key)
+
             this.recursionInOrderTraverseNode(node.right, callback)
         }
     }
@@ -161,11 +174,13 @@ export default class BinarySearchTree<T> {
     ): void {
         const stack: BSTNode<T>[] = []
         let current: BSTNode<T> = node
+
         while (current || stack.length) {
             while (current) {
                 stack.push(current)
                 current = current.left
             }
+
             current = stack.pop()
             callback(current.key)
             current = current.right
@@ -184,6 +199,7 @@ export default class BinarySearchTree<T> {
     ): void {
         if (node) {
             callback(node.key)
+
             this.recursionPreOrderTraverseNode(node.left, callback)
             this.recursionPreOrderTraverseNode(node.right, callback)
         }
@@ -195,12 +211,14 @@ export default class BinarySearchTree<T> {
     ): void {
         const stack: BSTNode<T>[] = []
         let current: BSTNode<T> = node
+
         while (current || stack.length) {
             while (current) {
                 stack.push(current)
                 callback(current.key)
                 current = current.left
             }
+
             current = stack.pop()
             current = current.right
         }
@@ -219,6 +237,7 @@ export default class BinarySearchTree<T> {
         if (node) {
             this.recursionPostOrderTraverseNode(node.left, callback)
             this.recursionPostOrderTraverseNode(node.right, callback)
+
             callback(node.key)
         }
     }
@@ -235,10 +254,14 @@ export default class BinarySearchTree<T> {
                 stack.push(current)
                 current = current.left
             }
+
             current = stack[stack.length - 1]
-            if (!current.right || current.right === prev) {
+
+            if (!current.right || eq(current.right, prev)) {
                 current = stack.pop()
+
                 callback(current.key)
+
                 prev = current
                 current = null
             } else {
@@ -287,10 +310,10 @@ export default class BinarySearchTree<T> {
         if (!node) {
             return null
         }
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        if (lt(key, node.key)) {
             // 要删除的节点在左子树
             node.left = this.recursionRemoveNode(node.left, key)
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+        } else if (gt(key, node.key)) {
             // 要删除的节点在右子树
             node.right = this.recursionRemoveNode(node.right, key)
         } else {
@@ -325,7 +348,7 @@ export default class BinarySearchTree<T> {
         }
         const newTree: BinarySearchTree<T> = new BinarySearchTree()
         this.breadthFirstSearch((nKey: T): void => {
-            if (nKey !== key) {
+            if (neq(nKey, key)) {
                 newTree.insert(nKey)
             }
         })
@@ -355,24 +378,23 @@ export default class BinarySearchTree<T> {
         if (!node) {
             return null
         }
-        if (this.compareFn(key, node.key) === Compare.EQUALS) {
+        if (eq(key, node.key)) {
             return this.mergeChild(node)
         }
         let current: BSTNode<T> = node
         let parent: BSTNode<T>
         let keyword: 'left' | 'right'
-        while (current && current.key !== key) {
+        while (current && neq(current.key, key)) {
             parent = current
-            if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {
-                keyword = 'left'
-            } else {
-                keyword = 'right'
-            }
+
+            keyword = gt(current.key, key) ? 'left' : 'right'
+
             current = current[keyword]
         }
         if (!current) {
             return node
         }
+
         parent[keyword] = this.mergeChild(current)
         return node
     }
@@ -392,9 +414,11 @@ export default class BinarySearchTree<T> {
     }
     toArray(): T[] {
         const list: T[] = []
+
         this.breadthFirstSearch((key: T) => {
             list.push(key)
         })
+
         return list
     }
 }

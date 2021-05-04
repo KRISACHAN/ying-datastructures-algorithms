@@ -1,4 +1,4 @@
-import { defaultCompare, Swap, Compare, ICompareFunction } from 'core/utils'
+import { Swap, eq, lt, gt, toString } from 'core/utils2'
 /**
  * 堆（英语：Heap）：给定堆中任意节点P和C，若P是C的母节点，那么P的值会小于等于（或大于等于）C的值。
  * 最小堆（min heap）：若母节点的值恒小于等于子节点的值，此堆称为最小堆（min heap）；
@@ -7,11 +7,10 @@ import { defaultCompare, Swap, Compare, ICompareFunction } from 'core/utils'
  */
 export class Heap<T> {
     private items: T[] = [] // 保存堆结构的元素
-    constructor(public compareFn: ICompareFunction<T> = defaultCompare) {
-        if (new.target === Heap) {
+    constructor() {
+        if (eq(new.target, Heap)) {
             throw new TypeError('Cannot construct Heap instance directly')
         }
-        this.compareFn = compareFn
     }
     private getLeftChildIndex(parentIndex: number): number {
         // 获取左子节点下标
@@ -25,7 +24,7 @@ export class Heap<T> {
 
     private getParentIndex(childIndex: number): number {
         // 获取父节点下标
-        if (childIndex === 0) {
+        if (eq(childIndex, 0)) {
             return undefined
         }
         return Math.floor((childIndex - 1) / 2)
@@ -69,33 +68,34 @@ export class Heap<T> {
         // 添加元素
         this.items.push(element)
         this.heapifyUp()
+
         return this
     }
 
-    find(element: T, comparator = this.compareFn): number[] {
+    find(element: T): number[] {
         // 寻找指定元素
         const foundList: number[] = []
+
         for (let i = 0, len: number = this.size(); i < len; ++i) {
-            if (comparator(element, this.items[i]) === Compare.EQUALS) {
+            if (eq(element, this.items[i])) {
                 foundList.push(i)
             }
         }
+
         return foundList
     }
 
-    remove(element: T, comparator = this.compareFn): Heap<T> {
+    remove(element: T): Heap<T> {
         // 删除指定元素
-        for (
-            let i = 0, len: number = this.find(element, comparator).length;
-            i < len;
-            ++i
-        ) {
-            const tail: number = this.find(element, comparator).pop()
-            if (tail === this.size() - 1) {
+        for (let i = 0, len: number = this.find(element).length; i < len; ++i) {
+            const tail: number = this.find(element).pop()
+
+            if (eq(tail, this.size() - 1)) {
                 this.items.pop()
             } else {
                 this.items[tail] = this.items.pop()
                 const parentItem = this.getParent(tail)
+
                 if (
                     this.hasLeftChild(tail) &&
                     (!parentItem ||
@@ -107,28 +107,33 @@ export class Heap<T> {
                 }
             }
         }
+
         return this
     }
 
     peek(): T {
         // 查看堆顶
-        if (this.size() === 0) {
+        if (this.isEmpty()) {
             return null
         }
+
         return this.items[0]
     }
 
     poll(): T {
         // 将堆尾换到堆头
-        if (this.size() === 0) {
+        if (this.isEmpty()) {
             return null
         }
-        if (this.size() === 1) {
+
+        if (eq(this.size(), 1)) {
             return this.items.pop()
         }
+
         const item: T = this.items[0]
         this.items[0] = this.items.pop()
         this.heapifyDown()
+
         return item
     }
 
@@ -163,6 +168,7 @@ export class Heap<T> {
             } else {
                 nextIndex = this.getLeftChildIndex(currentIndex)
             }
+
             if (
                 this.heapCompare(
                     this.items[currentIndex],
@@ -171,7 +177,9 @@ export class Heap<T> {
             ) {
                 break
             }
+
             Swap(this.items, currentIndex, nextIndex)
+
             currentIndex = nextIndex
         }
     }
@@ -184,11 +192,11 @@ export class Heap<T> {
     }
 
     isEmpty(): boolean {
-        return this.size() === 0
+        return eq(this.size(), 0)
     }
 
     toString(): string {
-        return this.items.toString()
+        return toString(this.items)
     }
 
     print(): void {
@@ -202,7 +210,7 @@ export class MinHeap<T> extends Heap<T> {
         super()
     }
     heapCompare(data1: T, data2: T): boolean {
-        return this.compareFn(data1, data2) === Compare.LESS_THAN
+        return lt(data1, data2)
     }
 }
 
@@ -212,6 +220,6 @@ export class MaxHeap<T> extends Heap<T> {
         super()
     }
     heapCompare(data1: T, data2: T): boolean {
-        return this.compareFn(data1, data2) === Compare.BIGGER_THAN
+        return gt(data1, data2)
     }
 }
