@@ -67,7 +67,7 @@ export const defaultToString = (item: unknown): string => {
 
 // 数据交换
 export const Swap = (array: unknown[], a: number, b: number): void => {
-    const tmpl = array[a]
+    const tmpl: unknown = array[a]
     array[a] = array[b]
     array[b] = tmpl
 }
@@ -112,10 +112,7 @@ export const dataType = (data: unknown): string => {
 
 // 是否存在该数据
 export const isExist = (data: unknown): boolean => {
-    if (data === 0) {
-        return true
-    }
-    return dataType(data) !== 'undefined' && dataType(data) !== 'null'
+    return !['undefined', 'null'].includes(dataType(data))
 }
 
 // 是否存在当前所有数据

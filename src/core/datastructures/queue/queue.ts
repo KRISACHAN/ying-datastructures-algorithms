@@ -1,56 +1,41 @@
+import { eq, toString } from 'core/utils2'
 /**
  * 队列（Queue）：先进先出（FIFO, First In First Out）的数据结构
  */
 export default class Queue<T> {
-    private items: WeakMap<Queue<T>, Array<T>> = new WeakMap() // 保存队列的元素
+    private items: T[] = [] // 保存队列的元素
     constructor() {
-        this.items.set(this, [])
+        this.items = []
     }
-    enqueue(element: T): void {
+    enqueue(element: T): Queue<T> {
         // 向队列尾部添加一个新的元素。
-        const q: T[] = this.items.get(this)
-        q.push(element)
+        this.items.push(element)
+        return this
     }
     dequeue(): T {
         // 可删除并返回队列的第一个元素。
-        const q: T[] = this.items.get(this)
-        const r: T = q.shift()
-        return r
+        const deletedHead: T = this.items.shift()
+        return deletedHead
     }
     peek(): T {
         // 返回队列中第一个元素
-        const q: T[] = this.items.get(this)
-        return q[0]
+        return this.items[0]
     }
     isEmpty(): boolean {
         // 能简单地判断队列的长度是否为0
-        const q: T[] = this.items.get(this)
-        return q.length === 0
+        return eq(this.items.length, 0)
     }
     clear(): void {
         // 把队列中的元素全部移除
-        this.items.set(this, [])
+        this.items = []
     }
     size(): number {
         // 队列长度
-        const q: T[] = this.items.get(this)
-        return q.length
+        return this.items.length
     }
     toString(): string {
         // 字符串化
-        if (this.isEmpty()) {
-            return ''
-        }
-        const s: T[] = this.items.get(this)
-        let objString = ''
-        for (let i = 0, len = this.size(); i < len; ++i) {
-            if (i < len - 1) {
-                objString += `${s[i]},`
-            } else {
-                objString += `${s[i]}`
-            }
-        }
-        return objString
+        return toString(this.items)
     }
     print(): void {
         // 打印队列

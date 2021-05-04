@@ -1,12 +1,17 @@
 import { RBNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
-import {
-    defaultCompare,
-    ICompareFunction,
-    Colors,
-    ColorTexts,
-    Compare,
-} from 'core/utils'
+import { eq, lt, gt, neq } from 'core/utils2'
+
+// 红黑色色值枚举
+export enum Colors {
+    RED = 0,
+    BLACK = 1,
+}
+// 红黑树色值文本枚举
+export enum ColorTexts {
+    RED = 'RED',
+    BLACK = 'BLACK',
+}
 
 /**
  * 红黑树（Red Black Tree） 是一种自平衡二叉查找树，是在计算机科学中用到的一种数据结构，典型的用途是实现关联数组。
@@ -15,7 +20,6 @@ import {
  */
 export default class RedBlackTree<T> extends BinarySearchTree<T> {
     protected root: RBNode<T>
-    protected compareFn: ICompareFunction<T> = defaultCompare
     constructor() {
         super()
     }
@@ -32,19 +36,23 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
     private rotationLL(node: RBNode<T>): void {
         const tmp: RBNode<T> = node.left
         node.left = tmp.right
+
         if (tmp.right && tmp.right.key) {
             tmp.right.parent = node
         }
+
         tmp.parent = node.parent
+
         if (!node.parent) {
             this.root = tmp
         } else {
-            if (node === node.parent.left) {
+            if (eq(node, node.parent.left)) {
                 node.parent.left = tmp
             } else {
                 node.parent.right = tmp
             }
         }
+
         tmp.right = node
         node.parent = tmp
     }
@@ -61,19 +69,23 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
     private rotationRR(node: RBNode<T>): void {
         const tmp: RBNode<T> = node.right
         node.right = tmp.left
+
         if (tmp.left && tmp.left.key) {
             tmp.left.parent = node
         }
+
         tmp.parent = node.parent
+
         if (!node.parent) {
             this.root = tmp
         } else {
-            if (node === node.parent.left) {
+            if (eq(node, node.parent.left)) {
                 node.parent.left = tmp
             } else {
                 node.parent.right = tmp
             }
         }
+
         tmp.left = node
         node.parent = tmp
     }
@@ -96,17 +108,22 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
         if (!node.left && !node.right) {
             return null
         }
+
         if (!node.left && node.right) {
             return node.right
         }
+
         if (node.left && !node.right) {
             return node.left
         }
+
         let current: RBNode<T> = node.right
+
         while (current.left) {
             current = current.left
         }
         current.left = node.left
+
         return node.right
     }
     // 循环删除节点
@@ -114,25 +131,29 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
         if (!node) {
             return null
         }
-        if (this.compareFn(key, node.key) === Compare.EQUALS) {
+
+        if (eq(key, node.key)) {
             return this.mergeChild(node)
         }
+
         let current: RBNode<T> = node
         let parent: RBNode<T>
         let keyword: 'left' | 'right'
-        while (current && current.key !== key) {
+
+        while (current && neq(current.key, key)) {
             parent = current
-            if (this.compareFn(current.key, key) === Compare.BIGGER_THAN) {
-                keyword = 'left'
-            } else {
-                keyword = 'right'
-            }
+
+            keyword = gt(current.key, key) ? 'left' : 'right'
+
             current = current[keyword]
         }
+
         if (!current) {
             return node
         }
+
         parent[keyword] = this.mergeChild(current)
+
         return node
     }
 
@@ -148,10 +169,11 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
     // 保留并返回插入的节点
     // 主要为了验证插入后，是否满足红黑树规则
     protected insertNode(node: RBNode<T>, key: T): RBNode<T> {
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        if (lt(key, node.key)) {
             if (!node.left) {
                 node.left = new RBNode(key)
                 node.left.parent = node
+
                 return node.left
             } else {
                 return this.insertNode(node.left, key)
@@ -159,6 +181,7 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
         } else if (!node.right) {
             node.right = new RBNode(key)
             node.right.parent = node
+
             return node.right
         } else {
             return this.insertNode(node.right, key)
@@ -167,19 +190,16 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
 
     // 属性修复
     private fixTreeProperties(node: RBNode<T>): void {
-        while (
-            node &&
-            node.parent &&
-            node.parent.isRed() &&
-            node.color !== Colors.BLACK
-        ) {
+        while (node?.parent?.isRed() && neq(node.color, Colors.BLACK)) {
             let parent: RBNode<T> = node.parent
             const grandParent: RBNode<T> = parent.parent
+
             // case A：父节点是祖父节点的左子节点时
-            if (grandParent && grandParent.left === parent) {
+            if (grandParent && eq(grandParent.left, parent)) {
                 const uncle: RBNode<T> = grandParent.right
+
                 // case 1: 当Node的叔叔也是红色的时候
-                if (uncle && uncle.isRed()) {
+                if (uncle?.isRed()) {
                     grandParent.color = Colors.RED
                     grandParent.colorText = ColorTexts.RED
 
@@ -192,11 +212,12 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
                     node = grandParent
                 } else {
                     // case 2: 如果Node是右子节点 - 左转
-                    if (node === parent.right) {
+                    if (eq(node, parent.right)) {
                         this.rotationRR(parent)
                         node = parent
                         parent = node.parent
                     }
+
                     // case 3: 如果Node是左子节点 - 右转
                     this.rotationLL(grandParent)
                     // 颜色交换
@@ -212,7 +233,7 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
                 // case B: 父节点是祖父节点的右子节点时
                 const uncle: RBNode<T> = grandParent.left
                 // case 1: 当Node的叔叔也是红色的时候
-                if (uncle && uncle.isRed()) {
+                if (uncle?.isRed()) {
                     grandParent.color = Colors.RED
                     grandParent.colorText = ColorTexts.RED
 
@@ -225,7 +246,7 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
                     node = grandParent
                 } else {
                     // case 2: 如果Node是左子节点 - 左转
-                    if (node === parent.left) {
+                    if (eq(node, parent.left)) {
                         this.rotationLL(parent)
                         node = parent
                         parent = node.parent

@@ -1,4 +1,6 @@
 import { LLNode } from 'core/node'
+import { eq, isExist, gte, lte, lt, gt } from 'core/utils2'
+
 /**
  * 链表（LinkedList）：链表存储有序的元素集合，但不同于数组，链表中的元素在内存中并不是连续放置的。每个
 元素由一个存储元素本身的节点和一个指向下一个元素的引用（也称指针或链接）组成。
@@ -15,7 +17,8 @@ export default class LinkedList<T> {
         // 插入节点
         const node: LLNode<T> = new LLNode(element)
         let current: null | LLNode<T>
-        if (this.head === null) {
+
+        if (!isExist(this.head)) {
             // 列表中第一个节点
             this.head = node
         } else {
@@ -27,73 +30,88 @@ export default class LinkedList<T> {
             // 找到最后一项，将其next赋为node，建立链接
             current.next = node
         }
+
         this.length++ // 更新列表的长度
+
         return this
     }
 
     insert(position = -1, element: T): LinkedList<T> {
         // 向列表的特点位置插入一个新的元素
         //检查越界值
-        if (position < 0) {
+        if (lt(position, 0)) {
             throw new Error('position must equal or bigger than 0')
         }
-        if (position > this.length) {
+
+        if (gt(position, this.length)) {
             let index: number = position - this.length
-            while (index-- > 0) {
+
+            while (gt(index--, 0)) {
                 this.append(null)
             }
+
             this.append(element)
-        } else if (position <= this.length) {
-            if (this.length === 0) {
+        } else if (lte(position, this.length)) {
+            if (eq(this.length, 0)) {
                 this.append(element)
             } else {
                 const node: LLNode<T> = new LLNode(element)
                 let current: null | LLNode<T> = this.head
                 let previous: null | LLNode<T>
                 let index = 0
-                while (index++ < position) {
+
+                while (lt(index++, position)) {
                     previous = current
                     current = current.next
                 }
+
                 node.next = current
                 previous.next = node
                 this.length++
             }
         }
+
         return this
     }
 
     getAt(position: number): null | LLNode<T> {
         // 获取指定位置的元素。
-        if (position >= 0 && position <= this.length) {
+        if (gte(position, 0) && lte(position, this.length)) {
             let node: null | LLNode<T> = this.head
-            for (let i = 0; i < position && node !== null; ++i) {
+
+            for (let i = 0; i < position && isExist(node); ++i) {
                 node = node.next
             }
+
             return node
         }
+
         return null
     }
 
     removeAt(position: number): T | null {
         // 从列表的特定位置移除一项。
         //检查越界值
-        if (position > -1 && position < this.length) {
+        if (gt(position, -1) && lt(position, this.length)) {
             let current: null | LLNode<T> = this.head
             let previous: null | LLNode<T>
             let index = 0
+
             //移除第一项
-            if (position === 0) {
+            if (eq(position, 0)) {
                 this.head = current.next
             } else {
-                while (index++ < position) {
+                while (lt(index++, position)) {
                     previous = current
                     current = current.next
                 }
+
                 //将previous与current的下一项链接起来：跳过current，从而移除它
                 previous.next = current.next
             }
+
             this.length--
+
             return current.element
         }
         return null
@@ -103,13 +121,16 @@ export default class LinkedList<T> {
         // 返回元素在列表中的索引。如果列表中没有该元素则返回-1。
         let current: null | LLNode<T> = this.head
         let index = 0
+
         while (current) {
-            if (element === current.element) {
+            if (eq(element, current.element)) {
                 return index
             }
+
             index++
             current = current.next
         }
+
         return -1
     }
 
@@ -121,7 +142,7 @@ export default class LinkedList<T> {
 
     isEmpty(): boolean {
         // 如果链表中不包含任何元素，返回true，如果链表长度大于0则返回false。
-        return this.length === 0
+        return eq(this.length, 0)
     }
 
     size(): number {
@@ -140,15 +161,18 @@ export default class LinkedList<T> {
     }
 
     toString(): string {
-        if (this.head === null) {
+        if (!isExist(this.head)) {
             return ''
         }
+
         let objString = `${this.head.element}`
         let current: null | LLNode<T> = this.head.next
-        for (let i = 1; i < this.size() && current !== null; i++) {
+
+        for (let i = 1; lt(i, this.size()) && isExist(current); i++) {
             objString = `${objString},${current.element}`
             current = current.next
         }
+
         return objString
     }
 

@@ -1,31 +1,28 @@
-import { defaultCompare, ICompareFunction, Compare } from 'core/utils'
+import { lt, lte } from 'core/utils2'
 
-const Merge = <T>(
-    left: T[],
-    right: T[],
-    compareFn: ICompareFunction<number | T>,
-): T[] => {
+const Merge = (left: number[], right: number[]): number[] => {
     const resArr = []
+
     while (left.length && right.length) {
-        if (compareFn(left[0], right[0]) === Compare.LESS_THAN) {
+        if (lt(left[0], right[0])) {
             resArr.push(left.shift())
         } else {
             resArr.push(right.shift())
         }
     }
+
     return resArr.concat(left, right)
 }
 
-const MergeSort = <T>(
-    list: T[],
-    compareFn: ICompareFunction<number> = defaultCompare,
-): T[] => {
-    if (list.length <= 1) {
+const MergeSort = (list: number[]): number[] => {
+    if (!list || lte(list.length, 1)) {
         return list
     }
+
     const middle: number = Math.floor(list.length / 2)
-    const left: T[] = list.slice(0, middle)
-    const right: T[] = list.slice(middle)
-    return Merge(MergeSort(left), MergeSort(right), compareFn)
+    const left: number[] = list.slice(0, middle)
+    const right: number[] = list.slice(middle)
+
+    return Merge(MergeSort(left), MergeSort(right))
 }
 export default MergeSort

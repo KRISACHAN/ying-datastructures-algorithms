@@ -1,4 +1,4 @@
-import { defaultToString, dataType, isExistAll } from 'core/utils'
+import { toString, dataType, isExistAll, eq } from 'core/utils2'
 import { ValuePair, tableType } from 'core/node'
 
 /**
@@ -12,22 +12,21 @@ type KeyType = number | string
 
 export default class HashTable<V> {
     private table: tableType<KeyType, V> = {} // 数据源
-    constructor(
-        private toStrFn = (key: KeyType): string => defaultToString(key),
-    ) {
-        this.toStrFn = toStrFn
-    }
+    constructor() {}
     // 散列函数
     // 给定一个key参数，我们就能根据组成key的每个字符的ASCII码值的和得到一个数字。
     private loseloseHashCode(key: KeyType, div = 37): KeyType {
-        if (dataType(key) === 'number') {
+        if (eq(dataType(key), 'number')) {
             return key
         }
-        const tableKey: string = this.toStrFn(key)
+
+        const tableKey: string = toString(key)
+
         let hash = 0
         for (let i = 0, len = tableKey.length; i < len; ++i) {
             hash += tableKey.charCodeAt(i)
         }
+
         return hash % div
     }
     // 创建hash
@@ -40,12 +39,12 @@ export default class HashTable<V> {
             const position: KeyType = this.hashCode(key) // 查看表中位置
             this.table[position] = new ValuePair(key, value) // 赋值
         }
+
         return this
     }
     // 返回根据键值检索到的特定的值。
     get(key: KeyType): V {
-        const valuePair: ValuePair<KeyType, V> = this.table[this.hashCode(key)]
-        return valuePair?.value
+        return this.table[this.hashCode(key)]?.value
     }
     // 根据键值从散列表中移除值。
     remove(key: KeyType): HashTable<V> {
@@ -111,7 +110,7 @@ export default class HashTable<V> {
 
     // 是否为空
     isEmpty(): boolean {
-        return this.size() === 0
+        return eq(this.size(), 0)
     }
 
     // 返回表所包含元素的数量。与数组的length属性类似
