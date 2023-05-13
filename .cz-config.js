@@ -7,6 +7,7 @@ const czConfig = {
         { value: 'refactor', name: '重构: 代码重构' },
         { value: 'perf', name: '性能: 改善性能' },
         { value: 'test', name: '测试: 测试代码' },
+        { value: 'wip', name: '半成品: 开发中' },
         {
             value: 'build',
             name:
@@ -22,8 +23,8 @@ const czConfig = {
             name: '代码格式（不影响功能，例如空格、分号等格式修正）',
         },
         {
-            value: 'revert',
-            name: '回退: 代码回退',
+            value: 'chore',
+            name: '构建: 变更构建流程或辅助工具',
         },
         {
             value: 'revert',
@@ -32,7 +33,9 @@ const czConfig = {
     ],
     scopes: [
         { name: 'config' },
-        { name: 'src/core' },
+        { name: 'src/assets' },
+        { name: 'src/styles' },
+        { name: 'src/scripts' },
         { name: 'static' },
         { name: 'tests' },
         { name: 'views' },
@@ -50,7 +53,8 @@ const czConfig = {
         confirmCommit: '确定提交说明?',
     },
     allowCustomScopes: true,
-    allowBreakingChanges: ['特性', '修复'],
+    allowBreakingChanges: ['feat', 'fix', 'wip'],
+    // 限制主题长度
     subjectLimit: 100,
 }
 
