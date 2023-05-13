@@ -1,4 +1,4 @@
-import { lt, eq } from 'core/utils2'
+import { lt, eq } from 'core/utils'
 
 export const QuickSort = (list: number[]): number[] => {
     const len: number = list.length

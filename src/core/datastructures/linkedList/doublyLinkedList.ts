@@ -1,6 +1,6 @@
 import { DLLNode } from 'core/node'
 import LinkedList from './linkedList'
-import { eq, isExist, gte, lte, lt } from 'core/utils2'
+import { eq, isExist, gte, lte, lt } from 'core/utils'
 
 /**
  * 双向链表（DoublyLinkedList）：双向链表与普通链表的区别在于，双向链表是双向的....有点废话

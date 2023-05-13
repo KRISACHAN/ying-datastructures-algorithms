@@ -1,4 +1,4 @@
-import { gt, toString } from 'core/utils2'
+import { gt, toString } from 'core/utils'
 
 const LSDRadixSort = (list: number[]): number[] => {
     const max: number = Math.max(...list) /* 获取最大值 */

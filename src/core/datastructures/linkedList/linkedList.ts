@@ -1,5 +1,5 @@
 import { LLNode } from 'core/node'
-import { eq, isExist, gte, lte, lt, gt } from 'core/utils2'
+import { eq, isExist, gte, lte, lt, gt } from 'core/utils'
 
 /**
  * 链表（LinkedList）：链表存储有序的元素集合，但不同于数组，链表中的元素在内存中并不是连续放置的。每个

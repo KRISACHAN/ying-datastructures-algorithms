@@ -1,4 +1,4 @@
-import { Swap, lt } from 'core/utils2'
+import { Swap, lt } from 'core/utils'
 
 const BucketSort = (
     list: number[],

@@ -1,4 +1,4 @@
-import { gt, lt, eq, neq } from 'core/utils2'
+import { gt, lt, eq, neq } from 'core/utils'
 
 const fibonacci = (size: number): number[] => {
     const list = [1, 1]

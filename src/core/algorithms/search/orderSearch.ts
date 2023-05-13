@@ -1,4 +1,4 @@
-import { eq } from 'core/utils2'
+import { eq } from 'core/utils'
 
 // 常规法
 export const orderSearch = (list: number[], data: number): number => {

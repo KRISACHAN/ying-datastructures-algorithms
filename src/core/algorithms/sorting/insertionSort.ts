@@ -1,4 +1,4 @@
-import { gt, gte } from 'core/utils2'
+import { gt, gte } from 'core/utils'
 
 const InsertionSort = (list: number[]): number[] => {
     const len: number = list.length

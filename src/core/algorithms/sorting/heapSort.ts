@@ -1,4 +1,4 @@
-import { Swap, gt, lt, eq } from 'core/utils2'
+import { Swap, gt, lt, eq } from 'core/utils'
 // 使数组变为堆
 const heapify = (list: number[], index: number, heapSize: number): void => {
     let largest = index

@@ -1,4 +1,4 @@
-import { lt, lte } from 'core/utils2'
+import { lt, lte } from 'core/utils'
 
 const Merge = (left: number[], right: number[]): number[] => {
     const resArr = []

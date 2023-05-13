@@ -1,4 +1,4 @@
-import { gte, gt } from 'core/utils2'
+import { gte, gt } from 'core/utils'
 
 const CountSort = (list: number[]): number[] => {
     const C: number[] = []

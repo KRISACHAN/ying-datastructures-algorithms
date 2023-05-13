@@ -1,4 +1,4 @@
-import { eq, toString } from 'core/utils2'
+import { eq, toString } from 'core/utils'
 /**
  * 队列（Queue）：先进先出（FIFO, First In First Out）的数据结构
  */

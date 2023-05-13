@@ -1,4 +1,4 @@
-import { toString, isExist, eq } from 'core/utils2'
+import { toString, isExist, eq } from 'core/utils'
 import { ValuePair, tableType } from 'core/node'
 
 /**

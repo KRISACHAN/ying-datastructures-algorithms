@@ -1,4 +1,4 @@
-import { Swap, lt, gt } from 'core/utils2'
+import { Swap, lt, gt } from 'core/utils'
 
 const CocktailSort = (list: number[]): number[] => {
     let i: number,
