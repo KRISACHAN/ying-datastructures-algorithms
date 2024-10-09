@@ -16,7 +16,7 @@
  * @output [8,9,9,9,0,0,0,1]
  */
 import { ListNode, ListNodeType } from 'core/leetNode'
-import { eq } from 'core/utils2'
+import { eq } from 'core/utils'
 
 const coreRecursiver = (
     l1: ListNodeType,

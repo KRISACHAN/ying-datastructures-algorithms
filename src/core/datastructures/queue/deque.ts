@@ -1,4 +1,4 @@
-import { eq, toString } from 'core/utils2'
+import { eq, toString } from 'core/utils'
 /**
  * 双端队列（deque，全名double-ended queue）：是一种具有队列和栈性质的抽象数据类型。双端队列中的元素可以从两端弹出，插入和删除操作限定在队列的两边进行。
  */

@@ -1,4 +1,4 @@
-import { gt, lt } from 'core/utils2'
+import { gt, lt } from 'core/utils'
 // 递归实现
 export const recursionBinarySearch = (list: number[], data: number): number => {
     if (!list?.length) {

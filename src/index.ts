@@ -1,4 +1,4 @@
-import { MaxHeap, MinHeap } from 'core/datastructures/heap/heap2'
+import { MaxHeap, MinHeap } from 'core/datastructures/heap/heap'
 
 const maxHeap: MinHeap<string> = new MaxHeap()
 maxHeap.insert('a')

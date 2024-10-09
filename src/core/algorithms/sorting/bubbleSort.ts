@@ -1,4 +1,4 @@
-import { Swap, gt } from 'core/utils2'
+import { Swap, gt } from 'core/utils'
 
 const BubbleSort = (list: number[]): number[] => {
     const len: number = list.length - 1

@@ -1,4 +1,4 @@
-import { eq, toString } from 'core/utils2'
+import { eq, toString } from 'core/utils'
 /**
  * 栈（Stack）：栈是一种遵从后进先出（LIFO, last-in-first-out）原则的有序集合。
  */

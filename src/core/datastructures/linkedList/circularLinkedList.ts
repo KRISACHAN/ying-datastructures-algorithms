@@ -1,6 +1,6 @@
 import { LLNode } from 'core/node'
 import LinkedList from './linkedList'
-import { eq, isExist, gte, lte, lt } from 'core/utils2'
+import { eq, isExist, gte, lte, lt } from 'core/utils'
 
 /**
  * 循环链表（CircularLinkedList）：循环链表跟普通链表的区别就是循环链表是头尾相连的

@@ -1,3 +1,62 @@
+// 获取数据类型
+export const dataType = (data: unknown): string => {
+    const type: string = Object.prototype.toString.call(data)
+    return type.replace(/^\[object\s(.+)\]$/, '$1').toLowerCase()
+}
+// 是否存在该数据
+export const isExist = (data: unknown): boolean => {
+    return !['undefined', 'null'].includes(dataType(data))
+}
+// 是否存在当前所有数据
+export const isExistAll = (...dataList: unknown[]): boolean => {
+    return dataList.every(isExist)
+}
+// 数组元素交换
+export const Swap = (array: unknown[], a: number, b: number): void => {
+    const tmpl: unknown = array[a]
+    array[a] = array[b]
+    array[b] = tmpl
+}
+// 数据转为字符串
+export const toString = (data: unknown): string => {
+    if (dataType(data) === 'null') {
+        return 'NULL'
+    }
+    if (dataType(data) === 'undefined') {
+        return 'UNDEFINED'
+    }
+    if (dataType(data) === 'array') {
+        return `${(data as unknown & string & []).map(item =>
+            !isExist(item) ? item : toString(item),
+        )}`
+    }
+    return data.toString()
+}
+// 大于判断
+export const gt = (data1: unknown, data2: unknown): boolean => {
+    return data1 > data2
+}
+// 大于等于判断
+export const gte = (data1: unknown, data2: unknown): boolean => {
+    return data1 >= data2
+}
+// 小于判断
+export const lt = (data1: unknown, data2: unknown): boolean => {
+    return data1 < data2
+}
+// 小于等于判断
+export const lte = (data1: unknown, data2: unknown): boolean => {
+    return data1 <= data2
+}
+// 等于判断
+export const eq = (data1: unknown, data2: unknown): boolean => {
+    return data1 === data2 || (data1 !== data1 && data2 !== data2)
+}
+// 不等于判断
+export const neq = (data1: unknown, data2: unknown): boolean => {
+    return !eq(data1, data2)
+}
+
 export type DefalutListType = number[]
 export type ICompareFunction<T> = (a: T, b: T) => number
 export type IEqualsFunction<T> = (a: T, b: T) => boolean
@@ -65,13 +124,6 @@ export const defaultToString = (item: unknown): string => {
     return item.toString()
 }
 
-// 数据交换
-export const Swap = (array: unknown[], a: number, b: number): void => {
-    const tmpl: unknown = array[a]
-    array[a] = array[b]
-    array[b] = tmpl
-}
-
 // 反向对比
 export const reverseCompare = <T>(
     compareFn: ICompareFunction<T>,
@@ -103,19 +155,3 @@ export const SortedLists: number[][] = [
     [1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 22, 66, 88, 102, 1024],
     [0, 1, 2, 3, 5, 5, 7, 8, 9, 88, 98, 125, 127, 555, 888],
 ]
-
-// 获取数据类型
-export const dataType = (data: unknown): string => {
-    const type: string = Object.prototype.toString.call(data)
-    return type.replace(/^\[object\s(.+)\]$/, '$1').toLowerCase()
-}
-
-// 是否存在该数据
-export const isExist = (data: unknown): boolean => {
-    return !['undefined', 'null'].includes(dataType(data))
-}
-
-// 是否存在当前所有数据
-export const isExistAll = (...dataList: unknown[]): boolean => {
-    return dataList.every(isExist)
-}

@@ -1,4 +1,4 @@
-import { gt, gte, lt, lte, eq, neq, toString } from 'core/utils2'
+import { gt, gte, lt, lte, eq, neq, toString } from 'core/utils'
 
 interface BlockTypes extends Array<number> {
     key?: number

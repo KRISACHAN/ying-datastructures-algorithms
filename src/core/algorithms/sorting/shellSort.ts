@@ -1,4 +1,4 @@
-import { lt, gt } from 'core/utils2'
+import { lt, gt } from 'core/utils'
 
 const ShellSort = (list: number[]): number[] => {
     const gaps: number[] = [5, 3, 1] // 定义步长以及分割次数

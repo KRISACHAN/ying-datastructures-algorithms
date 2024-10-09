@@ -33,9 +33,7 @@ const czConfig = {
     ],
     scopes: [
         { name: 'config' },
-        { name: 'src/assets' },
-        { name: 'src/styles' },
-        { name: 'src/scripts' },
+        { name: 'src/core' },
         { name: 'static' },
         { name: 'tests' },
         { name: 'views' },

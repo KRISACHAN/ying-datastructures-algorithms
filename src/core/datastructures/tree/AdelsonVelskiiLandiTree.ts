@@ -1,6 +1,6 @@
 import { AVLNode } from 'core/node'
 import BinarySearchTree from './BinarySearchTree'
-import { eq, lt, gt } from 'core/utils2'
+import { eq, lt, gt } from 'core/utils'
 
 enum BalanceFactor { // 平衡因子
     UNBALANCED_RIGHT = 1,

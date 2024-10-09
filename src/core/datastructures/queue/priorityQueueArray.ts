@@ -1,4 +1,4 @@
-import { eq, lt } from 'core/utils2'
+import { eq, lt } from 'core/utils'
 
 class QueueElement<T> {
     // 带权重的队列元素

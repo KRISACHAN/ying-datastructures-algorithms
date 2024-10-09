@@ -1,4 +1,4 @@
-import { MinHeap } from 'core/datastructures/heap/heap2'
+import { MinHeap } from 'core/datastructures/heap/heap'
 
 describe('MinHeap', () => {
     it('should create an empty min heap', () => {

@@ -15,7 +15,7 @@
  * @output [0]
  */
 import { ListNodeType } from 'core/leetNode'
-import { lte } from 'core/utils2'
+import { lte } from 'core/utils'
 
 const coreRecursiver = (l1: ListNodeType, l2: ListNodeType): ListNodeType => {
     // 边界处理

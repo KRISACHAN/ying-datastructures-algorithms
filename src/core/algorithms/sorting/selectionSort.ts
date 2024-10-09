@@ -1,4 +1,4 @@
-import { Swap, lt } from 'core/utils2'
+import { Swap, lt } from 'core/utils'
 
 const SelectionSort = (list: number[]): number[] => {
     const len = list.length

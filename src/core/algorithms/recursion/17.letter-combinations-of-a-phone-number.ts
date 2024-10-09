@@ -14,7 +14,7 @@
  * @input digits = "2"
  * @output ["a","b","c"]
  */
-import { eq, gte } from 'core/utils2'
+import { eq, gte } from 'core/utils'
 interface DigitsMapType {
     [propName: string]: string[]
 }
