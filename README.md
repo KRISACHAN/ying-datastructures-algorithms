@@ -42,4 +42,4 @@
 鱼头的微信号是：krisChans95
 也可以扫码关注公众号，订阅更多精彩内容。
 
-![./static/qrcode-all1.png](./static/qrcode-all1.png)
+![./static/img/qrcode-all1.png](./static/img/qrcode-all1.png)
