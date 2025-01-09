@@ -24,7 +24,16 @@ export default class CircularQueue<T> {
         if (this.isFull()) {
             return false
         }
-        // 移动rear指针并添加元素
+        // 移动rear指针并添加元素，为了防止越界，需要取模
+        /**
+         * 如果不用取模，就这么写：
+         * this.rear++
+         * 当到达末尾时手动重置
+         * if (this.rear === this.capacity) {
+         *     this.rear = 0
+         * }
+         * 这样代码就不够简洁了
+         */
         this.rear = (this.rear + 1) % this.capacity
         this.items[this.rear] = element
         this.currentLength++
@@ -38,6 +47,16 @@ export default class CircularQueue<T> {
         }
         const item = this.items[this.front]
         this.items[this.front] = null
+        // 移动front指针，为了防止越界，需要取模
+        /**
+         * 如果不用取模，就这么写：
+         * this.front++
+         * 当到达末尾时手动重置
+         * if (this.front === this.capacity) {
+         *     this.front = 0
+         * }
+         * 这样代码就不够简洁了
+         */
         this.front = (this.front + 1) % this.capacity
         this.currentLength--
         return item
@@ -90,3 +109,21 @@ export default class CircularQueue<T> {
         console.log(this.toString())
     }
 }
+
+// 判断是否使用取模的关键点：
+
+// 1. **是否需要循环？**
+//    - 数据结构是否需要循环访问
+//    - 是否需要在固定范围内循环
+
+// 2. **是否有固定范围？**
+//    - 值是否需要限制在特定范围内
+//    - 是否需要将大数映射到小范围
+
+// 3. **是否需要环形结构？**
+//    - 是否需要首尾相连
+//    - 是否需要循环利用空间
+
+// 4. **是否涉及周期性？**
+//    - 是否有重复的周期
+//    - 是否需要循环执行
